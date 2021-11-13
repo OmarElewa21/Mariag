@@ -1,0 +1,17 @@
+Table : admins
+
+columns : wallet -> type : decimal(28,8) NOT_NULL 
+
+Table : bookings
+
+columns : btc_wallet -> type : varchar(255) NULL , btc_amount -> type : decimal(28,8) NULL , btc_trx -> type : varchar(255) NULL
+
+Table : general_settings
+
+
+columns : site_direction -> type : varchar(255)
+
+Table : categories
+
+columns : slug -> type : varchar (255) NOT_NULL
+

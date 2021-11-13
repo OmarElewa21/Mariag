@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+
+	<title>ServiceTop - Professional Service Selling Marketplace</title>
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link rel="stylesheet" href="assets/css/custom.css" media="all">
+	<script src="assets/js/jquery.js"></script>	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	<script>document.createElement('section');var duration='364',easing='easeInBounce';</script>
+	<script src="assets/js/script.js"></script>
+</head>
+<body class="documenter-project-docment">
+<div id="documenter_sidebar">
+	<a href="#documenter_cover" id="documenter_logo"></a>
+	<ul id="documenter_nav">
+		
+		<li class="ss">General Section</li>
+		
+		<li><a href="#documenter_cover">Start</a></li>
+		<li><a href="#introduction">Introduction</a></li>
+		<li><a href="#features">Features</a></li>
+		<li><a href="#installation">Installation</a></li>
+		<li><a href="#configuration">Configuration</a></li>
+		<li><a href="#requirements">Requirements</a></li>
+		<li><a href="#credentials">Credentials</a></li>
+
+		<li class="ss">Admin Section</li>
+
+		<li><a href="#general_settings">General Settings</a></li>
+		<li><a href="#setting_recaptcha">Recaptcha Settings</a></li>
+		<li><a href="#tawk_setting">Tawk Live Chat Settings</a></li>
+		<li><a href="#setting_theme_color">Theme Color Settings</a></li>
+		<li><a href="#setting_preloader">Preloader Settings</a></li>
+		<li><a href="#setting_payment">Payment Settings</a></li>
+		<li><a href="#setting_email_template">Email Template Settings</a></li>
+		<li><a href="#setting_clear_database">Clear Database Settings</a></li>
+		<li><a href="#provider">Manage Provider</a></li>
+		<li><a href="#user">Manage User</a></li>
+		<li><a href="#language">Language Setup</a></li>
+		<li><a href="#service">Manage Service</a></li>
+		<li><a href="#blog_comment">Blog Comment</a></li>
+		<li><a href="#category">Category</a></li>
+		<li><a href="#booking">Manage Bookings</a></li>
+		<li><a href="#frontend">Manage Frontend</a></li>
+		<li><a href="#withdraw">Manage Withdraw</a></li>
+		<li><a href="#transaction">Transactions</a></li>
+		<li><a href="#subscriber">Subscriber</a></li>
+		
+
+		<li class="ss">Provider Section</li>
+		<li><a href="#provider_registration">Registration</a></li>
+		<li><a href="#provider_login">Login</a></li>
+		<li><a href="#provider_forget_password">Forget Password</a></li>
+		<li><a href="#provider_profile_update">Profile Update</a></li>
+		<li><a href="#provider_dashboard">Dashboard</a></li>
+		<li><a href="#provider_service">Service Section</a></li>
+		<li><a href="#provider_schedule">Service Schedule</a></li>
+		<li><a href="#provider_bookings">Service Bookings</a></li>
+		<li><a href="#provider_withdraw">Provider Withdraw</a></li>
+		<li><a href="#provider_transaction">Transaction</a></li>
+		
+
+		<li class="ss">User Section</li>
+		<li><a href="#user_login">Login</a></li>
+		<li><a href="#user_forget_password">Forget Password</a></li>
+		<li><a href="#user_dashboard">Dashboard</a></li>
+		<li><a href="#user_update_profile">Update Profile</a></li>
+		<li><a href="#user_bookings">User Bookings</a></li>
+		<li><a href="#user_payment">User Payment</a></li>
+		<li><a href="#user_chat">Chat with Provider</a></li>
+		<li><a href="#user_transaction">User Transaction</a></li>
+		
+
+		<li class="ss">Conclusion</li>
+		<li><a href="#support" title="Support">Support</a></li>
+		<li><a href="#update_log">Update Logs</a></li>
+		
+	</ul>
+</div>
+
+
+
+<div id="documenter_content">
+	<section id="documenter_cover">
+		<h1>ServiceTop</h1>
+		<h2>Professional Service Selling Marketplace</h2>
+		<hr>
+		<ul>
+			<li>Created: 15 September, 2021</li>
+			<li>By: websolutionus</li>
+			<li>Email: <a href="mailto:websolutionus1@gmail.com">websolutionus1@gmail.com</a></li>
+		</ul>
+	</section>
+
+<section id="introduction">
+	<div class="page-header"><h3>Introduction</h3><hr class="notop"></div>
+	<p>
+		ServiceTop is a professional service selling marketplace where service providers and users/customers can create free account. Service providers can add their services for free and users/customers can hire them. Admin will earn through commisions from service providers when they will be hired by customers for a particular service.
+	</p>
+	<p>
+		This system was made using the popular Laravel php framework. Strong security was maintained during the development and there is no sql injection, xss attack, csrf attack possible.
+	</p>
+</section>
+
+<section id="features">
+	<div class="page-header"><h3>Features</h3><hr class="notop"></div>
+	<p>
+		ServiceTop has the following features.
+	</p>
+	<h4>Key Features</h4>
+	<ul>
+		<li>Laravel 8 is used as language</li>
+		<li>Bootstrap 4.5 is used in design</li>
+		<li>User friendly codes and easy to navigate</li>
+		<li>Eye-catching design</li>
+		<li>Strong security of codes</li>
+		<li>Search by expert name and category in the home page</li>
+		<li>Service Provider makes their own service under some category</li>
+		<li>Easily navigate bookings and payments for user</li>
+		<li>Messaging between user and service provider</li>
+		<li>Service provider withdraw system</li>
+	</ul>
+
+	<h4>Admin Features</h4>
+	<ul>
+		<li>SEO Settings for all pages</li>
+		<li>Payment setting for PayPal, Stripe and Bank</li>
+		<li>Email template setting</li>
+		<li>Facebook or manual comment setup option for blog</li>
+		<li>Cookie Consent option</li>
+		<li>Google Recaptcha option</li>
+		<li>Google Analytic option</li>
+		<li>Preloader on/off option</li>
+		<li>Tawk Live Chat option</li>
+		<li>Theme color change option</li>
+		<li>Admin login page photo change option</li>
+		<li>Clear database option to start the website as fresh installation</li>
+		<li>Booking view and delete by admin</li>
+		<li>Provider list view</li>
+		<li>User list view</li>
+		<li>Booking view and details</li>
+		<li>Custom dynamic pages create, edit and delete option</li>
+		<li>Manage all frontend section data dynamically</li>
+		<li>Language change option for front end</li>
+		<li>Home page sections manage with on/off option</li>
+		<li>Subscriber manage with email to subscribers option</li>
+		<li>Profile information, photo, password change option</li>
+		<li>Forget and reset password option</li>
+	</ul>
+
+	<h4>Provider Features</h4>
+	<ul>
+		<li>Login, forget and reset password option</li>
+		<li>Profile information, photo, password change option</li>
+		<li>Create Service , edit and delete</li>
+		<li>Create schedule for service</li>
+		<li>Can approve or reject user booking</li>
+		<li>Messaging system with service booking user</li>
+		<li>Withdaraw system</li>
+		<li>All transaction details</li>
+		
+	</ul>
+
+	<h4>User Features</h4>
+	<ul>
+		<li>Login, forget and reset password option</li>
+		<li>Profile information, photo, password change option</li>
+		<li>User can book service</li>
+		<li>User can write review</li>
+		<li>Messaging system with service provider</li>
+		<li>User can pay service bill by paypal, stripe or bank</li>
+		<li>User can mark as complete service after service provided by service provider</li>
+		<li>User have transactions logs</li>
+	</ul>
+</section>
+
+<section id="installation">
+	<div class="page-header"><h3>Installation</h3><hr class="notop"></div>
+	<p>
+		The installation of this script is super easy. If you can install normal php based scripts on your server, you can install our script. We will tell you how to install this script step by step on a server.
+	</p>
+	<p>
+		If you extract the zip file, you will see that there are total three folders. 
+		<div class="gap"><img src="assets/images/1.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		The folder names are: sql, documentation and main_files. The "main_files" folder is the main laravel source codes. The "sql" folder contains the main database file "database.sql"
+	</p>
+	<h4 class="bg">Creating Database using Cpanel</h4>
+	<p>
+		1. Login to your hosting's cpanel using the login information. You will see an interface like this:
+		<div class="gap"><img src="assets/images/install_db_1.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		2. You will get a search section in the cpanel. Search there by writing the word "database". You will get some options. Click on "MySQL® Database Wizard" option.
+		<div class="gap"><img src="assets/images/install_db_2.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		3. Then in Step 1, you will have to create a database. In the text field, give your database name and click on next step.
+		<div class="gap"><img src="assets/images/install_db_3.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		4. Then in Step 2, you will have to create a database user. Give your username and passwords here. Then click on "Create User" button.
+		<div class="gap"><img src="assets/images/install_db_4.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		5. Now a permission page will come. Just check the tick mark on "ALL PRIVILEGES" and you will see all the options will be automatically checked.
+		<div class="gap"><img src="assets/images/install_db_5.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		6. Click on the "Next Step" button in the bottom.
+		<div class="gap"><img src="assets/images/install_db_6.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		7. Database and user creation step is done. Now go back to home and again search like before with the word "phpmyadmin". Click on the "phpMyAdmin" option.
+		<div class="gap"><img src="assets/images/install_db_7.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		8. Now the main phpmyadmin page will come. Click on the newly created database "websolu1_testdb" from the left side.
+		<div class="gap"><img src="assets/images/install_db_8.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		9. Click on the "Import" option from top and then select the file "database.sql" that is in the "sql" folder of the script.
+		<div class="gap"><img src="assets/images/install_db_9.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		10. Then click on the "Go" button from bottom.
+		<div class="gap"><img src="assets/images/install_db_10.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		11. After the task is successful, you will get a success message.
+		<div class="gap"><img src="assets/images/install_db_11.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		12. All task related to database is done.
+	</p>
+
+
+	<h4 class="bg">Uploading Files using Cpanel</h4>
+	<p>
+		1. In the search field of your cpanel, write the word "file". You will get a "File Manager" option. Click on that option.
+		<div class="gap"><img src="assets/images/install_db_12.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		2. Search for the "public_html" and go into there.
+		<div class="gap"><img src="assets/images/install_db_13.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		3. Now go to the folders that you got after extracting the main zip and compress the folder "main_files" using any software like winrar. 
+		<div class="gap"><img src="assets/images/install_db_14.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		4. The zip file will be like this.
+		<div class="gap"><img src="assets/images/install_db_15.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		5. In the cpanel's "public_html", upload this zip file. 
+		<div class="gap"><img src="assets/images/install_db_16.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		6. You will get an interface like this.
+		<div class="gap"><img src="assets/images/install_db_17.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		7. Drag and drop the zip file here or just click on the "Select File" and select the file from your computer. You will see a progress of uploading file. Wait until it is finished.
+		<div class="gap"><img src="assets/images/install_db_18.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		8. After finishing the upload, you will see a green bar. It indicates that upload is successful.
+		<div class="gap"><img src="assets/images/install_db_19.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		9. Now close the upload window. In the public_html section, press on "Go" button to refresh the page. Then you will see the zip file in the right side. 
+		<div class="gap"><img src="assets/images/install_db_20.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/install_db_21.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		10. Do right click on that file and select "Extract" option. 
+		<div class="gap"><img src="assets/images/install_db_22.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		11. Press on "Extract Files" button.
+		<div class="gap"><img src="assets/images/install_db_23.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		12. It will take only a few minutes. After finish, you will get a window like this.
+		<div class="gap"><img src="assets/images/install_db_24.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		13. Just close this window. Then double click on the "main_files" folder and go into there.
+		<div class="gap"><img src="assets/images/install_db_25.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		14. Now click on the "Select All" from top section.
+		<div class="gap"><img src="assets/images/install_db_26.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		15. Click on the "Move" option.
+		<div class="gap"><img src="assets/images/install_db_27.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		16. Delete the "main_files" from the box. Only keep this "/public_html/". Then click on "Move Files".
+		<div class="gap"><img src="assets/images/install_db_28.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		17. Now, click on "Up One Level".
+		<div class="gap"><img src="assets/images/install_db_29.png" alt="" class="mw_100"></div>
+	</p>
+
+	<p>
+		18. Right click on ".env" file and click on "Edit".
+		<div class="gap"><img src="assets/images/install_db_30.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/install_db_31.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		19. Now edit this file and put the database name, username and password you created previously here. Then click on the "Save Changes" button.
+		<div class="gap"><img src="assets/images/install_db_32.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		Your task is done and you can use our script without any problem. :)
+	</p>
+	
+	<h4 class="bg">Uploading Files using FTP</h4>
+	<p>
+		1. Download any FTP client on your computer like "FileZilla". Search on Google by "FileZilla" or go to their website to download: <br>
+		<a href="https://filezilla-project.org/" target="_blank">https://filezilla-project.org/</a>
+	</p>
+	<p>
+		2. Use the first option to download
+		<div class="gap"><img src="assets/images/ftp_1.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		3. After download, install it and open. The interface will be like this: 
+		<div class="gap"><img src="assets/images/ftp_2.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		4. You can collect your FTP information contacting your hosting provider. Or, going to cpanel, you can create your FTP. In cpanel, search for "FTP".
+		<div class="gap"><img src="assets/images/ftp_3.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		5. Put ftp username, password in the form. Become sure, you delete the marked box data in the following image. 
+		<div class="gap"><img src="assets/images/ftp_4.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		6. Click on "Create FTP Account" button.
+		<div class="gap"><img src="assets/images/ftp_5.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		7. Your FTP information will be like this: <br>
+		FTP Host: {your hosting provider will give you host name} <br>
+		FTP Port: 21<br>
+		FTP Username: testftp@websolutionus.com<br>
+		FTP Password: {that you gave while creating the FTP}
+	</p>
+	<p>
+		8. Now in filezilla put those information and click on "Quickconnect" button.
+		<div class="gap"><img src="assets/images/ftp_6.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		9. If connection is successful, you will get an interface like this: 
+		<div class="gap"><img src="assets/images/ftp_7.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		10. Now in the left side box, go to the location where you have extracted the script's file. And in the right side, go to public_html.
+		<div class="gap"><img src="assets/images/ftp_8.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		11. Then right click on the "main_files" from left side box and click on "Upload". All the files then will be uploaded into the "public_html" of the right side.
+		<div class="gap"><img src="assets/images/ftp_9.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		12. Search the ".env" file, right click on it and click on "View/Edit" option. 
+		<div class="gap"><img src="assets/images/ftp_10.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		13. You will see an interface like this. 
+		<div class="gap"><img src="assets/images/ftp_11.png" alt="" class="mw_100"></div>
+		Change the database, username and password from here and try to click on close button. When you will try to close, it will ask you for save before closing. Click on save and you are done!
+	</p>
+
+</section>
+
+<section id="configuration">
+	<div class="page-header"><h3>Configuration</h3><hr class="notop"></div>
+	<p>
+		Before using and run this script, you must have to change the following information: 
+	</p>
+	<p>
+		1. Open the .env file with a text editor and change the database settings.
+	</p>
+	<p>
+		2. Set up the database name, username and password like the photo below:
+		<div class="gap"><img src="assets/images/2.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="requirements">
+	<div class="page-header"><h3>Requirements</h3><hr class="notop"></div>
+	<p>
+		You will need to make sure your server meets the following requirements:
+	</p>
+	<ul>
+		<li>PHP >= 7.4</li>
+		<li>BCMath PHP Extension</li>
+		<li>Ctype PHP Extension</li>
+		<li>Fileinfo PHP extension</li>
+		<li>JSON PHP Extension</li>
+		<li>Mbstring PHP Extension</li>
+		<li>OpenSSL PHP Extension</li>
+		<li>PDO PHP Extension</li>
+		<li>Tokenizer PHP Extension</li>
+		<li>XML PHP Extension</li>
+	</ul>
+</section>
+
+<section id="credentials">
+	<div class="page-header"><h3>Credentials</h3><hr class="notop"></div>
+	<p>
+		The default credentials of the script are:
+	</p>
+	<h4>Admin Login</h4>
+	<p>
+		URL: https://www.yourwebsite.com/admin/login <br>
+		Login Email: admin@gmail.com <br>
+		Login Password: 123
+	</p>
+	<h4>User Login</h4>
+	<p>
+		URL: https://www.yourwebsite.com/user/login <br>
+		Login Email: user@gmail.com <br>
+		Login Password: 123
+	</p>
+	<h4>Provider Login</h4>
+	<p>
+		URL: https://www.yourwebsite.com/user/login <br>
+		Login Email: provider@gmail.com <br>
+		Login Password: 123
+	</p>
+</section>
+
+<section id="general_settings">
+	<div class="page-header"><h3>General Settings</h3><hr class="notop"></div>
+	<p>
+		Admin can go 'Manage Settings > General Settings' for managing site settings like site currency, Logo, Favicon, Defaul Image, Site Color, Timezone etc.
+		<div class="gap"><img src="assets/images/general_settings.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="setting_recaptcha">
+	<div class="page-header"><h3>Recaptcha Settings</h3><hr class="notop"></div>
+	<p>
+		Recaptcha settings can be set up from the admin panel. Go to "Setting > Google Recaptcha". See: 
+		<div class="gap"><img src="assets/images/recaptcha_1.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		To get your recaptcha keys, go to this link:<br> 
+		<a href="https://www.google.com/recaptcha/admin/create" target="_blank">https://www.google.com/recaptcha/admin/create</a><br>
+		Select version 2.
+		<div class="gap"><img src="assets/images/recaptcha_2.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		Add your website's domain name or subdomain name here and after submit you will get a site key and secret key.
+	</p>
+</section>
+
+<section id="tawk_setting">
+	<div class="page-header"><h3>Tawk Live Chat Settings</h3><hr class="notop"></div>
+	<p>
+		Tawk Live Chat settings can be set up from the admin panel. Go to "Setting > Live Chat Setting". See: 
+		<div class="gap"><img src="assets/images/tawk.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+<section id="setting_theme_color">
+	<div class="page-header"><h3>Theme Color Settings</h3><hr class="notop"></div>
+	<p>
+		Theme color setting can be set up from the admin panel. Go to "Setting > General Setting". See: 
+		<div class="gap"><img src="assets/images/theme_color.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="setting_preloader">
+	<div class="page-header"><h3>Preloader Settings</h3><hr class="notop"></div>
+	<p>
+		Preloader setting can be set up from the admin panel. Go to "Setting > Preloader Setting". See: 
+		<div class="gap"><img src="assets/images/preloader.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+
+
+<section id="setting_payment">
+	<div class="page-header"><h3>Payment Settings</h3><hr class="notop"></div>
+	<p>
+		Payment methods can be set up from the admin panel. Go to "Payment Gateway option". See: 
+		<div class="gap"><img src="assets/images/payment.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/payment2.PNG.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/payment3.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/coinpayments.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+
+
+<section id="setting_email_template">
+	<div class="page-header"><h3>Email Template Settings</h3><hr class="notop"></div>
+	<p>
+		Email Templates can be set up from the admin panel to send email in your preferred format. Go to "Email Manager > Email Template".See: 
+		<div class="gap"><img src="assets/images/email_template_1.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/email_template_2.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+
+<section id="setting_clear_database">
+	<div class="page-header"><h3>Clear Database Settings</h3><hr class="notop"></div>
+	<p>
+		Clear Data setting can be set up from the admin panel. Find a option in side bar "Clear Database". If you want to use the software from scratch, you have to select this option. You do not need to remove the existing data one by one. See: 
+		<div class="gap"><img src="assets/images/clear_data.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="provider">
+	<div class="page-header"><h3>Manage Providers</h3><hr class="notop"></div>
+	<p>
+		Admin Can Manage Service provider in this system where admin can make service provider as a featured. can send email form there. can disabled that provider
+		<div class="gap"><img src="assets/images/provider.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/provider_details.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+<section id="user">
+	<div class="page-header"><h3>Manage User</h3><hr class="notop"></div>
+	<p>
+		Admin Manage user in this system where admin can  send email form there. can disabled that user
+		<div class="gap"><img src="assets/images/user.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/user_details.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="language">
+	<div class="page-header"><h3>Language Setup</h3><hr class="notop"></div>
+	<p>
+		The script can be translated using the language option in the sidebar. Go to "Manage Language" from sidebar. You can also change the menu text using this option. Admin can set all menu text from 'Navbar text', Admin can set all website text from 'Website text' and  can set all notification text from 'Notification text', See: 
+		<div class="gap"><img src="assets/images/language.png" alt="" class="mw_100"></div>
+		
+	</p>	
+</section>
+
+<section id="service">
+	<div class="page-header"><h3>Manage Service</h3><hr class="notop"></div>
+	<p>
+		When service provider create service then admin can approve the service so that the service show in the frontedn
+		<div class="gap"><img src="assets/images/service.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		For each service, admin can see the details of service to accept the service Request from Provider.
+		<div class="gap"><img src="assets/images/service_details.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		In that review link Admin can control over review: 
+		<div class="gap"><img src="assets/images/review.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+
+<section id="blog_comment">
+	<div class="page-header"><h3>Blog Comment</h3><hr class="notop"></div>
+	<p>
+		From Here admin can Manage any blog that is posted on frontend 
+		<div class="gap"><img src="assets/images/blog_comment.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+<section id="category">
+	<div class="page-header"><h3>Category</h3><hr class="notop"></div>
+	<p>
+		Admin can create category for service in the system.
+		<div class="gap"><img src="assets/images/category.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+<section id="booking">
+	<div class="page-header"><h3>Manage Bookings</h3><hr class="notop"></div>
+	<p>
+		Go to "Manage Bookings" From here Admin can manage user bookings. Admin can see booking details or admin can delete any time he wants.
+		<div class="gap"><img src="assets/images/bookings.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="frontend">
+	<div class="page-header"><h3>Frontend Manage</h3><hr class="notop"></div>
+	<p>
+		For maintaining Frontend data go to Frontend side menu. From here admin can create page. Can assign sections for that page.
+		<div class="gap"><img src="assets/images/pages.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/add_page.png" alt="" class="mw_100"></div>
+
+	</p>
+	<p>
+		Admin can add 'Custom Section' for Custom page Data 
+		<div class="gap"><img src="assets/images/custom_section.png" alt="" class="mw_100"></div>
+
+	</p>
+	 <p>
+		Admin can create blog category and faq category for blogs and faqs. Admin can go to 'Frontend -> Blog Category' to create Blog category and  'Frontend -> Faq Category' to create Faq category
+		<div class="gap"><img src="assets/images/blog_category.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/faq_category.png" alt="" class="mw_100"></div>
+
+	 </p>
+	<p>
+		After creating the pages then admin can create sections data Go to "Frontend > Manage Section"
+		<div class="gap"><img src="assets/images/section_manage.png" alt="" class="mw_100"></div>
+	</p>
+
+	<p>
+		After go to section then admin can update any sections data
+		<div class="gap"><img src="assets/images/section_data.png" alt="" class="mw_100"></div>
+	</p>
+	<p>
+		After clicking 'Add Element' Admin can create that sections data.
+		<div class="gap"><img src="assets/images/add_blog.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="withdraw">
+	<div class="page-header"><h3>Manage Withdraw</h3><hr class="notop"></div>
+	<p>
+		Admin can see withdraw logs and create withdraw methods from here with "Manage Withdraw" of the sidebar.
+		<div class="gap"><img src="assets/images/withdraw_methods.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/withdraw.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="transaction">
+	<div class="page-header"><h3>Transaction</h3><hr class="notop"></div>
+	<p>
+		Admin can see all transaction from "Transaction" of the sidebar.
+		<div class="gap"><img src="assets/images/transaction_admin.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+<section id="subscriber">
+	<div class="page-header"><h3>Subscribers</h3><hr class="notop"></div>
+	<p>
+		Admin can see all the subscriber and can send mail to the subscribers.
+		<div class="gap"><img src="assets/images/subscription.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+
+
+
+
+<section id="provider_registration">
+	<div class="page-header"><h3>Provider Registration</h3><hr class="notop"></div>
+	<p>
+		Just fill up the form and an email will be sent to provider's email. He needs to verify it. After verify he can login to the system.
+		<div class="gap"><img src="assets/images/provider_registration.png" alt="" class="mw_100"></div>
+		
+	</p>	
+</section>
+
+<section id="provider_login">
+	<div class="page-header"><h3>Provider Login</h3><hr class="notop"></div>
+	<p>
+		If a user does not confirm his registration, he can not login.
+		<div class="gap"><img src="assets/images/user_login.png" alt="" class="mw_100"></div>
+		
+	</p>	
+</section>
+
+<section id="provider_forget_password">
+	<div class="page-header"><h3>Provider Forget Password</h3><hr class="notop"></div>
+	<p>
+		In the login page, there is a link to reset the password if provider forgets the existing password. 
+		<div class="gap"><img src="assets/images/user_forget_password.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="provider_dashboard">
+	<div class="page-header"><h3>Provider Dashboard</h3><hr class="notop"></div>
+	<p>
+		After login, provider will see his dashboard. 
+		<div class="gap"><img src="assets/images/provider_dashboard.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="provider_profile_update">
+	<div class="page-header"><h3>Provider Edit Profile</h3><hr class="notop"></div>
+	<p>
+		Provider can edit his profile from left sidebar.
+		<div class="gap"><img src="assets/images/provider_profile.png" alt="" class="mw_100"></div>
+	</p>	
+	<p>
+		Provider can change password from the left sidebar too. 
+		<div class="gap"><img src="assets/images/provider_change_password.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+
+<section id="provider_service">
+	<div class="page-header"><h3>Service Section</h3><hr class="notop"></div>
+	<p>
+		In that section service provider can create service, edit service, service schedule for service
+		<div class="gap"><img src="assets/images/provider_service.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/create_service.png" alt="" class="mw_100"></div>
+	</p>
+</section>
+
+
+<section id="provider_schedule">
+	<div class="page-header"><h3>Provider Schedules</h3><hr class="notop"></div>
+	<p>
+		From here service provider can create, update his schedules
+		<div class="gap"><img src="assets/images/schedule_3.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/schedule_4.png" alt="" class="mw_100"></div>
+	</p>
+	
+	
+</section>
+
+<section id="provider_bookings">
+	<div class="page-header"><h3>Provider Bookings</h3><hr class="notop"></div>
+	<p>
+		From here service provider can view his service bookings , details about bookings
+		<div class="gap"><img src="assets/images/booking_provider.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/booking_details.png" alt="" class="mw_100"></div>
+	</p>
+	
+	
+</section>
+
+<section id="provider_withdraw">
+	<div class="page-header"><h3>Provider Withdraw</h3><hr class="notop"></div>
+	<p>
+		From here service provider Withdraw his earnings from service. Go to "Withdraw > Withdraw Money" from the side bar
+		<div class="gap"><img src="assets/images/withdraw_provider.png" alt="" class="mw_100"></div>
+		<div class="gap"><img src="assets/images/withdraw_log.png" alt="" class="mw_100"></div>
+	</p>
+	
+	
+</section>
+
+<section id="provider_transaction">
+	<div class="page-header"><h3>Provider Transaction</h3><hr class="notop"></div>
+	<p>
+		In this menu service provider can get all Transaction logs
+		<div class="gap"><img src="assets/images/provider_transactions.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+
+<section id="user_login">
+	<div class="page-header"><h3>User Login</h3><hr class="notop"></div>
+	<p>
+		User can login from this page
+		<div class="gap"><img src="assets/images/user_login.png" alt="" class="mw_100"></div>
+		
+	</p>	
+</section>
+
+<section id="user_forget_password">
+	<div class="page-header"><h3>User Forget Password</h3><hr class="notop"></div>
+	<p>
+		In the login page, there is a link to reset the password if user forgets the existing password. 
+		<div class="gap"><img src="assets/images/user_forget_password.png" alt="" class="mw_100"></div>
+	</p>	
+</section>
+
+<section id="user_dashboard">
+	<div class="page-header"><h3>User Dashboard</h3><hr class="notop"></div>
+	<p>
+		After login, user will see his dashboard. 
+		<div class="gap"><img src="assets/images/user_dashboard.png" alt="" class="mw_100"></div>
+		In the dashboard, user can see current Bookings, User's all payments amout, how many jobs completed
+	</p>
+	
+</section>
+
+
+<section id="user_update_profile">
+	<div class="page-header"><h3>User Update Profile</h3><hr class="notop"></div>
+	<p>
+		After Login User directly go profile page. Without Updating profile he can not do anything
+		<div class="gap"><img src="assets/images/user_profile.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+
+<section id="user_bookings">
+	<div class="page-header"><h3>User Bookings</h3><hr class="notop"></div>
+	<p>
+		In this section User can show all his bookings including pending,completed, In progress.
+		<div class="gap"><img src="assets/images/user_bookings.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+
+<section id="user_payment">
+	<div class="page-header"><h3>User Payment Page</h3><hr class="notop"></div>
+	<p>
+		After Booking accepted by Service provider then User can pay the bills for service
+		<div class="gap"><img src="assets/images/user_payment.png" alt="" class="mw_100"></div>
+		
+	</p>
+	<p>
+		Paypal Payment Page with Payment Preview
+		<div class="gap"><img src="assets/images/paypal_paymeny.png" alt="" class="mw_100"></div>
+		
+	</p>
+	<p>
+		Stripe Payment Page with Payment Preview
+		<div class="gap"><img src="assets/images/stripe_payment.png" alt="" class="mw_100"></div>
+		
+	</p>
+	<p>
+		Bank Payment Page with Payment Preview
+		<div class="gap"><img src="assets/images/bank_payment.png" alt="" class="mw_100"></div>
+		
+	</p>
+</section>
+
+<section id="user_chat">
+	<div class="page-header"><h3>User Chating</h3><hr class="notop"></div>
+	<p>
+		After Booking a service user can communicate with Service Provider via chat option
+		<div class="gap"><img src="assets/images/chat.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+<section id="user_transaction">
+	<div class="page-header"><h3>User Transactions</h3><hr class="notop"></div>
+	<p>
+		This is where user can get all Payment Information for a service
+		<div class="gap"><img src="assets/images/transaction.png" alt="" class="mw_100"></div>
+	</p>
+	
+</section>
+
+
+<section id="support">
+	<div class="page-header"><h3>Support</h3><hr class="notop"></div>
+	<p>
+		If you need any help from us, you can contact via our support email: <br>
+		<a href="mailto:websolutionus1@gmail.com">websolutionus1@gmail.com</a>
+	</p>
+	<p>
+		Our support will reply within 24-48 hours.
+	</p>
+</section>
+
+
+<section id="update_log">
+	<div class="page-header"><h3>Update Log History</h3><hr class="notop"></div>
+	<h4>Version 1.1</h4>
+	<ul>
+		<li>Home Page Banner Search Issue Fixed</li>
+		<li>Experts Search By Location Added</li>
+		<li>Experts Rating Added</li>
+		<li>Issue Fixed Google Recaptcha Validation</li>
+		<li>Right To Left (RTL) Support Added in general Settings</li>
+		<li>CoinPayments added as a crypto payment gateway</li>
+		<li>Admin Wallet Added</li>
+		<li>Admin Revenue Logs Added</li>
+		<li>Admin Category Slug Added In Database</li>
+		<li>sql file updated (There is an instruction into sql folder).</li>
+
+	</ul>
+<h4>Version 1.0</h4>
+Initial Release
+</pre>
+</section>
+
+</div>
+</body>
+</html>
