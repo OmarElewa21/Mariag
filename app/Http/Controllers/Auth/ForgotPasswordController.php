@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendPasswordVerification;
+use App\Mail\ForgetPasswordCode;
 
 class ForgotPasswordController extends Controller
 {
@@ -46,7 +46,7 @@ class ForgotPasswordController extends Controller
         $user->save();
 
         // sendMail('PASSWORD_RESET', ['code' => $code],  $user);
-        Mail::to($user)->send(new SendPasswordVerification($code));
+        Mail::to($user)->send(new ForgetPasswordCode($code));
 
         session()->put('email',$user->email);
 

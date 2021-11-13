@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ForgetPasswordCode;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
 {
@@ -48,7 +50,8 @@ class ForgotPasswordController extends Controller
 
         $admin->save();
 
-        sendMail('PASSWORD_RESET',['code'=> $code],  $admin);
+        // sendMail('PASSWORD_RESET',['code'=> $code],  $admin);
+        Mail::to($admin)->send(new ForgetPasswordCode($code));
 
         $notify[] = ['success','Send verification code to your email'];
         return redirect()->route('admin.auth.verify')->withNotify($notify);
