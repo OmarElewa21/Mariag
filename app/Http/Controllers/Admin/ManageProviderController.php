@@ -8,7 +8,7 @@ use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendProviderMail;
+use App\Mail\SendUserMail;
 
 class ManageProviderController extends Controller
 {
@@ -56,7 +56,7 @@ class ManageProviderController extends Controller
         $data['email'] = $provider->email;
 
         // sendGeneralMail($data);
-        Mail::to($provider)->send(new SendProviderMail($data));
+        Mail::to($provider)->send(new SendUserMail($data));
 
         $notify[] = ['success', 'Send Email To Provider Successfully'];
 

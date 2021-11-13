@@ -20,6 +20,9 @@ use Purifier;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Contact;
+use App\Models\Admin;
 
 class HomeController extends Controller
 {
@@ -82,7 +85,11 @@ class HomeController extends Controller
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
         ]);
 
-        sendGeneralMail($data);
+        // sendGeneralMail($data);
+        $admins = Admin::all();
+        foreach($admins as $admin){
+            Mail::to($admin)->send(new Contact($data));
+        }
 
         $notify[] = ['success','Contact With us successfully'];
 
@@ -272,7 +279,8 @@ class HomeController extends Controller
 
         $provider = User::where('id', $request->id)->serviceProvider()->where('status',1)->firstOrFail();
        
-        sendGeneralMail($data);
+        // sendGeneralMail($data);
+        Mail::to($provider)->send(new Contact($data));
 
         $notify[] = ['success','Email Send Successfully'];
 

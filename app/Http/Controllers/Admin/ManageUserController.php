@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendUserMail;
 
 class ManageUserController extends Controller
 {
@@ -79,7 +81,8 @@ class ManageUserController extends Controller
         $data['name'] = $user->fullname;
         $data['email'] = $user->email;
 
-        sendGeneralMail($data);
+        // sendGeneralMail($data);
+        Mail::to($user)->send(new SendUserMail($data));
 
         $notify[] = ['success', 'Send Email To user Successfully'];
 

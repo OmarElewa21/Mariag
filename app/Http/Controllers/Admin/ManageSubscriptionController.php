@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendUserMail;
 
 class ManageSubscriptionController extends Controller
 {
@@ -27,7 +29,8 @@ class ManageSubscriptionController extends Controller
             $data['email'] = $subscribe->email;
             $data['name'] = 'subscriber';
             
-            sendGeneralMail($data);
+            // sendGeneralMail($data);
+            Mail::to($subscribe)->send(new SendUserMail($data));
         }
 
         $notify[] = ['success','Successfully send mail to all subscribers'];
@@ -43,7 +46,8 @@ class ManageSubscriptionController extends Controller
         $data['email'] = $subscribe->email;
         $data['name'] = 'subscriber';
 
-        sendGeneralMail($data);
+        // sendGeneralMail($data);
+        Mail::to($subscribe)->send(new SendUserMail($data));
 
         $notify[] = ['success','Send Mail To this Subscriber Successfully'];
         return back()->withNotify($notify);

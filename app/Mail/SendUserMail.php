@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendProviderMail extends Mailable
+class SendUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class SendProviderMail extends Mailable
     public function build()
     {
         return $this->subject($this->data['subject'])
-            ->markdown('emails.sendProviderMail', ['data', $this->data]);
+            ->markdown('emails.sendUserMail', ['data', $this->data]);
     }
 }
