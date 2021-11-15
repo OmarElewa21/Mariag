@@ -277,16 +277,14 @@ class HomeController extends Controller
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
         ]);
 
-        $provider = User::where('id', $request->id)->serviceProvider()->where('status',1)->firstOrFail();
-       
+        $provider = User::where('id', $request->id)->where('user_type', 2)->where('status',1)->firstOrFail();
+
         // sendGeneralMail($data);
         Mail::to($provider)->send(new Contact($data));
 
         $notify[] = ['success','Email Send Successfully'];
 
         return redirect()->back()->withNotify($notify);
-       
-
     }
     
 

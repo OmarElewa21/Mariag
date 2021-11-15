@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Nette\Utils\Random;
 use Purifier;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
