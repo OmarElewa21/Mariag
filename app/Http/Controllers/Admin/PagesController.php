@@ -11,8 +11,6 @@ class PagesController extends Controller
 {
     public function index(Request $request)
     {
-
-        
         $pageTitle = 'Manage Pages';
 
         $pages = Page::when($request->search, function($query) use($request){

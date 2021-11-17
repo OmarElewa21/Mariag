@@ -119,9 +119,9 @@ class HomeController extends Controller
 
         $users = User::where('user_type',2)->whereHas('services.category',function($q) use($category){
             $q->where('id', $category->id);
-        })->get();
+        })->inRandomOrder()->get();
 
-        return view('frontend.category_details',compact('pageTitle','users'));
+        return view('frontend.category_details_updated',compact('pageTitle','users'));
     }
 
     public function userDetails($user)
@@ -178,7 +178,7 @@ class HomeController extends Controller
 
         $categories = Category::where('status',1)->whereHas('services.user',function($q){$q->where('status',1)->serviceProvider();})->latest()->paginate(9);
 
-       return view('frontend.all_category',compact('pageTitle','categories'));
+        return view('frontend.all_category',compact('pageTitle','categories'));
     }
 
     public function blog()

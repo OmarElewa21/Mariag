@@ -249,7 +249,6 @@ class UserController extends Controller
 
         sendMail('WITHDRAW_BALANCE',['trx'=>$mailData->trx,'amount'=>$mailData->amount,'user'=>auth()->user()->fullname,'method' => $withdraw->name ], $admin);
 
-
         $notify[] = ['success', 'Withdraw Successfully done'];
 
         return back()->withNotify($notify);
@@ -328,7 +327,7 @@ class UserController extends Controller
 
     public function chatProvider(Request $request)
     {
-       
+
         $booking = Booking::where('trx', $request->transaction)->first();
 
         if($booking->job_end == 1){

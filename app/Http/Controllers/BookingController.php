@@ -63,7 +63,6 @@ class BookingController extends Controller
             return redirect()->back()->withNotify($notify);
         }
 
-       
 
         $bookings = Booking::where('user_id', auth()->id())->where('service_id' , $service->id)->where('is_accepted','!=',2)->where('is_completed', 0)->first();
 
@@ -115,7 +114,6 @@ class BookingController extends Controller
         ]);
 
         sendMail('BOOKING_SERVICE',['trx'=>$booking->trx,'user' => $booking->user->fullname,'service' => $booking->service->name],$booking->user);
-
 
         session()->put('trx', $trx);
 

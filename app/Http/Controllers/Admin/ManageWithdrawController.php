@@ -131,7 +131,6 @@ class ManageWithdrawController extends Controller
             'type' => '-'
         ]);
 
-
         sendMail('WITHDRAW_ACCEPTED',['amount'=>$withdraw->amount, 'method' => $withdraw->withdraw->name,'trx'=> $withdraw->trx,'currency' => $general->site_currency], $withdraw->user);
         
         $notify[] = ['success', 'Withdraw Accepted Successfully'];
