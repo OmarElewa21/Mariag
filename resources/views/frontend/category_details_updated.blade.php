@@ -108,7 +108,7 @@
 
                         <div class="d-flex flex-wrap mt-4 details">
                             <strong style="display: inline">@changeLang('Details:') </strong>
-                            <p class="mt-3">{!! @$service->details !!}</p>
+                            <p class="mt-3">{!! substr(@$service->details, 0, 255) !!}</p>
                         </div>
 
                         <div class="w-100 text-center mb-2 mt-2 card-buttons">
