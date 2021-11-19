@@ -108,7 +108,7 @@
                             <div class="form-group col-md-12">
 
                                 <label for="">@changeLang('Service Details') <span class="text-danger">*</span></label>
-                                <textarea name="details" id="" cols="30" rows="5" class="form-control"
+                                <textarea name="details" id="" cols="30" rows="5" class="form-control" maxlength="255"
                                     ></textarea>
                             </div>
 

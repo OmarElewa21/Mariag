@@ -128,12 +128,11 @@
 
                             </div>
 
-
                             <div class="form-group col-md-12">
 
                                 <label for="">@changeLang('Service Details')<span class="text-danger">*</span></label>
-                                <textarea name="details" id="" cols="30" rows="5"
-                                    class="form-control summernote">{{ __(clean($service->details)) }}</textarea>
+                                <textarea name="details" id="" cols="30" rows="5" maxlength="255"
+                                    class="form-control">{{ __(clean($service->details)) }}</textarea>
                             </div>
 
                             <div class="form-group col-md-12">

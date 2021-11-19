@@ -32,18 +32,23 @@
 <div class="team-page pt_30 pb_60">
     <div class="container">
         <div class="d-flex flex-column">
+        @php
+            $gallery_index = 0;
+        @endphp
         @foreach ($services as $service)
-            <div class="mt_4">
                 <div class="team-item row">
-                    <div class="team-photo col-2">
-                        <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
-                    </div>
-                    <div class="team-text col-10">
-                        <a href="{{route('service.provider.details',Str::slug($service->user->username))}}">{{__(ucwords($service->user->fullname))}}</a>
-                        @php
+
+                    <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}}">
+                        <div class="row provider-header">
+                            <div class="team-photo col-6">
+                                <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
+                            </div>
+
+                            <div class="team-text col-6">
+                                <a href="{{route('service.provider.details',Str::slug($service->user->username))}}">{{__(ucwords($service->user->fullname))}}</a>
+                                @php
                                     $rating = \App\Models\Review::whereIn('service_id',$service->user->services()->pluck('id')->toArray())->avg('review');
                                 @endphp
-
                                 <p>
                                     @switch($rating)
                                         @case(1)
@@ -98,29 +103,21 @@
                                     @endswitch
                                 </p>
                                 <p><span><b><i class="fas fa-street-view"></i> {{@$service->user->address->city}}</b></span></p>
-                                <p class="mt-3"><strong>@changeLang('Details:') </strong>{!! @$service->user->details !!}</p>
-                    </div>
-                    
-                        <div class="w-100 text-center mb-4 mt-4">
-                            @auth
-                                @if (auth()->user()->user_type == 1)
-                                    <a href="" data-toggle="modal" data-target="#modal_book">
-                                        <button type="button" class="btn btn-danger font-weight-bold mr-1">@changeLang('Book Now')</button>
-                                    </a>
-                                @elseif(auth()->user()->user_type == 2)
-                                    <a>
-                                        <button type="button" class="btn btn-secondary font-weight-bold mr-1">@changeLang('Login In With User Account to Book')</button>
-                                    </a>
-                            @endauth
-                            @else
-                                <a href="{{ route('user.login') }}">
-                                    <button type="button" class="btn btn-danger font-weight-bold">@changeLang('Login for Booking')</button>
-                                </a>
-                            @endif
-                            
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap mt-4 details">
+                            <strong style="display: inline">@changeLang('Details:') </strong>
+                            <p class="mt-3">{!! @$service->details !!}</p>
+                        </div>
+
+                        <div class="w-100 text-center mb-2 mt-2 card-buttons">
+                            <a href="" data-toggle="modal" data-target="#modal_book">
+                                <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1 mb-1">@changeLang('Contact Provider')</button>
+                            </a>
+
                             <a href="{{route('service.provider.details', Str::slug($service->user->username))}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('More Info About The Provider')</button></a>
                             
-                            <a href="{{route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)])}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('See Provider Gallery')</button></a>
                             
                             <!-- Modal -->
                             <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
@@ -128,74 +125,88 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">@changeLang('Book Now')</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">@changeLang('Contact Now')</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body text-left">
-                                            <form method="post" action="{{ route('user.booking', $service) }}">
+                                            <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
                                                 @csrf
-                                                <div class="form-group">
-                                                    <label for="">@changeLang('Date')</label>
-                                                    <input type="text" name="date" class="form-control datepicker"
-                                                        autocomplete="off">
-                                                </div>
-                                                @if ($service->duration == 0)
-                                                    <div class="form-group">
-                                                        <label for="">@changeLang('How Many Hours')</label>
-                                                        <input type="number" name="hours" class="form-control" min="0">
+                                                <div class="form-row row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">@changeLang('Name')<span style="color: red">*</span></label>
+                                                        <input type="text" name="name" class="form-control" required>
                                                     </div>
-                                                @endif
-                                                <div class="form-group">
-                                                    <label for="">@changeLang('Start Time')</label>
-                                                    <input type="text" name="time" class="form-control timepicker"
-                                                        autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">@changeLang('Location')</label>
-                                                    <select name="location" id="" class="form-control">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">@changeLang('Phone Number')<span style="color: red">*</span></label>
+                                                        <input type="tel" name="phone" class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">@changeLang('Subject')<span style="color: red">*</span></label>
+                                                        <input type="text" name="subject" class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">@changeLang('Message')<span style="color: red">*</span></label>
+                                                        <textarea class="form-control" name="message" required></textarea>
+                                                    </div>
+
+                                                    @if (@$general->allow_recaptcha)
+
+                                                    <div class="col-md-12 my-3">
                                                     
+                                                    <script src="https://www.google.com/recaptcha/api.js"></script>
+                                                    <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
+                                                        data-callback="verifyCaptcha"></div>
+                                                    <div id="g-recaptcha-error"></div>
+                                                    </div>
 
-                                                        @foreach (explode(',', (str_replace(['.','"'],[',',''],$service->location))) as $location)
-                                                            <option value="{{ $location }}">{{ $location }}
-                                                            </option>
-                                                        @endforeach
+                                                @endif
 
-                                                    </select>
+                                                    <div class="form-group col-md-12">
+                                                        <button type="submit" id="recaptcha" class="btn btn-danger">@changeLang('Send Message')</button>
+                                                    </div>
+
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="">@changeLang('Message')</label>
-                                                    <textarea name="message" class="form-control" cols="30"
-                                                        rows="10"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-base">@changeLang('Book Now')</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Modal  -->
+                        </div>
                     </div>
-                    @if ($service->user->social)
-                    <div class="team-social">
-                        <ul>
-                            @if ($service->user->social->facebook)
-                                    <li><a href="{{ $service->user->social->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+
+                    @if ($service->gallery)
+                        <div class="col-md-6 col-12 mb-md-0 mb-4">
+                            <!-- Slideshow container -->
+                            <div class="slideshow-container">
+                                <!-- Full-width images with number and caption text -->
+                                @foreach(json_decode($service->gallery) as $gallery)
+                                    <div class="mySlides{{$gallery_index+1}} myslide">
+                                        <img src="{{ getFile('service', $gallery) }}" style="width:100%">
+                                    </div>
+                                @endforeach
+                                <!-- Next and previous buttons -->
+                                @if(count(json_decode($service->gallery)) > 1)
+                                    <a class="prev" onclick="plusSlides(-1, {{$gallery_index}})">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1, {{$gallery_index}})">&#10095;</a>
                                 @endif
-                                @if ($service->user->social->twitter)
-                                    <li><a href="{{ $service->user->social->twitter }}"><i class="fab fa-twitter"></i></a></li>
-                                @endif
-                                @if ($service->user->social->youtube)
-                                    <li><a href="{{ $service->user->social->youtube }}"><i class="fab fa-youtube"></i></a></li>
-                                @endif
-                        </ul>
-                    </div>
+                                
+                            </div>
+                            <br>
+                            <div class="full-gallery mb-md-2 mb-4">
+                                <a href="{{route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)])}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('See Full Gallery')</button></a>
+                            </div>
+                        </div>
                     @endif
                 </div>
-            </div>
+            @php
+                $gallery_index++;
+            @endphp
         @endforeach
-
         </div>
     </div>
 </div>
@@ -207,26 +218,130 @@
         width: 100%;
         height: 100%;
     }
+    .provider-header {
+        max-height: 150px;
+    }
     .team-social {
         right: 100% !important;
         left: 0 !important;
     }
+    .team-item {
+        min-height: 400px !important;
+        width: 100% !important;
+    }
     .team-photo {
-        .position: relative;
-        top: 50;
+        max-height: 150px !important;
+    }
+    .team-photo img {
+        border-radius: 50%;
+        height: 80% !important;
+        width: 60% !important;
     }
     .btn {
         padding-left: 20px !important;
         padding-right: 20px !important;
         border-radius: 5px !important;
     }
+    .row {
+        margin-left: 0 !important;
+    }
+    .card-buttons {
+        position: absolute;
+        bottom: 0
+    }
+    .full-gallery {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+    }
+
+    * {box-sizing: border-box}
+    .mySlides1, .mySlides2 {display: none}
+    img {vertical-align: middle;}
+    
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        max-height: 100px;
+        position: relative;
+        margin: auto;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 180%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a grey background color */
+    .prev:hover, .next:hover {
+        background-color: #f1f1f1;
+        color: black;
+    }
 </style>
 
+@push('custom-css')
+<style>
+    @media screen and (max-width: 700px) {
+        .details {
+            display: none !important;
+        }
+        .card-buttons{
+            position: relative;
+        }
+        .prev, .next {
+            top: 72%
+        }
+        .full-gallery{
+            bottom: -50px;
+        }
+    }
+    @media screen and (max-width: 1000px) {
+        .details {
+            display: none !important;
+        }
+    }
+</style>
+@endpush
 
 @push('script')
-<script>
-    $(document).off('.datepicker.data-api');
-</script>
+    <script>
+        var slideIndex = [1,1];
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+        }
+
+        function showSlides(n, no) {
+        var i;
+        var x = document.getElementsByClassName("mySlides" + (no+1));
+        if (n > x.length) {slideIndex[no] = 1}    
+        if (n < 1) {slideIndex[no] = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        x[slideIndex[no]-1].style.display = "block";  
+        }
+    </script>
 @endpush
 
 @push('script')

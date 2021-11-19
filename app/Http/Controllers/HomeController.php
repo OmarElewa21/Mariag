@@ -282,7 +282,7 @@ class HomeController extends Controller
         $general = GeneralSetting::first();
         $data = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'phone' => 'required',
             'subject' => 'required',
             'message'=> 'required',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
