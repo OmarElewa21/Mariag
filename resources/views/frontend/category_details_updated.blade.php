@@ -29,7 +29,7 @@
 @endpush
 
 
-<div class="team-page pt_30 pb_60">
+<div class="team-page pt_30 pb_60" dir="rtl">
     <div class="container">
         <div class="d-flex flex-column">
         @php
@@ -106,9 +106,9 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-wrap mt-4 details">
+                        <div class="d-flex flex-wrap mt-4 details" dir="ltr">
                             <strong style="display: inline">@changeLang('Details:') </strong>
-                            <p class="mt-3">{!! substr(@$service->details, 0, 255) !!}</p>
+                            {!! substr(@$service->details, 0, 255) !!}
                         </div>
 
                         <div class="w-100 text-center mb-2 mt-2 card-buttons">
@@ -283,11 +283,13 @@
         border-radius: 0 3px 3px 0;
         user-select: none;
     }
-
     /* Position the "next button" to the right */
     .next {
-        right: 0;
+        left: 0;
         border-radius: 3px 0 0 3px;
+    }
+    .prev {
+        right: 0
     }
 
     /* On hover, add a grey background color */
