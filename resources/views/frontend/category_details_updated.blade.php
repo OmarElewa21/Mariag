@@ -201,11 +201,11 @@
                                 <a href="{{route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)])}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('See Full Gallery')</button></a>
                             </div>
                         </div>
+                        @php
+                            $gallery_index++;
+                        @endphp
                     @endif
                 </div>
-            @php
-                $gallery_index++;
-            @endphp
         @endforeach
         </div>
     </div>
@@ -313,7 +313,7 @@
             bottom: -50px;
         }
     }
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1000px) { 
         .details {
             display: none !important;
         }
@@ -323,23 +323,30 @@
 
 @push('script')
     <script>
-        var slideIndex = [1,1];
-        showSlides(1, 0);
-        showSlides(1, 1);
+        let num = {{$gallery_index}};
+        let slideIndex = [];
+        for(let i = 0; i < num; i++){
+            slideIndex.push(1);
+            showSlides(1, i)
+        }
 
         function plusSlides(n, no) {
-        showSlides(slideIndex[no] += n, no);
+            showSlides(slideIndex[no] += n, no);
         }
 
         function showSlides(n, no) {
-        var i;
-        var x = document.getElementsByClassName("mySlides" + (no+1));
-        if (n > x.length) {slideIndex[no] = 1}    
-        if (n < 1) {slideIndex[no] = x.length}
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";  
-        }
-        x[slideIndex[no]-1].style.display = "block";  
+            let i;
+            let x = document.getElementsByClassName("mySlides" + (no+1));
+            if (n > x.length) {
+                slideIndex[no] = 1
+            }
+            if (n < 1) {
+                slideIndex[no] = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex[no]-1].style.display = "block";
         }
     </script>
 @endpush
