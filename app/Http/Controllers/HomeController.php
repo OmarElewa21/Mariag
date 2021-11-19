@@ -33,7 +33,7 @@ class HomeController extends Controller
         $sections = Page::where('name','home')->first();
 
         if(!$sections){
-           
+
             $sections = Page::create([
                 'name' => 'home',
                 'sections'=>['blog'],
@@ -114,7 +114,7 @@ class HomeController extends Controller
     {
         
         $category = Category::where('status',1)->where('slug',$request->slug)->firstOrFail();
-      
+
         $pageTitle = $category->name;
 
         $users = User::where('user_type',2)->whereHas('services.category',function($q) use($category){
@@ -155,30 +155,38 @@ class HomeController extends Controller
             $notify[] = ['error','Invalid Parameters'];
             return redirect()->route('home')->withNotify($notify);
         }
+        elseif(is_null($request->search) && is_null($request->category) && is_null($request->location)){
+            $notify[] = ['error', 'Please add a search input'];
+            return redirect()->route('home')->withNotify($notify);
+        }
+        else{
+            $search =$request->search;
+            $categorySearch = $request->category;
+            $location = $request->location;
 
-        $search =$request->search;
-        $categorySearch = $request->category;
-        $location = $request->location;
+            $pageTitle = 'Your Searched Experts';
 
-       
-        $experts = User::where('status',1)->serviceProvider()->where(DB::raw('concat(fname," ",lname)'), 'LIKE', "%$search%")->when($location,function($q) use($location){
-          $q->whereHas('services',function($q)use($location){
-              $q->where('location','LIKE',"%$location%");
-          });
-        })->whereHas('services',function($q){$q->where('status',1)->where('admin_approval',1);})->whereHas('services.category',function($q) use($categorySearch){$q->where('name','LIKE',"%".$categorySearch."%");})->get();
-
-        $pageTitle = 'Your Searched Experts';
-       
-        return view('frontend.experts',compact('pageTitle','experts'));
+            $services = Service::where('status',1)
+                ->where('admin_approval',1)
+                ->where('location','LIKE',"%$location%")
+                ->whereHas('user', function($q) use($search){
+                    $q->where('status',1)->serviceProvider()->where(DB::raw('concat(fname," ",lname)'), 'LIKE', "%$search%");
+                })
+                ->whereHas('category', function($q) use($categorySearch){
+                    $q->where('name', 'LIKE',  "%".$categorySearch."%");
+                })->get();
+            return view('frontend.category_details_updated',compact('pageTitle', 'services'));
+        }
     }
+
 
     public function categoryAll()
     {
         $pageTitle = "All Categories";
 
-        $categories = Category::where('status',1)->whereHas('services.user',function($q){$q->where('status',1)->serviceProvider();})->latest()->paginate(9);
+        $services = Service::where('status',1)->where('admin_approval',1)->groupBy('category_id')->paginate(9);
 
-        return view('frontend.all_category',compact('pageTitle','categories'));
+        return view('frontend.all_category',compact('pageTitle','services'));
     }
 
     public function blog()
@@ -193,8 +201,8 @@ class HomeController extends Controller
     public function blogDetails(Request $request)
     {
         $data = str_replace('-',' ',$request->blog);
-       
-       
+
+
         $blog = SectionData::where('key','blog.element')->where('data->heading', $data)->withCount('blogComments')->firstOrFail();
 
 
@@ -209,45 +217,45 @@ class HomeController extends Controller
 
     public function blogComment(Request $request)
     {
-       $blog = SectionData::findOrFail($request->id);
+        $blog = SectionData::findOrFail($request->id);
 
-       $request->validate([
-           'name' => 'required',
-           'email' => 'required',
-           'phone' => 'required',
-           'comment' => 'required'
-       ]);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'comment' => 'required'
+        ]);
 
-       BlogComment::create([
-           'blog_id' => $blog->id,
-           'name' => $request->name,
-           'email' => $request->email,
-           'phone' => $request->phone,
-           'comment' => $request->comment
-       ]);
+        BlogComment::create([
+            'blog_id' => $blog->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'comment' => $request->comment
+        ]);
 
-       $notify[] = ['success','successfully placed your comment'];
+        $notify[] = ['success','successfully placed your comment'];
 
-       return back()->withNotify($notify);
+        return back()->withNotify($notify);
 
     }
 
     public function blogCategory(Request $request)
     {
-       $blogCategory = BlogCategory::where('slug',$request->category)->firstOrFail();
+        $blogCategory = BlogCategory::where('slug',$request->category)->firstOrFail();
 
-       $blogs = SectionData::where('key','blog.element')->where('category',$blogCategory->id)->latest()->paginate(9);
- 
-       $pageTitle = "{$request->category}";
+        $blogs = SectionData::where('key','blog.element')->where('category',$blogCategory->id)->latest()->paginate(9);
+    
+        $pageTitle = "{$request->category}";
 
 
-       return view('frontend.category_blog',compact('pageTitle','blogs'));
+        return view('frontend.category_blog',compact('pageTitle','blogs'));
     }
 
     public function policy(Request $request)
     {
         $policy = SectionData::where('key','policy.element')->where('data->slug',$request->policy)->firstOrFail();
-       
+
 
         $pageTitle = $policy->data->pagename;
 
@@ -256,7 +264,12 @@ class HomeController extends Controller
 
     public function serviceDetails(Request $request)
     {
-        
+        if(!is_null($request->name)){
+            $pageTitle = "{$request->name}";
+            $category_id = Service::where('name', $request->name)->first()->category_id;
+            $services = Service::where('category_id', $category_id)->where('status',1)->where('admin_approval',1)->groupBy('user_id')->with('user')->inRandomOrder()->get();
+            return view('frontend.category_details_updated',compact('pageTitle','services'));
+        };
         $service = Service::where('id',$request->id)->where('status',1)->with('user')->withCount('reviews')->firstOrFail();
 
         $pageTitle = "{$service->name}";

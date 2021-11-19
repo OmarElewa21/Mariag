@@ -371,6 +371,8 @@ Route::middleware('demo')->group(function(){
         
         
         Route::get('service/{id}/{slug}', [HomeController::class, 'serviceDetails'])->name('service.details');
+
+        Route::get('services/service/{name}', [HomeController::class, 'serviceDetails'])->name('service.details2');
         
         
         Route::get('search/experts', [HomeController::class, 'searchExperts'])->name('experts.search');

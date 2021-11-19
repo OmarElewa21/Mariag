@@ -36,7 +36,7 @@ class LoginController extends Controller
 
         if(!$user){
             $notify[] = ['error','No user found associated with this email'];
-             return redirect()->route('user.login')->withNotify($notify);
+            return redirect()->route('user.login')->withNotify($notify);
         }
 
         if($user->ev == 0){
@@ -60,9 +60,15 @@ class LoginController extends Controller
         if (Auth::attempt($request->except('g-recaptcha-response','_token'))) {
 
             $notify[] = ['success','Successfully logged in'];
-
-            return redirect()->intended('user/dashboard')
+            if(auth()->user()->user_type == 2){
+                return redirect()->intended('/user/dashboard')
                         ->withNotify($notify);
+            }
+            else{
+                return redirect()->intended('/')
+                        ->withNotify($notify);
+            }
+            
         }
         
         $notify[] = ['error','Invalid Credentials'];

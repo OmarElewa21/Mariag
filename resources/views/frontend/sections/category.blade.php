@@ -1,8 +1,12 @@
 @php
 
     $content = content('category.content');
-
-    $categories = App\Models\Category::whereHas('services',function($q){$q->where('status',1);})->whereHas('services.user')->where('status',1)->latest()->take(6)->get();
+    if(url()->current() == route('home')){
+        $services = App\Models\Service::where('status',1)->where('admin_approval',1)->groupBy('category_id')->inRandomOrder()->take(6)->get();
+    }
+    else{
+        $services = App\Models\Service::where('status',1)->where('admin_approval',1)->groupBy('category_id')->inRandomOrder()->get();
+    }
 
 @endphp
 <!--Portfolio Start-->
@@ -18,17 +22,17 @@
         </div>
         <div class="row">
 
-        @foreach ($categories as $category)
+        @foreach ($services as $service)
             <div class="col-lg-4 col-md-6">
                 <div class="case-item">
                     <div class="case-box">
                         <div class="case-image">
-                            <img src="{{getFile('category',$category->image)}}" alt="">
-                            <div class="overlay"><a href="{{route('category.details',$category->slug)}}" class="btn-case">@changeLang('See Details')</a>
+                            <img src="{{getFile('category', $service->category->image)}}" alt="">
+                            <div class="overlay"><a href="{{route('service.details2',$service->name)}}" class="btn-case">@changeLang('See Details')</a>
                             </div>
                         </div>
                         <div class="case-content">
-                            <h4><a href="{{route('category.details',$category->slug)}}">{{__($category->name)}}</a></h4>
+                            <h4><a href="{{route('service.details2',$service->name)}}">{{__($service->category->name)}}</a></h4>
                         </div>
                     </div>
                 </div>
@@ -36,12 +40,14 @@
         @endforeach
             
         </div>
-        <div class="row mb_60">
-            <div class="col-md-12">
-                <div class="home-button">
-                    <a href="{{route('category.all')}}">{{changeDynamic(@$content->data->button_text)}}</a>
+        @if(url()->current() == route('home'))
+            <div class="row mb_60">
+                <div class="col-md-12">
+                    <div class="home-button">
+                        <a href="{{route('category.all')}}">{{changeDynamic(@$content->data->button_text)}}</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
