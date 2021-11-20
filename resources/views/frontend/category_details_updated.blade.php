@@ -38,7 +38,7 @@
         @foreach ($services as $service)
                 <div class="team-item row">
 
-                    <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}}">
+                    <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}} order-md-1 order-2 mt-md-0 mt-5">
                         <div class="row provider-header" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
                             <div class="team-photo col-6">
                                 <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-wrap mt-4 details">
+                        <div class="d-flex flex-wrap mt-4 details mb-md-5 mb-lg-0">
                             <strong style="display: inline">@changeLang('Details:') </strong>
                             <p class="mt-3">{!! substr(@$service->details, 0, 255) !!}</p>
                         </div>
@@ -177,7 +177,7 @@
                     </div>
 
                     @if ($service->gallery)
-                        <div class="col-md-6 col-12 mb-md-0 mb-4">
+                        <div class="col-md-6 col-12 mb-md-0 mb-4 order-md-2 order-1">
                             <!-- Slideshow container -->
                             <div class="slideshow-container">
                                 <!-- Full-width images with number and caption text -->
@@ -298,9 +298,6 @@
 @push('custom-css')
 <style>
     @media screen and (max-width: 700px) {
-        .details {
-            display: none !important;
-        }
         .card-buttons{
             position: relative;
         }
@@ -310,10 +307,8 @@
         .full-gallery{
             bottom: -50px;
         }
-    }
-    @media screen and (max-width: 1000px) { 
-        .details {
-            display: none !important;
+        .slideshow-container img {
+            max-height: 180px;
         }
     }
 </style>
