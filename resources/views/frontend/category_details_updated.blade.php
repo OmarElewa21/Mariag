@@ -39,7 +39,7 @@
                 <div class="team-item row">
 
                     <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}} order-md-1 order-2 mt-md-0 mt-5">
-                        <div class="row provider-header" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
+                        <div class="row provider-header mt-3 mt-md-0" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
                             <div class="team-photo col-6">
                                 <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
                             </div>
@@ -108,7 +108,7 @@
 
                         <div class="d-flex flex-wrap mt-4 details mb-md-5 mb-lg-0">
                             <strong style="display: inline">@changeLang('Details:') </strong>
-                            <p class="mt-3">{!! substr(@$service->details, 0, 255) !!}</p>
+                            <p class="mt-md-3 mt-0">{!! substr(@$service->details, 0, 255) !!}</p>
                         </div>
 
                         <div class="w-100 text-center mb-2 mt-2 card-buttons">
@@ -229,8 +229,8 @@
     }
     .team-photo img {
         border-radius: 50%;
-        height: 80% !important;
-        width: 60% !important;
+        height: 150px !important;
+        width: 150px !important;
     }
     .btn {
         padding-left: 20px !important;
@@ -308,7 +308,7 @@
             bottom: -50px;
         }
         .slideshow-container img {
-            max-height: 180px;
+            max-height: 200px;
         }
     }
 </style>
