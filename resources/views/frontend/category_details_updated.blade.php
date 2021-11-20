@@ -39,13 +39,13 @@
                 <div class="team-item row">
 
                     <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}}">
-                        <div class="row provider-header">
+                        <div class="row provider-header" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
                             <div class="team-photo col-6">
                                 <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
                             </div>
 
                             <div class="team-text col-6">
-                                <a href="{{route('service.provider.details',Str::slug($service->user->username))}}">{{__(ucwords($service->user->fullname))}}</a>
+                                <h4>{{__(ucwords($service->user->fullname))}}</h4>
                                 @php
                                     $rating = \App\Models\Review::whereIn('service_id',$service->user->services()->pluck('id')->toArray())->avg('review');
                                 @endphp
@@ -115,9 +115,6 @@
                             <a href="" data-toggle="modal" data-target="#modal_book">
                                 <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1 mb-1">@changeLang('Contact Provider')</button>
                             </a>
-
-                            <a href="{{route('service.provider.details', Str::slug($service->user->username))}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('More Info About The Provider')</button></a>
-                            
                             
                             <!-- Modal -->
                             <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
@@ -185,7 +182,7 @@
                             <div class="slideshow-container">
                                 <!-- Full-width images with number and caption text -->
                                 @foreach(json_decode($service->gallery) as $gallery)
-                                    <div class="mySlides{{$gallery_index+1}} myslide">
+                                    <div class="mySlides{{$gallery_index+1}} myslide" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
                                         <img src="{{ getFile('service', $gallery) }}" style="width:100%">
                                     </div>
                                 @endforeach
@@ -197,9 +194,6 @@
                                 
                             </div>
                             <br>
-                            <div class="full-gallery mb-md-2 mb-4">
-                                <a href="{{route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)])}}"><button type="button" class="btn btn-info font-weight-bold">@changeLang('See Full Gallery')</button></a>
-                            </div>
                         </div>
                         @php
                             $gallery_index++;
@@ -220,6 +214,7 @@
     }
     .provider-header {
         max-height: 150px;
+        cursor: pointer;
     }
     .team-social {
         right: 100% !important;
@@ -266,6 +261,9 @@
         max-height: 100px;
         position: relative;
         margin: auto;
+    }
+    .myslide{
+        cursor: pointer;
     }
 
     /* Next & previous buttons */
