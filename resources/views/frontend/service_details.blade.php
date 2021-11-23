@@ -89,7 +89,7 @@
                             echo __($service->details);
                         @endphp</p>
                     </div>
-                    @if ($service->faq)
+                    {{-- @if ($service->faq)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="faq-service feature-section-text mt_50">
@@ -120,14 +120,14 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
 
                     @if ($service->video[0] != null)
                         <div class="row mt_50">
                             <div class="col-12">
                                 <div class="video-headline">
-                                    <h3>@changeLang('Releted Videos')</h3>
+                                    <h3>@changeLang('Service Videos')</h3>
                                 </div>
                             </div>
                             @foreach ($service->video as $video)
