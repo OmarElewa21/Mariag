@@ -28,11 +28,11 @@
                     <div class="case-box">
                         <div class="case-image">
                             <img src="{{getFile('category', $service->category->image)}}" alt="">
-                            <div class="overlay"><a href="{{route('service.details2',$service->name)}}" class="btn-case">@changeLang('See Details')</a>
+                            <div class="overlay"><a href="{{route('service.details2',$service->category_id)}}" class="btn-case">@changeLang('See Details')</a>
                             </div>
                         </div>
                         <div class="case-content">
-                            <h4><a href="{{route('service.details2',$service->name)}}">{{__($service->category->name)}}</a></h4>
+                            <h4><a href="{{route('service.details2',$service->category_id)}}">{{__($service->category->name)}}</a></h4>
                         </div>
                     </div>
                 </div>

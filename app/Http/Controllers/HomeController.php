@@ -264,10 +264,10 @@ class HomeController extends Controller
 
     public function serviceDetails(Request $request)
     {
-        if(!is_null($request->name)){
-            $pageTitle = "{$request->name}";
-            $category_id = Service::where('name', $request->name)->first()->category_id;
-            $services = Service::where('category_id', $category_id)->where('status',1)->where('admin_approval',1)->groupBy('user_id')->with('user')->inRandomOrder()->get();
+        if(!is_null($request->category_id)){
+            $category = Category::find($request->category_id);
+            $pageTitle = "{$category->name}";
+            $services = Service::where('category_id', $request->category_id)->where('status',1)->where('admin_approval',1)->groupBy('user_id')->with('user')->inRandomOrder()->get();
             return view('frontend.category_details_updated',compact('pageTitle','services'));
         };
         $service = Service::where('id',$request->id)->where('status',1)->with('user')->withCount('reviews')->firstOrFail();

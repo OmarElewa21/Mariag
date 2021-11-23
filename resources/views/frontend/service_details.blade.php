@@ -187,7 +187,7 @@
                                 </ul>
                             </div>
 
-                            @auth
+                            {{-- @auth
                                 <div class="comment-form mt_30">
                                     <h4>@changeLang('Write A Review')</h4>
                                     <form action="{{ route('review', $service->id) }}" method="post">
@@ -212,7 +212,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            @endauth
+                            @endauth --}}
                         </div>
                     </div>
 
@@ -353,11 +353,10 @@
                         </div> --}}
 
                         <div class="service-qucikcontact event-form mt_30">
-                            <h3 class="text-center">@changeLang('Contact Provider')</h3>
-
                             @auth
                             <!-- User is User  -->
                             @if (auth()->user()->user_type == 1)
+                            <h3 class="text-center">@changeLang('Contact Provider')</h3>
                             <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
                                 @csrf
                                 <div class="form-row row">
@@ -402,6 +401,7 @@
                             <!-- User is not logged in  -->
                             @else
                             <div class="text-center">
+                                <h3 class="text-center">@changeLang('Contact Provider')</h3>
                                 <a href="{{route('user.login', ['page_url' => url()->current()])}}">
                                     <button type="button" class="btn btn-danger">@changeLang('Login to Contact')</button>
                                 </a>
