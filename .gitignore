@@ -1,4 +1,4 @@
-/vendor
+vendor
 .env
-/storage
-/public/backend/images
+storage
+server.php
