@@ -112,66 +112,66 @@
                         </div>
 
                         <div class="w-100 text-center mb-2 mt-md-2 mt-0 card-buttons">
-                            <a href="" data-toggle="modal" data-target="#modal_book">
-                                <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1">@changeLang('Contact Provider')</button>
+                            <a href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}">
+                                <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1">@changeLang('More details..')</button>
                             </a>
                             
                             <!-- Modal -->
-                            <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">@changeLang('Contact Now')</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body text-left">
-                                            <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
-                                                @csrf
-                                                <div class="form-row row">
-                                                    <div class="form-group col-md-12">
-                                                        <label for="">@changeLang('Name')<span style="color: red">*</span></label>
-                                                        <input type="text" name="name" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <label for="">@changeLang('Phone Number')<span style="color: red">*</span></label>
-                                                        <input type="tel" name="phone" class="form-control" required>
-                                                    </div>
-
-                                                    <div class="form-group col-md-12">
-                                                        <label for="">@changeLang('Subject')<span style="color: red">*</span></label>
-                                                        <input type="text" name="subject" class="form-control" required>
-                                                    </div>
-
-                                                    <div class="form-group col-md-12">
-                                                        <label for="">@changeLang('Message')<span style="color: red">*</span></label>
-                                                        <textarea class="form-control" name="message" required></textarea>
-                                                    </div>
-
-                                                    @if (@$general->allow_recaptcha)
-
-                                                    <div class="col-md-12 my-3">
-                                                    
-                                                    <script src="https://www.google.com/recaptcha/api.js"></script>
-                                                    <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
-                                                        data-callback="verifyCaptcha"></div>
-                                                    <div id="g-recaptcha-error"></div>
-                                                    </div>
-
-                                                @endif
-
-                                                    <div class="form-group col-md-12">
-                                                        <button type="submit" id="recaptcha" class="btn btn-danger">@changeLang('Send Message')</button>
-                                                    </div>
-
+                                    {{-- <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">@changeLang('Contact Now')</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
-                                            </form>
+                                                <div class="modal-body text-left">
+                                                    <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
+                                                        @csrf
+                                                        <div class="form-row row">
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">@changeLang('Name')<span style="color: red">*</span></label>
+                                                                <input type="text" name="name" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">@changeLang('Phone Number')<span style="color: red">*</span></label>
+                                                                <input type="tel" name="phone" class="form-control" required>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">@changeLang('Subject')<span style="color: red">*</span></label>
+                                                                <input type="text" name="subject" class="form-control" required>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">@changeLang('Message')<span style="color: red">*</span></label>
+                                                                <textarea class="form-control" name="message" required></textarea>
+                                                            </div>
+
+                                                            @if (@$general->allow_recaptcha)
+
+                                                            <div class="col-md-12 my-3">
+                                                            
+                                                            <script src="https://www.google.com/recaptcha/api.js"></script>
+                                                            <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
+                                                                data-callback="verifyCaptcha"></div>
+                                                            <div id="g-recaptcha-error"></div>
+                                                            </div>
+
+                                                        @endif
+
+                                                            <div class="form-group col-md-12">
+                                                                <button type="submit" id="recaptcha" class="btn btn-danger">@changeLang('Send Message')</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    </div> --}}
                             <!-- End Modal  -->
                         </div>
                     </div>
@@ -261,6 +261,7 @@
         max-height: 100px;
         position: relative;
         margin: auto;
+        transition: all 2s;
     }
     .myslide{
         cursor: pointer;
@@ -358,6 +359,7 @@
                 x[i].style.display = "none";
             }
             x[slideIndex[no]-1].style.display = "block";
+            x[slideIndex[no]-1].style.animation = "fadeIn 0.5s";
         }
     </script>
 @endpush

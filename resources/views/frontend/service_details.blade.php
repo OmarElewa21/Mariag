@@ -145,15 +145,14 @@
                                     </div>
                                 </div>
                             @endforeach
-
+                        
                         </div>
                     @endif
-                  
-                   
-                    <div class="row mt_50">
+                    
+                    <div class="row">
                         <div class="col-md-12" id="review">
                             <div class="comment-list mt_30">
-                             @if($service->reviews->count() > 0)
+                            @if($service->reviews->count() > 0)
                                 <h4>@changeLang('Reviews') <span class="c-number">({{ $service->reviews_count }})</span>
                                 </h4>
                             @endif
@@ -219,10 +218,10 @@
 
                 </div>
                 <div class="col-md-4">
-                    <div class="service-sidebar pt_30">
+                    <div class="service-sidebar pt-md-3">
 
                         <div class="booking-widget">
-                            <div class="price">
+                            {{-- <div class="price">
                                 <div class="amount">
                                     {{ $general->currency_icon . '' . $service->rate }}
                                 </div>
@@ -256,9 +255,9 @@
                                         <i class="fas fa-star"></i>
                                     @endfor
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="book">
+                            {{-- <div class="book">
 
                                 @auth
                                     @if (auth()->user()->user_type == 1)
@@ -329,8 +328,8 @@
                                 @endauth
 
 
-                            </div>
-                        </div>
+                            </div> 
+                        </div> --}}
 
                         <div class="provider-widget">
                             <h2>@changeLang('Service Provider')</h2>
@@ -342,7 +341,7 @@
                             </div>
                         </div>
 
-                        <div class="service-widget-contact mt_30">
+                        {{-- <div class="service-widget-contact mt_30">
                             <h2>@changeLang('Contact Info')</h2>
                             <ul>
                                 <li><i class="fas fa-phone"></i> {{ $service->user->mobile }}</li>
@@ -351,7 +350,8 @@
                                     {{ @$service->user->address->address . ' ' . @$service->user->address->city . ' ' . @$service->user->address->country }}
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
+
                         <div class="service-qucikcontact event-form mt_30">
                             <h3>@changeLang('Contact Provider')</h3>
                             <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
