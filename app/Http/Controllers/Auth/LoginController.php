@@ -15,14 +15,14 @@ class LoginController extends Controller
 {
     public function index()
     {
-       $pageTitle = 'Login Page';
+        $pageTitle = 'Login Page';
 
-       return view('frontend.auth.login',compact('pageTitle'));
+        return view('frontend.auth.login',compact('pageTitle'));
     }
 
     public function login(Request $request)
     {
-       $general  = GeneralSetting::first();
+        $general  = GeneralSetting::first();
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -56,8 +56,8 @@ class LoginController extends Controller
 
             return redirect()->route('user.email.verify')->withNotify($notify);
         }
-   
-        if (Auth::attempt($request->except('g-recaptcha-response','_token'))) {
+
+        if (Auth::attempt($request->except('g-recaptcha-response','_token', 'page_url'))) {
 
             $notify[] = ['success','Successfully logged in'];
             if(auth()->user()->user_type == 2){
@@ -65,6 +65,9 @@ class LoginController extends Controller
                         ->withNotify($notify);
             }
             else{
+                if($request->page_url){
+                    return redirect()->to($request->page_url)->withNotify($notify);
+                }
                 return redirect()->intended('/')
                         ->withNotify($notify);
             }
@@ -78,9 +81,9 @@ class LoginController extends Controller
     
     public function emailVerify()
     {
-       $pageTitle = "Email Verify";
+        $pageTitle = "Email Verify";
 
-       return view('frontend.auth.email',compact('pageTitle'));
+        return view('frontend.auth.email',compact('pageTitle'));
     }
 
     public function emailVerifyConfirm(Request $request)

@@ -402,7 +402,7 @@
                             <!-- User is not logged in  -->
                             @else
                             <div class="text-center">
-                                <a href="{{route("user.login")}}" class="">
+                                <a href="{{route('user.login', ['page_url' => url()->current()])}}">
                                     <button type="button" class="btn btn-danger">@changeLang('Login to Contact')</button>
                                 </a>
                             </div>
