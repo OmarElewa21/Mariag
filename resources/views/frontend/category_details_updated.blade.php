@@ -38,8 +38,8 @@
         @foreach ($services as $service)
                 <div class="team-item row">
 
-                    <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}} order-md-1 order-2 mt-md-0 mt-5">
-                        <div class="row provider-header mt-3 mt-md-0" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
+                    <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}} order-md-1 order-2 mt-md-0">
+                        <div class="row provider-header mt-md-0" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
                             <div class="team-photo col-6">
                                 <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
                             </div>
@@ -111,9 +111,9 @@
                             <p class="mt-md-3 mt-0">{!! substr(@$service->details, 0, 255) !!}</p>
                         </div>
 
-                        <div class="w-100 text-center mb-2 mt-2 card-buttons">
+                        <div class="w-100 text-center mb-2 mt-md-2 mt-0 card-buttons">
                             <a href="" data-toggle="modal" data-target="#modal_book">
-                                <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1 mb-1">@changeLang('Contact Provider')</button>
+                                <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1">@changeLang('Contact Provider')</button>
                             </a>
                             
                             <!-- Modal -->
@@ -177,7 +177,7 @@
                     </div>
 
                     @if ($service->gallery)
-                        <div class="col-md-6 col-12 mb-md-0 mb-4 order-md-2 order-1">
+                        <div class="col-md-6 col-12 mb-md-0 mb-4 order-md-2 order-1 gallery-container">
                             <!-- Slideshow container -->
                             <div class="slideshow-container">
                                 <!-- Full-width images with number and caption text -->
@@ -302,13 +302,31 @@
             position: relative;
         }
         .prev, .next {
-            top: 72%
+            top: 130%
         }
         .full-gallery{
             bottom: -50px;
         }
+        .gallery-container {
+            height: 300px;
+        }
         .slideshow-container img {
-            max-height: 200px;
+            max-height: 300px;
+        }
+        .team-photo img {
+            height: 100px !important;
+            width: 100px !important;
+        }
+        .team-text {
+            padding: 0;
+            padding-left: 2px;
+            padding-top: 2px;
+        }
+        .team-text h4, .team-text i, .team-text b{
+            font-size: 1rem;
+        }
+        .details strong, .details p{
+            font-size: 0.9rem;
         }
     }
 </style>
