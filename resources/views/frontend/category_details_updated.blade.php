@@ -311,7 +311,7 @@
             height: 300px;
         }
         .slideshow-container img {
-            max-height: 300px;
+            height: 100%
         }
         .team-photo img {
             height: 100px !important;
