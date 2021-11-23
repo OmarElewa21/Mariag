@@ -81,8 +81,17 @@
 
                                 <div class="col-md-12 mt-4">
 
-                                    <p>@changeLang('Forgot Password')? <a href="{{ route('user.forgot.password') }}"
-                                            class="text-primary">@changeLang('Click here to reset')</a></p>
+                                    <p>
+                                        @changeLang('Forgot Password')?
+                                        <a href="{{ route('user.forgot.password') }}"
+                                            class="text-primary">@changeLang('Click here to reset')</a>
+                                        </p>
+                                    
+                                    <p>
+                                        @changeLang('Does not have an account')?
+                                        <a href="{{ route('user.register') }}"
+                                        class="text-primary">@changeLang('Click here to register')</a>
+                                    </p>
 
                                 </div>
 

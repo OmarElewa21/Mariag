@@ -281,8 +281,6 @@ class HomeController extends Controller
     {
         $general = GeneralSetting::first();
         $data = $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
             'subject' => 'required',
             'message'=> 'required',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
@@ -291,7 +289,10 @@ class HomeController extends Controller
         ]);
 
         $provider = User::where('id', $request->id)->where('user_type', 2)->where('status',1)->firstOrFail();
-
+        $user = auth()->user();
+        $data['name'] = $user->fname . ' ' . $user->lname;
+        $data['phone'] = $user->mobile;
+        $data['email'] = $user->email;
         // sendGeneralMail($data);
         Mail::to($provider)->send(new Contact($data));
 
@@ -299,7 +300,6 @@ class HomeController extends Controller
 
         return redirect()->back()->withNotify($notify);
     }
-    
 
 
     public function writeReview(Request $request,Service $service)

@@ -220,8 +220,8 @@
                 <div class="col-md-4">
                     <div class="service-sidebar pt-md-3">
 
-                        <div class="booking-widget">
-                            {{-- <div class="price">
+                        {{-- <div class="booking-widget">
+                            <div class="price">
                                 <div class="amount">
                                     {{ $general->currency_icon . '' . $service->rate }}
                                 </div>
@@ -353,27 +353,30 @@
                         </div> --}}
 
                         <div class="service-qucikcontact event-form mt_30">
-                            <h3>@changeLang('Contact Provider')</h3>
+                            <h3 class="text-center">@changeLang('Contact Provider')</h3>
+
+                            @auth
+                            <!-- User is User  -->
+                            @if (auth()->user()->user_type == 1)
                             <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
                                 @csrf
                                 <div class="form-row row">
-                                    <div class="form-group col-md-12">
+                                    {{-- <div class="form-group col-md-12">
                                         <label for="">@changeLang('Name')</label>
                                         <input type="text" name="name" class="form-control">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="">@changeLang('Email')</label>
                                         <input type="text" name="email" class="form-control">
-                                    </div>
-
+                                    </div> --}}
                                     <div class="form-group col-md-12">
                                         <label for="">@changeLang('Subject')</label>
-                                        <input type="text" name="subject" class="form-control">
+                                        <input type="text" name="subject" class="form-control" required>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="">@changeLang('Message')</label>
-                                        <textarea class="form-control" name="message"></textarea>
+                                        <textarea class="form-control" name="message" required></textarea>
                                     </div>
 
                                     @if (@$general->allow_recaptcha)
@@ -394,6 +397,16 @@
 
                                 </div>
                             </form>
+                            @endif
+
+                            <!-- User is not logged in  -->
+                            @else
+                            <div class="text-center">
+                                <a href="{{route("user.login")}}" class="">
+                                    <button type="button" class="btn btn-danger">@changeLang('Login to Contact')</button>
+                                </a>
+                            </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
