@@ -31,7 +31,6 @@
         <meta name='description' content="{{ $general->seo_description }}">
     @endpush
 
-
     <!--Service Detail Start-->
     <div class="service-detail-area pt_40">
         <div class="container">
@@ -356,47 +355,70 @@
                             @auth
                             <!-- User is User  -->
                             @if (auth()->user()->user_type == 1)
-                            <h3 class="text-center">@changeLang('Contact Provider')</h3>
-                            <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
-                                @csrf
-                                <div class="form-row row">
-                                    {{-- <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Name')</label>
-                                        <input type="text" name="name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Email')</label>
-                                        <input type="text" name="email" class="form-control">
-                                    </div> --}}
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Subject')</label>
-                                        <input type="text" name="subject" class="form-control" required>
-                                    </div>
+                                @php
+                                    $user = auth()->user();
+                                @endphp
+                                <div class="text-center">
+                                    <h3 class="text-center">@changeLang('Contact Provider')</h3>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Message')</label>
-                                        <textarea class="form-control" name="message" required></textarea>
-                                    </div>
-
-                                    @if (@$general->allow_recaptcha)
-
-                                    <div class="col-md-12 my-3">
-                                    
-                                    <script src="https://www.google.com/recaptcha/api.js"></script>
-                                    <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
-                                        data-callback="verifyCaptcha"></div>
-                                    <div id="g-recaptcha-error"></div>
-                                    </div>
-
-                                @endif
-
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" id="recaptcha" class="btn">@changeLang('Send Message')</button>
-                                    </div>
-
+                                    <a href="" data-toggle="modal" data-target="#modal_book">
+                                        <button type="button" class="btn btn-danger">@changeLang('Contact Now')</button>
+                                    </a>
                                 </div>
-                            </form>
-                            @endif
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">@changeLang('Contact Now')</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="modal-body">
+                                                <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
+                                                    @csrf
+                                                    <div class="form-row row">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('Name')</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $user->fname . ' ' . $user->lname }}">
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('phone')</label>
+                                                            <input type="tel" name="phone" class="form-control" value="{{ $user->mobile }}">
+                                                        </div>
+                    
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('Message')</label>
+                                                            <textarea class="form-control" name="message"></textarea>
+                                                        </div>
+                    
+                                                        @if (@$general->allow_recaptcha)
+                    
+                                                            <div class="col-md-12 my-3">
+                                                            
+                                                            <script src="https://www.google.com/recaptcha/api.js"></script>
+                                                            <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
+                                                                data-callback="verifyCaptcha"></div>
+                                                            <div id="g-recaptcha-error"></div>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="form-group col-md-12">
+                                                            <button type="submit" id="recaptcha" class="btn">@changeLang('Send Message')</button>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             <!-- User is not logged in  -->
                             @else

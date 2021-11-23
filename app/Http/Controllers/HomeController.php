@@ -281,8 +281,8 @@ class HomeController extends Controller
     {
         $general = GeneralSetting::first();
         $data = $request->validate([
-            'subject' => 'required',
-            'message'=> 'required',
+            'name'  => 'required',
+            'phone' =>  'required',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
         ],[
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
@@ -290,9 +290,8 @@ class HomeController extends Controller
 
         $provider = User::where('id', $request->id)->where('user_type', 2)->where('status',1)->firstOrFail();
         $user = auth()->user();
-        $data['name'] = $user->fname . ' ' . $user->lname;
-        $data['phone'] = $user->mobile;
         $data['email'] = $user->email;
+        $data['message'] = $request->message;
         // sendGeneralMail($data);
         Mail::to($provider)->send(new Contact($data));
 
