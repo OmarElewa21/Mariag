@@ -31,7 +31,7 @@
 
 
                             <div class="form-group col-12 col-md-6 col-lg-3">
-                                <label class="">@changeLang('Service Image')</label>
+                                <label class="">@changeLang('Avatar')</label>
 
                                 <div id="image-preview" class="image-preview w-100"
                                     style="background-image:url({{ getFile('service', $service->service_image) }});">
@@ -66,7 +66,7 @@
 
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label>@changeLang('Service Rate')<span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -98,7 +98,7 @@
                                                 @changeLang('fixed')</option>
                                         </select>
 
-                                    </div>
+                                    </div> --}}
 
 
                                     <div class="form-group col-md-6">
@@ -138,12 +138,12 @@
                             <div class="form-group col-md-12">
 
 
-                                <div class="col-md-12 text-right my-3">
+                                <div class="col-md-12 text-right my-3 invisible">
                                     <button class="btn btn-primary faq"> <i class="fa fa-plus"></i> 
                                     @changeLang('Add Questions')</button>
                                 </div>
 
-                                <div class="row addFaq align-items-center">
+                                <div class="row addFaq align-items-center d-none">
 
 
                                     @forelse ($service->faq as $key => $faq)

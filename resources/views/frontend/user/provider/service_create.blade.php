@@ -29,7 +29,7 @@
 
 
                             <div class="form-group col-12 col-md-6 col-lg-3">
-                                <label class="">@changeLang('Service Image')</label>
+                                <label class="">@changeLang('Avatar')</label>
 
                                 <div id="image-preview" class="image-preview w-100">
                                     <label for="image-upload" id="image-label">@changeLang('Choose File')</label>
