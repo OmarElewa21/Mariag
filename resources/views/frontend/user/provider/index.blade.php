@@ -113,7 +113,9 @@
 
 
                                             <span class="badge badge-danger">@changeLang('Rejected')</span>
-
+                                            <div class="shadow-sm p-1 bg-white mb-1 mt-1 rounded">
+                                                <span class="text-danger"> {{$service->reason_of_reject}} <span>
+                                            </div>
                                         @elseif($service->status)
                                             
                                             <span class="badge badge-success">@changeLang('Active')</span>

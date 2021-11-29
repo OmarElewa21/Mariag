@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\Withdraw;
 use App\Models\WithdrawLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ManageWithdrawController extends Controller
 {
@@ -131,8 +132,10 @@ class ManageWithdrawController extends Controller
             'type' => '-'
         ]);
 
+
+
         sendMail('WITHDRAW_ACCEPTED',['amount'=>$withdraw->amount, 'method' => $withdraw->withdraw->name,'trx'=> $withdraw->trx,'currency' => $general->site_currency], $withdraw->user);
-        
+
         $notify[] = ['success', 'Withdraw Accepted Successfully'];
         return redirect()->back()->withNotify($notify);
     }
@@ -161,7 +164,7 @@ class ManageWithdrawController extends Controller
 
         ]);
 
-        sendMail('WITHDRAW_REJECTED',['amount'=>$withdraw->amount, 'method' => $withdraw->withdraw->name,'trx'=> $withdraw->trx,'currency' => $general->site_currency,'reason' => $withdraw->reason_of_reject], $withdraw->user);
+        // sendMail('WITHDRAW_REJECTED',['amount'=>$withdraw->amount, 'method' => $withdraw->withdraw->name,'trx'=> $withdraw->trx,'currency' => $general->site_currency,'reason' => $withdraw->reason_of_reject], $withdraw->user);
         
         $notify[] = ['success', 'Withdraw Rejected Successfully'];
         return redirect()->back()->withNotify($notify);

@@ -6,18 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ServiceStatus;
 
 class ManageServiceController extends Controller
 {
     public function index(Request $request)
     {
-       $pageTitle = "All services";
+        $pageTitle = "All services";
 
-       $services = Service::whereHas('user')->when($request->search, function($q) use($request){
-           $q->where('name','LIKE','%'.$request->search.'%');
-       })->latest()->with('category','user','reviews')->paginate();
+        $services = Service::whereHas('user')->when($request->search, function($q) use($request){
+            $q->where('name','LIKE','%'.$request->search.'%');
+        })->latest()->with('category','user','reviews')->paginate();
 
-       return view('admin.service.index',compact('pageTitle','services'));
+        return view('admin.service.index',compact('pageTitle','services'));
     }
 
     public function reviewMessage(Service $service)
@@ -48,7 +50,12 @@ class ManageServiceController extends Controller
 
         $service->save();
 
-        sendMail('SERVICE_APPROVAL',['service' => $service->name],$service->user);
+        $data = json_decode($service->user, true);
+        $data['status']  = 'accepted';
+        $data['message'] = '';
+
+        // sendMail('SERVICE_APPROVAL',['service' => $service->name],$service->user);
+        Mail::to($service->user)->send(new ServiceStatus($data));
 
         $notify[] = ['success','Successfully Accepted Service'];
         return back()->withNotify($notify);
@@ -62,7 +69,11 @@ class ManageServiceController extends Controller
 
         $service->save();
 
-        sendMail('SERVICE_REJECTED',['reason'=> $request->reason_of_reject,'service' => $service->name],$service->user);
+        $data = json_decode($service->user, true);
+        $data['status']  = 'rejected';
+        $data['message'] = $request->reason_of_reject;
+
+        Mail::to($service->user)->send(new ServiceStatus($data));
 
         $notify[] = ['success','Successfully rejected Service'];
         return back()->withNotify($notify);
