@@ -29,7 +29,7 @@
                         <div class="row">
 
 
-                            <div class="form-group col-12 col-md-6 col-lg-3">
+                            {{-- <div class="form-group col-12 col-md-6 col-lg-3">
                                 <label class="">@changeLang('Avatar')</label>
 
                                 <div id="image-preview" class="image-preview w-100"
@@ -38,13 +38,13 @@
                                     <input type="file" name="service_image" id="image-upload" />
                                 </div>
 
-                            </div>
+                            </div> --}}
 
-                            <div class="col-12 col-md-6 col-lg-9">
+                            <div class="col-12">
 
                                 <div class="row">
 
-                                    <div class="form-group col-md-6 col-lg-6">
+                                    <div class="form-group col-12">
                                         <label for="">@changeLang('Category')<span class="text-danger">*</span></label>
                                         <select name="category" id="" class="form-control">
 
@@ -57,13 +57,13 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
 
                                         <label for="">@changeLang('Service Name')<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control form_control"
                                             value="{{ $service->name }}">
 
-                                    </div>
+                                    </div> --}}
 
                                     {{-- <div class="form-group col-md-6">
                                         <label>@changeLang('Service Rate')<span class="text-danger">*</span></label>
@@ -100,7 +100,7 @@
                                     </div> --}}
 
 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-12">
                                         <label for="">
                                         @changeLang('Service Location (please write , separated location) ')<span class="text-danger">*</span></label>
                                         {{-- <input type="text" name="location" class="form-control form_control"
@@ -138,12 +138,12 @@
                                             @endphp
                                             <select class="js-example-basic-multiple" name="location[]" multiple="multiple">
                                                 @foreach($locations as $location)
-                                                    <option value={{$location}} {{strpos($service->location, $location) !== false ? "selected='selected'" : ''}}>{{$location}}</option>
+                                                    <option value='{{$location}}' {{strpos($service->location, $location) !== false ? "selected='selected'" : ''}}>{{$location}}</option>
                                                 @endforeach
                                             </select>
                                     </div>
                                 @if($service->admin_approval == 1)
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-12">
 
                                         <label for="">@changeLang('Service status')<span class="text-danger">*</span></label>
                                         <select name="status" id="" class="form-control">
@@ -555,6 +555,10 @@
         }
         .select2-selection__choice {
             background-color: rgb(247, 67, 67) !important;
+        }
+
+        label {
+            font-weight: bold !important;
         }
 
     </style>

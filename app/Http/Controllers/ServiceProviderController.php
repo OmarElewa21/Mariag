@@ -82,12 +82,10 @@ class ServiceProviderController extends Controller
 
         $request->validate([
             'category' => 'required|exists:categories,id',
-            'name' => 'required',
             'status' => 'sometimes|in:0,1',
             'details' => 'required',
             'faq' => 'array',
             'video' => 'required|array',
-            'service_image' => 'image|mimes:jpg,jpeg,png|max:2048',
             'location' => 'required',
             'gallery_image' => 'array',
             'gallery_image.*' => 'image|mimes:jpg,png,jpeg|max:2048'
@@ -118,7 +116,7 @@ class ServiceProviderController extends Controller
 
         Service::create([
             'category_id' => $request->category,
-            'name' => $request->name,
+            'name' => $request->name ?? '',
             'rate' => 0,
             'duration' => 0,
             'user_id' => auth()->id(),
@@ -147,16 +145,12 @@ class ServiceProviderController extends Controller
 
     public function serviceUpdate(Request $request, Service $service)
     {
-
-        
         $request->validate([
             'category' => 'required|exists:categories,id',
-            'name' => 'required',
             'status' => 'sometimes|in:0,1',
             'details' => 'required',
             'faq' => 'array',
             'video' => 'required|array',
-            'service_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
             'location' => 'required',
             'gallery_image' => 'sometimes|array',
             'gallery_image.*' => 'image|mimes:jpg,png,jpeg|max:2048'
@@ -201,7 +195,7 @@ class ServiceProviderController extends Controller
 
         $service->update([
             'category_id' => $request->category,
-            'name' => $request->name,
+            'name' => $request->name ?? '',
             'rate' => $request->rate,
             'duration' => $request->duration,
             'user_id' => auth()->id(),
