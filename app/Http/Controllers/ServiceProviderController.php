@@ -146,9 +146,9 @@ class ServiceProviderController extends Controller
     public function serviceUpdate(Request $request, Service $service)
     {
         $request->validate([
-            'category' => 'required|exists:categories,id',
-            'status' => 'sometimes|in:0,1',
-            'details' => 'required',
+            'category'  => 'required|exists:categories,id',
+            'status'    => 'sometimes|in:0,1',
+            'details'   => 'required',
             'faq' => 'array',
             'video' => 'required|array',
             'location' => 'required',
@@ -182,16 +182,13 @@ class ServiceProviderController extends Controller
             foreach ($request->gallery_image as $key => $gallery) {
                 
                 if (array_key_exists($key, $images)) {
-                   
                     $images[$key] = uploadImage($gallery, filePath('service'), json_decode($service->gallery, true)[$key]);
                 } else {
-                   
+
                     $images[$key] = uploadImage($gallery, filePath('service'),);
                 }
             }
         }
-
-      
 
         $service->update([
             'category_id' => $request->category,
@@ -200,6 +197,7 @@ class ServiceProviderController extends Controller
             'duration' => $request->duration,
             'user_id' => auth()->id(),
             'status' => $request->status,
+            'admin_approval' => 0,
             'details' => Purifier::clean($request->details),
             'faq' => $faq,
             'video' => $request->video,

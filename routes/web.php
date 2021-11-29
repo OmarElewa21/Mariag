@@ -80,6 +80,8 @@ Route::middleware('demo')->group(function(){
                 Route::get('providers/search', [ManageProviderController::class, 'index'])->name('provider.search');
                 Route::get('providers/featured', [ManageProviderController::class, 'featuredProvider'])->name('provider.featured');
                 
+                Route::get('provider/user/service/{service_id}', [ManageServiceController::class, 'showService'])->name('showSerivce');
+                
                 // Subscription Plans
                 Route::resource('plans', SubscriptionPlansController::class)->except([
                     'show',

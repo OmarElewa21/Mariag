@@ -1,13 +1,9 @@
 @extends('admin.layout.master')
 @section('breadcrumb')
- <section class="section">
-          <div class="section-header">
-        
+<section class="section">
+        <div class="section-header">
             <h1>@changeLang('All Services')</h1>
-      
-          
-        
-          </div>
+        </div>
 </section>
 @endsection
 @section('content')
@@ -51,7 +47,7 @@
                                     <td>
 
                                         @if($service->admin_approval == 0)
-                                             <span class="badge badge-warning">@changeLang('Pending')</span>
+                                            <span class="badge badge-warning">@changeLang('Pending')</span>
                                         @elseif($service->admin_approval == 2)
                                             
                                             <span class="badge badge-danger">@changeLang('Rejected')</span>
@@ -76,7 +72,7 @@
                                         
                                     @endif
 
-                                      <button class="btn btn-info userdata" data-service="{{ $service }}" data-duration="@switch($service->duration)
+                                    <button class="btn btn-info userdata" data-service="{{ $service }}" data-duration="@switch($service->duration)
                                             @case(0)
                                                 @changeLang('Hourly')
                                             @break
@@ -96,12 +92,11 @@
                                             @break
 
                                             @default
-                                             @changeLang('Fixed')
+                                                @changeLang('Fixed')
 
-                                        @endswitch" data-review="{{number_format($service->reviews()->avg('review')) ?? 'Not Reviewed Yet'}}">@changeLang('Details')</button>
+                                        @endswitch" data-review="{{number_format($service->reviews()->avg('review')) ?? 'Not Reviewed Yet'}}" onclick="window.location='{{route('admin.showSerivce', ['service_id' => $service->id])}}'" target="_blank">@changeLang('Details')</button>
                                     
                                         <a target="_blank" href="{{route('admin.service.message',$service)}}" class="btn btn-primary">@changeLang('Reviews')</a>
-                                       
                                         
                                     
                                     </td>
@@ -192,7 +187,7 @@
     </div>
 
 
-     <!-- Modal -->
+    <!-- Modal -->
         <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -209,17 +204,10 @@
                                 <div class="col-md-12">
                                     <table class="user-data table table-bordered p-0">
 
-
-
-
                                     </table>
                                 </div>
 
-
-
                             </div>
-
-
 
                         </div>
                     </div>
@@ -258,57 +246,41 @@
             })
 
 
-            $('.userdata').on('click', function(e) {
-                    e.preventDefault();
+            // $('.userdata').on('click', function(e) {
+            //         e.preventDefault();
+            //         const modal = $('#confirm');
 
-                    const modal = $('#confirm');
+            //         let service = $(this).data('service');
+            //         let review = $(this).data('review');
+            //         let duration = $(this).data('duration');
 
-                    let service = $(this).data('service');
-                    let review = $(this).data('review');
-                    let duration = $(this).data('duration');
-                   
-                    let html = `
-                
-                                    <tr>
-                                        <td>@changeLang('Provider Name')</td>
-                                        <td>${service.user.fname+' '+service.user.lname}</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>@changeLang('Service Rate')</td>
-                                        <td>{{$general->currency_icon}} ${service.rate}</td>
-                                    </tr> 
-                                    
-                                     <tr>
-                                        <td>@changeLang('Service Category')</td>
-                                        <td> ${service.category.name}</td>
-                                    </tr>  
-                                    
-                                    <tr>
-                                        <td>@changeLang('Service Duration')</td>
-                                        <td>${duration}</td>
-                                    </tr> 
-                                    
-                                    <tr>
-                                        <td>@changeLang('Service Location')</td>
-                                        <td>${service.location}</td>
-                                    </tr> 
-                                    
-                                     <tr>
-                                        <td>@changeLang('Service Rating')</td>
-                                        <td>${review}</td>
-                                    </tr> 
-                                    
-                
-                
-                
-                `;
+            //         let html = `
+            //                     <tr>
+            //                         <td>@changeLang('Provider Name')</td>
+            //                         <td>${service.user.fname+' '+service.user.lname}</td>
+            //                     </tr>
+                                
+            //                     <tr>
+            //                         <td>@changeLang('Service Category')</td>
+            //                         <td> ${service.category.name}</td>
+            //                     </tr>  
+                                
+            //                     <tr>
+            //                         <td>@changeLang('Service Location')</td>
+            //                         <td>${service.location}</td>
+            //                     </tr>
+                                
+            //                     <tr>
+            //                         <td>@changeLang('Service Gallery')</td>
+            //                         <td>${service.location}</td>
+            //                     </tr>
+            //                 `;
 
-                    modal.find('.user-data').html(html);
+            //         modal.find('.user-data').html(html);
 
-                    modal.modal('show');
+            //         modal.modal('show');
 
-                })
+            //     })
 
         })
     

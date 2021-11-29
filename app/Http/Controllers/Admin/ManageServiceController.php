@@ -22,6 +22,13 @@ class ManageServiceController extends Controller
         return view('admin.service.index',compact('pageTitle','services'));
     }
 
+    public function showService($service_id){
+        $pageTitle = "Services details";
+
+        $service = Service::find($service_id);
+        return view('admin.service.show', compact('pageTitle', 'service'));
+    }
+
     public function reviewMessage(Service $service)
     {
         $pageTitle = 'Review Messages';
