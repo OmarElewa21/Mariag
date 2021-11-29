@@ -1,13 +1,11 @@
 @extends('frontend.layout.master')
 @section('breadcrumb')
- <section class="section">
-          <div class="section-header">
+<section class="section">
+        <div class="section-header">
         
             <h1>@changeLang('Create Service')</h1>
-      
-          
         
-          </div>
+        </div>
 </section>
 @endsection
 @section('content')
@@ -63,7 +61,7 @@
 
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label>@changeLang('Service Rate') <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -74,9 +72,9 @@
                                             <input type="text" name="rate" class="form-control form_control currency"
                                                 >
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
 
                                         <label for="">@changeLang('Service Duration') <span class="text-danger">*</span></label>
                                         <select name="duration" id="" class="form-control">
@@ -88,7 +86,7 @@
                                             <option value="5">@changeLang('Fixed')</option>
                                         </select>
 
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group col-md-12">
                                         <label for="">
@@ -115,12 +113,12 @@
                             <div class="form-group col-md-12">
 
 
-                                <div class="col-md-12 text-right">
+                                <div class="col-md-12 text-right invisible">
                                     <button class="btn btn-primary faq"> <i class="fa fa-plus"></i> 
                                     @changeLang('Add Questions')</button>
                                 </div>
 
-                                <div class="row addFaq align-items-center">
+                                <div class="row addFaq align-items-center d-none">
 
                                     <div class="form-group col-md-5">
 
@@ -156,8 +154,7 @@
 
                                         <label for="">@changeLang('YouTube Video Id')</label>
 
-                                        <input type="text" name="video[]" class="form-control"
-                                            >
+                                        <input type="text" name="video[]" class="form-control">
                                     </div>
 
 

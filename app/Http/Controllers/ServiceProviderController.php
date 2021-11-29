@@ -82,8 +82,6 @@ class ServiceProviderController extends Controller
         $request->validate([
             'category' => 'required|exists:categories,id',
             'name' => 'required',
-            'duration' => 'required|between:0,5',
-            'rate' => 'required',
             'status' => 'sometimes|in:0,1',
             'details' => 'required',
             'faq' => 'array',
@@ -120,8 +118,8 @@ class ServiceProviderController extends Controller
         Service::create([
             'category_id' => $request->category,
             'name' => $request->name,
-            'rate' => $request->rate,
-            'duration' => $request->duration,
+            'rate' => 0,
+            'duration' => 0,
             'user_id' => auth()->id(),
             'status' => 0,
             'details' => Purifier::clean($request->details),

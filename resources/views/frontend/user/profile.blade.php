@@ -104,7 +104,7 @@
                                 <textarea name="qualification"  cols="30" rows="5" class="form-control summernote" >{{clean($user->qualification) ?? old('qualification')}}</textarea>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
 
                                     <div class="row">
                                     
@@ -131,7 +131,7 @@
                                     
                                     
                                     
-                                    </div>
+                                    </div> --}}
                                 
                                 
                                 </div>
