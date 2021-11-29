@@ -1,13 +1,12 @@
 @extends('frontend.layout.master')
+@push('custom-style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('breadcrumb')
  <section class="section">
-          <div class="section-header">
-        
+        <div class="section-header">
             <h1>@changeLang('Edit Service')</h1>
-      
-          
-        
-          </div>
+        </div>
 </section>
 @endsection
 @section('content')
@@ -101,12 +100,47 @@
                                     </div> --}}
 
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         <label for="">
                                         @changeLang('Service Location (please write , separated location) ')<span class="text-danger">*</span></label>
-                                        <input type="text" name="location" class="form-control form_control"
-                                            value="{{ str_replace('"', '', $service->location) }}">
-                                        
+                                        {{-- <input type="text" name="location" class="form-control form_control"
+                                            value="{{ str_replace('"', '', $service->location) }}"> --}}
+                                            @php
+                                                $locations = [
+                                                    "Alexandria",
+                                                    "Aswan",
+                                                    "Asyut",
+                                                    "Beheira",
+                                                    "Beni Suef",
+                                                    "Cairo",
+                                                    "Dakahlia",
+                                                    "Damietta",
+                                                    "Faiyum",
+                                                    "Gharbia",
+                                                    "Giza",
+                                                    "Ismailia",
+                                                    "Kafr El Sheikh",
+                                                    "Luxor",
+                                                    "Matruh",
+                                                    "Minya",
+                                                    "Monufia",
+                                                    "New Valley",
+                                                    "North Sinai",
+                                                    "Port Said",
+                                                    "Qalyubia",
+                                                    "Qena",
+                                                    "Red Sea",
+                                                    "Sharqia",
+                                                    "Sohag",
+                                                    "South Sinai",
+                                                    "Suez"
+                                                ]
+                                            @endphp
+                                            <select class="js-example-basic-multiple" name="location[]" multiple="multiple">
+                                                @foreach($locations as $location)
+                                                    <option value={{$location}} {{strpos($service->location, $location) !== false ? "selected='selected'" : ''}}>{{$location}}</option>
+                                                @endforeach
+                                            </select>
                                     </div>
                                 @if($service->admin_approval == 1)
                                     <div class="form-group col-md-6">
@@ -519,7 +553,22 @@
         .delete-image i {
             color: #fff;
         }
+        .select2-selection__choice {
+            background-color: rgb(247, 67, 67) !important;
+        }
 
     </style>
 
 @endpush
+
+@push('custom-script')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+@endpush
+
+
+

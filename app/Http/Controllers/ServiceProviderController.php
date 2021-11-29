@@ -78,6 +78,7 @@ class ServiceProviderController extends Controller
 
     public function storeService(Request $request)
     {
+        
 
         $request->validate([
             'category' => 'required|exists:categories,id',
@@ -100,7 +101,7 @@ class ServiceProviderController extends Controller
             array_push($faq, array_filter($value, 'strlen'));
         }
 
-        
+        $request->location =  implode(', ', $request->location);
 
         $images = [];
 
@@ -151,8 +152,6 @@ class ServiceProviderController extends Controller
         $request->validate([
             'category' => 'required|exists:categories,id',
             'name' => 'required',
-            'duration' => 'required|between:0,5',
-            'rate' => 'required',
             'status' => 'sometimes|in:0,1',
             'details' => 'required',
             'faq' => 'array',
@@ -170,6 +169,8 @@ class ServiceProviderController extends Controller
             }
             array_push($faq, array_filter($value, 'strlen'));
         }
+
+        $request->location =  implode(', ', $request->location);
 
         $images = json_decode($service->gallery, true);
 
