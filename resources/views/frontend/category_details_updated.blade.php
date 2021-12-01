@@ -182,7 +182,7 @@
                             <div class="slideshow-container">
                                 <!-- Full-width images with number and caption text -->
                                 @foreach(json_decode($service->gallery) as $gallery)
-                                    <div class="mySlides{{$gallery_index+1}} myslide" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
+                                    <div class="mySlides{{$gallery_index+1}} myslide" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->category->name)]) }}'">
                                         <img src="{{ getFile('service', $gallery) }}" style="width:100%">
                                     </div>
                                 @endforeach
