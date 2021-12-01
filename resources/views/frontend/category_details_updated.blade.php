@@ -39,7 +39,7 @@
                 <div class="team-item row">
 
                     <div class="{{$service->gallery ? 'col-md-6 col-12' : 'col-12'}} order-md-1 order-2 mt-md-0">
-                        <div class="row provider-header mt-md-0" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}'">
+                        <div class="row provider-header mt-md-0" onclick="window.location='{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->category->name)]) }}'">
                             <div class="team-photo col-6">
                                 <img src="@if ($service->user->image) {{ getFile('user', $service->user->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" alt="Team Photo">
                             </div>
@@ -112,10 +112,10 @@
                         </div>
 
                         <div class="w-100 text-center mb-2 mt-md-2 mt-0 card-buttons">
-                            <a href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}">
+                            <a href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->category->name)]) }}">
                                 <button type="button" class="btn btn-danger font-weight-bold mr-1 mb-lg-0 mb-md-1">@changeLang('More details..')</button>
                             </a>
-                            
+
                             <!-- Modal -->
                                     {{-- <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">

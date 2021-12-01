@@ -151,7 +151,7 @@
                             <div class="service-list">
                                 <div class="photo">
                                     <a
-                                        href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}"><img
+                                        href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->category->name)]) }}"><img
                                             src="
                                          @if($service->service_image) {{getFile('service',$service->service_image)}} @else {{getFile('logo',$general->service_default_image)}} @endif
                     " alt=""></a>
@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <div class="title"><a
-                        href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->name)]) }}">{{ $service->name }}</a>
+                        href="{{ route('service.details', ['id' => $service->id, 'slug' => Str::slug($service->category->name)]) }}">{{ $service->name }}</a>
                 </div>
                 <div class="rate">{{ $general->currency_icon . '' . $service->rate }}</div>
                 <div class="rating">
