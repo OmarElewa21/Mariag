@@ -35,9 +35,28 @@
                                 </li>
                             @endif
                             @auth
-                                <li>
+                                {{-- <li>
                                     <i class="fas fa-lock"></i>
                                     <a href="{{ route('user.dashboard') }}">@changeLang('Dashboard')</a>
+                                </li> --}}
+
+                                <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                    class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                    {{-- <img alt="image" src="@if (auth()->user()->image) {{ getFile('user', auth()->user()->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" class="rounded-circle mr-1"> --}}
+                                    <div class="d-inline-block">{{ auth()->user()->fname . ' ' .auth()->user()->lname}}</div>
+                                    </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('user.profile') }}" class="dropdown-item has-icon text-dark">
+                                                <i class="fas fa-user text-dark"></i> @changeLang('Profile')
+                                            </a>
+                                            <a href="{{ route('user.change.password') }}" class="dropdown-item has-icon text-dark">
+                                                <i class="fas fa-key text-dark"></i> @changeLang('Change Password')
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('user.logout') }}" class="dropdown-item has-icon text-danger">
+                                                <i class="fas fa-sign-out-alt text-danger"></i> @changeLang('Logout')
+                                            </a>
+                                        </div>
                                 </li>
                             @else
                                 <li>
@@ -158,3 +177,9 @@
     <!--Mobile Menu End-->
 
     <!--Menu End-->
+
+<style>
+    .has-icon:active {
+        background-color: aliceblue;
+    }
+</style>

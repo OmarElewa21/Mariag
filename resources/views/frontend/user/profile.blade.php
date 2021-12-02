@@ -1,20 +1,14 @@
 @extends('frontend.layout.master')
 @section('breadcrumb')
- <section class="section">
-          <div class="section-header">
-        
+<section class="section">
+        <div class="section-header">
             <h1>@changeLang('Update Profile')</h1>
-      
-          
-        
-          </div>
+        </div>
 </section>
 @endsection
 @section('content')
 
     <div class="row">
-
-     
 
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
@@ -23,7 +17,7 @@
                     <div class="card-body">
                         <div class="row">
 
-                            <div class="form-group col-12 col-md-6 col-lg-3">
+                            <div class="form-group col-12 col-md-6 col-lg-3 image-preview-div">
                                 <label class="">@changeLang('profile Image')</label>
 
                                 <div id="image-preview" class="image-preview w-100"
@@ -34,9 +28,6 @@
 
                             </div>
 
-                         
-                        
-
                             </div>
 
                             <div class="row">
@@ -44,18 +35,18 @@
                             <div class="form-group col-md-6 col-12">
                                 <label>@changeLang('First Name')<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_control" name="fname"
-                                     value="{{ $user->fname }}" required>
+                                    value="{{ $user->fname }}" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label>@changeLang('Last Name')<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_control" name="lname"
-                                     value="{{ $user->lname }}" required>
+                                    value="{{ $user->lname }}" required>
                             </div>
 
                             <div class="form-group col-md-6 col-12">
                                 <label>@changeLang('Mobile')<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_control" name="mobile"
-                                     value="{{ $user->mobile ?? old('mobile') }}" required>
+                                    value="{{ $user->mobile ?? old('mobile') }}" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label>@changeLang('Country')<span class="text-danger">*</span></label>
@@ -81,7 +72,7 @@
 
                             <div class="form-group col-md-6 col-12">
                                 <label>@changeLang('Address')<span class="text-danger">*</span></label>
-                               <input type="text" name="address" value="{{ @$user->address->address ?? old('address') }}" class="form-control form_control" required>
+                                <input type="text" name="address" value="{{ @$user->address->address ?? old('address') }}" class="form-control form_control" required>
                             </div>
                             
                             @if($user->user_type == 2)
@@ -188,3 +179,35 @@
 
 
 @endpush
+
+@if (auth()->user()->user_type == 1)
+    <style>
+        .main-sidebar {
+            display: none
+        }
+        .icon-menu {
+            visibility: hidden 
+        }
+        .main-content {
+            padding-left: 0 !important; 
+            padding-right: 0 !important;
+        }
+        @media screen and (min-width: 480px) {
+            .main-content {
+                padding-left: 40px !important; 
+                padding-right: 40px !important;
+            }
+        }
+        @media screen and (min-width: 1000px) {
+            .main-content {
+                padding-left: 100px !important; 
+                padding-right: 100px !important;
+            }
+        }
+        .image-preview-div {
+            display: none;
+        }
+
+    </style>
+    
+@endif

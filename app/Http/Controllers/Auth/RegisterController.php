@@ -24,13 +24,13 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-       $general = GeneralSetting::first();
-       
-       $request->validate([
+        $general = GeneralSetting::first();
+    
+        $request->validate([
             'user_type' => 'required|in:1,2',
             'fname' => 'required',
             'lname' => 'required',
-            'username' => 'required|unique:users',
+            'mobile' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
@@ -40,10 +40,10 @@ class RegisterController extends Controller
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
         ]);
 
-        $slug = Str::slug($request->username);
-       
+        $slug = Str::slug($request->fname . '-' .$request->lname);
+        $username = $request->fname . '-' .$request->lname;
 
-        $user = $this->create($request, $slug);
+        $user = $this->create($request, $slug, $username);
 
         $code = random_int(100000, 999999);
 
@@ -69,14 +69,15 @@ class RegisterController extends Controller
         return redirect()->route('user.login')->withSuccess('You are not allowed to access');
     }
 
-    public function create($request,$slug)
+    public function create($request, $slug, $username)
     {
-       
+        
         return User::create([
             'user_type' => $request->user_type,
             'fname' => $request->fname,
             'lname' => $request->lname,
-            'username' => $request->username,
+            'username' => $username,
+            'mobile' => $request->mobile,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'slug' => $slug

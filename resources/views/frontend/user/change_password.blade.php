@@ -14,7 +14,7 @@
 
     <div class="row">
 
-        <div class="col-12 col-md-6 col-lg-6">
+        <div class="col-12">
             <div class="card">
                 <form method="post" action="{{ route('user.change.password') }}">
                     @csrf
@@ -45,3 +45,35 @@
             </div>
         </div>
 @endsection
+
+@if (auth()->user()->user_type == 1)
+    <style>
+        .main-sidebar {
+            display: none
+        }
+        .icon-menu {
+            visibility: hidden 
+        }
+        .main-content {
+            padding-left: 0 !important; 
+            padding-right: 0 !important;
+        }
+        @media screen and (min-width: 480px) {
+            .main-content {
+                padding-left: 40px !important; 
+                padding-right: 40px !important;
+            }
+        }
+        @media screen and (min-width: 1000px) {
+            .main-content {
+                padding-left: 100px !important; 
+                padding-right: 100px !important;
+            }
+        }
+        .image-preview-div {
+            display: none;
+        }
+
+    </style>
+    
+@endif

@@ -22,7 +22,7 @@ class ProfileUpdate
             $notify[] = ['error','Please Update profile First'];
             return redirect()->route('user.profile')->withNotify($notify);
         }
-       
+
         if($user->user_type == 2 && ($user->designation == null || $user->details == null || $user->experience == null || $user->qualification == null)){
             $notify[] = ['error','Please Update profile First'];
             return redirect()->route('user.profile')->withNotify($notify);

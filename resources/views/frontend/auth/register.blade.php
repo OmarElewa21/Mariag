@@ -79,8 +79,8 @@
 
                                 <div class="form-group col-md-6">
 
-                                    <label for="">@changeLang('Username')<span class="text-danger">*</span></label>
-                                    <input type="text" name="username" class="form-control" id="input-field">
+                                    <label for="">@changeLang('Mobile')<span class="text-danger">*</span></label>
+                                    <input type="text" name="mobile" class="form-control" id="input-field">
 
                                 </div>
 
@@ -235,7 +235,6 @@
     <script>
         "use strict";
 
-       
         function submitUserForm() {
             var response = grecaptcha.getResponse();
             if (response.length == 0) {
@@ -250,4 +249,5 @@
             document.getElementById('g-recaptcha-error').innerHTML = '';
         }
     </script>
+    
 @endpush

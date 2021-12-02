@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
 use App\Models\Admin;
+use App\Models\Contact as Contacting;
+
 
 class HomeController extends Controller
 {
@@ -126,7 +128,7 @@ class HomeController extends Controller
 
     public function userDetails($user)
     {
-       
+
         $user = User::where('slug',$user)->firstOrFail();
 
         $pageTitle ="{$user->fullname}";
@@ -292,10 +294,19 @@ class HomeController extends Controller
         $user = auth()->user();
         $data['email'] = $user->email;
         $data['message'] = $request->message;
+
+        Contacting::create([
+            'phone' => $data['phone'],
+            'email' => $data['email'] ?? $data['email'],
+            'provider_id' => $provider->id,
+            'client_id'  => $user->id,
+            'message'  => $data['message'] ?? $data['message']
+        ]);
+
         // sendGeneralMail($data);
         Mail::to($provider)->send(new Contact($data));
-
-        $notify[] = ['success','Email Send Successfully'];
+        
+        $notify[] = ['success','The message was Sent Successfully'];
 
         return redirect()->back()->withNotify($notify);
     }

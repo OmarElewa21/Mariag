@@ -15,10 +15,10 @@
     @if (auth()->user()->user_type == 2)
     @if (!$is_subscriped)
     <div class="alert alert-danger h6 font-weight-bold">
-        @changeLang(You are not subscripted to any plan)
+        @changeLang("You are not subscripted to any plan")
     </div>
     <div class="alert alert-danger h6 font-weight-bold">
-        @changeLang(Please be aware that your profile and your services will not be shown to clients untill you subscribe to a plan)
+        @changeLang("Please be aware that your profile and your services will not be shown to clients untill you subscribe to a plan")
     </div>
     @endif
         <div class="row">
@@ -41,7 +41,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
-                       <i class="fas fa-toilet-paper"></i>
+                        <i class="fas fa-toilet-paper"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -486,7 +486,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                               <i class="far fa-check-circle"></i>
+                                <i class="far fa-check-circle"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -502,7 +502,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                                 <i class="fas fa-money-bill"></i>
+                                <i class="fas fa-money-bill"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -524,7 +524,6 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                           
                                             <th>@changeLang('Service Name')</th>
                                             <th>@changeLang('Rate')</th>
                                             <th>@changeLang('Duration')</th>
@@ -535,7 +534,6 @@
 
                                         @forelse ($bookings as $key => $booking)
                                             <tr>
-                                               
                                                 <td>{{ @$booking->service->name }}</td>
 
                                                 <td>{{ $general->currency_icon . '' . $booking->service->rate }}</td>

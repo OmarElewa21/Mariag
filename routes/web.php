@@ -276,7 +276,7 @@ Route::middleware('demo')->group(function(){
             });
         
         
-            Route::middleware(['auth','profile_is_update','inactive', 'update_subscription_validation'])->group(function () {
+            Route::middleware(['auth','inactive', 'update_subscription_validation'])->group(function () {
                 Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
                 Route::get('logout', [RegisterController::class, 'signOut'])->name('logout')->withoutMiddleware('profile_is_update');
         
