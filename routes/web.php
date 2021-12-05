@@ -274,8 +274,8 @@ Route::middleware('demo')->group(function(){
                 Route::get('verify/email',[AuthLoginController::class,'emailVerify'])->name('email.verify');
                 Route::post('verify/email',[AuthLoginController::class,'emailVerifyConfirm'])->name('email.verify');
             });
-        
-        
+            
+
             Route::middleware(['auth','inactive', 'update_subscription_validation'])->group(function () {
                 Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
                 Route::get('logout', [RegisterController::class, 'signOut'])->name('logout')->withoutMiddleware('profile_is_update');
