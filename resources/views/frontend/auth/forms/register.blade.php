@@ -4,7 +4,7 @@
             <h5 class="modal-title"> @changeLang('Register') </h5>
             <button type="button" aria-label="Close" class="close" data-dismiss="modal">×</button>
         </div>
-        {!! Form::open(['id'=>'RegisterForm', 'url' => ['user/register', 'user_type' => 1] ]) !!}
+        {!! Form::open(['id'=>'RegisterForm', 'url' => ['user/register', 'user_type' => $user_type] ]) !!}
         <div class="modal-body">
             <div class="row">
                 <div class="form-group col-sm-6">
@@ -16,6 +16,14 @@
                     <label class="font-weight-bold"> @changeLang('Last Name') </label> <span class="text-danger">*</span>
                     {!! Form::text('lname', null, ['class' => 'form-control', 'required']) !!}
                 </div>
+
+                @if ($user_type == 2)
+                    <div class="form-group col-sm-12">
+                        <label class="font-weight-bold"> @changeLang('Email') </label> <span class="text-danger">*</span>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                @endif
+
                 <div id="recaptcha-container"></div>
                 <div class="form-group col-sm-12">
                     <label class="font-weight-bold">@changeLang('Phone Number')</label> <span class="text-danger">*</span>

@@ -23,8 +23,8 @@ class RegisterController extends Controller
     }
 
 
-    public function create(){
-        return view('frontend.auth.forms.register');
+    public function create(Request $request){
+        return view('frontend.auth.forms.register', ['user_type' => $request->user_type]);
     }
 
 
@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'lname' => $request->lname,
             'username' => $username,
             'mobile' => $request->mobile,
+            'email' => $request->email,
             'password' => bcrypt($request->password),
             'slug' => $slug,
             'ev' => 1

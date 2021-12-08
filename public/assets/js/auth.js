@@ -1,8 +1,9 @@
 let register = {
-    renderform: ()=> {
+    renderform: (user_type)=> {
         $.ajax({
             url: '/user/register/create',
             type: 'GET',
+            data: {'user_type': user_type},
             success: function (result) {
                 $('#modal_book').html(result);
                 $('#modal_book').modal('show');

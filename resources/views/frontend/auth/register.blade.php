@@ -28,17 +28,18 @@
     @endpush
 
     <div class="d-flex flex-row justify-content-around flex-wrap mt-5 mb-5 pt-4 pb-4 pr-lg-5 pl-lg-5">
-        <div class="d-flex flex-column col-10 col-md-5 div-card" onclick="register.renderform()">
-            <img src="{{asset('assets/img/user.jpg')}}" alt="User/client">
+        <div class="d-flex flex-column col-10 col-md-5 div-card" onclick="register.renderform(1)">
             <button class="btn btn-outline-success mt-2">
-                <p class="h4"> @changeLang('Register as') <span class="text-danger">@changeLang('User/Client')</span> <p>
+                <img src="{{asset('assets/img/user.jpg')}}" alt="User/client">
+            
+                <p class="h4 mt-4"> @changeLang('Register as') <span class="text-danger">@changeLang('User/Client')</span> <p>
             </button>
         </div>
 
         <div class="d-flex flex-column col-10 col-md-5 div-card mt-md-0 mt-5">
-            <img src="{{asset('assets/img/service_provider.jpg')}}" alt="Service Provider" class="service-provider-img">
-            <button class="btn btn-outline-primary mt-2" onclick="">
-                <p class="h4"> @changeLang('Register as') <span class="text-danger">@changeLang('Service Provider')</span> <p>
+            <button class="btn btn-outline-primary mt-2" onclick="register.renderform(2)">
+                <img src="{{asset('assets/img/service_provider.jpg')}}" alt="Service Provider" class="service-provider-img">
+                <p class="h4 mt-4"> @changeLang('Register as') <span class="text-danger">@changeLang('Service Provider')</span> <p>
             </button>
         </div>
     </div>
