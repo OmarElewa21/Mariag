@@ -39,7 +39,10 @@
                                     <i class="fas fa-lock"></i>
                                     <a href="{{ route('user.dashboard') }}">@changeLang('Dashboard')</a>
                                 </li> --}}
-
+                                @if (auth()->user()->user_type == 2)
+                                <li><a href="{{ route('user.dashboard') }}">@changeLang('Dashboard')</a></li>
+                                
+                                @else
                                 <li class="dropdown"><a href="#" data-toggle="dropdown"
                                     class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                     {{-- <img alt="image" src="@if (auth()->user()->image) {{ getFile('user', auth()->user()->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" class="rounded-circle mr-1"> --}}
@@ -58,6 +61,8 @@
                                             </a>
                                         </div>
                                 </li>
+                                @endif
+                                
                             @else
                                 <li>
                                     <i class="fas fa-lock"></i>

@@ -24,38 +24,37 @@ class LoginController extends Controller
     {
         $general  = GeneralSetting::first();
         $request->validate([
-            'email' => 'required',
+            'mobile' => 'required',
             'password' => 'required',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha == 1)
         ],[
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
         ]);
 
-
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('mobile', $request->mobile)->first();
 
         if(!$user){
-            $notify[] = ['error','No user found associated with this email'];
+            $notify[] = ['error','No user found associated with this Mobile Number'];
             return redirect()->route('user.login')->withNotify($notify);
         }
 
-        if($user->ev == 0){
+        // if($user->ev == 0){
             
-            $code = random_int(100000, 999999);
+        //     $code = random_int(100000, 999999);
 
-            session()->put('user' , $user->id);
+        //     session()->put('user' , $user->id);
 
-            // sendMail('VERIFY_EMAIL',['code' => $code],$user);
-            Mail::to($user)->send(new SendPasswordVerification($code));
+        //     // sendMail('VERIFY_EMAIL',['code' => $code],$user);
+        //     Mail::to($user)->send(new SendPasswordVerification($code));
 
-            $user->verification_code = $code;
+        //     $user->verification_code = $code;
 
-            $user->save();
+        //     $user->save();
 
-            $notify[] = ['error','Please active your account, Verification code send to your email'];
+        //     $notify[] = ['error','Please active your account, Verification code send to your email'];
 
-            return redirect()->route('user.email.verify')->withNotify($notify);
-        }
+        //     return redirect()->route('user.email.verify')->withNotify($notify);
+        // }
 
         if (Auth::attempt($request->except('g-recaptcha-response','_token', 'page_url'))) {
 
@@ -79,33 +78,48 @@ class LoginController extends Controller
     }
 
     
-    public function emailVerify()
+    public function emailVerify(Request $request)
     {
         $pageTitle = "Email Verify";
-
-        return view('frontend.auth.email',compact('pageTitle'));
+        $user = User::find($request->user);
+        return view('frontend.auth.otp_verfiy',compact('pageTitle', 'user'));
     }
 
     public function emailVerifyConfirm(Request $request)
     {
-        $request->validate(['code' => 'required']);
-        
-        $user = User::findOrFail(session('user'));
+        if(!$request->has('user_id')){
+            return response('Cannot find user', 500);
+        };
 
-        if($request->code == $user->verification_code){
-            $user->verification_code = null;
+        if($request->status){
+            $user = User::findOrFail($request->user_id);
             $user->ev = 1;
             $user->save();
 
             Auth::login($user);
 
             $notify[] = ['success','Successfully verify your account'];
-
-            return redirect()->route('user.dashboard')->withNotify($notify);
+            return redirect()->route('home')->withNotify($notify);
         }
+        
 
-        $notify[] = ['error','Invalid Code'];
+        
+        // $user = User::findOrFail(session('user'));
 
-        return back()->withNotify($notify);
+        // if($request->code == $user->verification_code){
+        //     $user->verification_code = null;
+        //     $user->ev = 1;
+        //     $user->save();
+
+        //     Auth::login($user);
+
+        //     $notify[] = ['success','Successfully verify your account'];
+
+        //     return redirect()->route('user.dashboard')->withNotify($notify);
+        // }
+
+        // $notify[] = ['error','Invalid Code'];
+
+        // return back()->withNotify($notify);
     }
 }

@@ -58,6 +58,8 @@ class UserController extends Controller
             return view('frontend.user.dashboard', compact('pageTitle', 'balance', 'service', 'jobCompleted', 'services','myRatings','bookings', 'is_subscriped'));
         }
 
+        return redirect()->route('home', compact('pageTitle'));
+
         $booking = Booking::where('user_id', $user->id)->count();
         $bookingPending = Booking::where('user_id', $user->id)->where('is_accepted', 0)->count();
         $bookingComplete = Booking::where('user_id', $user->id)->where('is_completed', 1)->count();

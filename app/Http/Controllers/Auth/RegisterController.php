@@ -22,17 +22,34 @@ class RegisterController extends Controller
         return view('frontend.auth.register', compact('pageTitle'));
     }
 
-    public function register(Request $request)
+
+    public function create(Request $request){
+        return view('frontend.auth.forms.register', ['user_type' => $request->user_type]);
+    }
+
+
+    public function checkIfNumberExists(Request $request){
+        $request->validate([
+            'mobile' => 'required',
+        ]);
+
+        if(User::where('mobile', $request->mobile)->exists()){
+            return response("Number already exists", 500);
+        }
+        return response(200);
+    }
+
+
+    public function register(Request $request, $user_type)
     {
         $general = GeneralSetting::first();
     
         $request->validate([
-            'user_type' => 'required|in:1,2',
+            'user_type' => $user_type,
             'fname' => 'required',
             'lname' => 'required',
             'mobile' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
         ],[
             'fname.required'=> 'First name is required',
@@ -40,39 +57,18 @@ class RegisterController extends Controller
             'g-recaptcha-response.required' => 'You Have To fill recaptcha'
         ]);
 
+        if(User::where('mobile', $request->mobile)->exists()){
+            $notify[] = ['error', 'Mobile number already exists'];
+            return redirect()->back()->withNotify($notify);
+        }
+
+
         $slug = Str::slug($request->fname . '-' .$request->lname);
         $username = $request->fname . '-' .$request->lname;
 
-        $user = $this->create($request, $slug, $username);
+        $user = new User();
 
-        $code = random_int(100000, 999999);
-
-        // sendMail('VERIFY_EMAIL',['code' => $code],$user);
-        Mail::to($user)->send(new SendPasswordVerification($code));
-
-        session()->put('user', $user->id);
-
-        $user->verification_code = $code;
-        $user->save();
-
-        $notify[] = ['success','A code Send to your email'];
-
-        return redirect()->route('user.email.verify')->withNotify($notify);
-    }
-
-    public function dashboard()
-    {
-        if (auth()->check()) {
-            return view('frontend.user.dashboard');
-        }
-
-        return redirect()->route('user.login')->withSuccess('You are not allowed to access');
-    }
-
-    public function create($request, $slug, $username)
-    {
-        
-        return User::create([
+        $user->fill([
             'user_type' => $request->user_type,
             'fname' => $request->fname,
             'lname' => $request->lname,
@@ -80,8 +76,36 @@ class RegisterController extends Controller
             'mobile' => $request->mobile,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'slug' => $slug
-        ]);
+            'slug' => $slug,
+            'ev' => 1
+        ])->save();
+        // $code = random_int(100000, 999999);
+
+        // sendMail('VERIFY_EMAIL',['code' => $code],$user);
+        // Mail::to($user)->send(new SendPasswordVerification($code));
+        Auth::login($user);
+
+        return redirect()->route('home');
+
+        // $user->verification_code = $code;
+
+        // $notify[] = ['success','A code Sent to your Mobile'];
+
+        // return redirect()->route('user.email.verify', ['user' => $user])->withNotify($notify);
+    }
+
+    public function dashboard()
+    {
+        if(auth()->user()->user_type == 1){
+            if (auth()->check()) {
+                return redirect()->route('/');
+            }
+        }
+        if (auth()->check()) {
+            return view('frontend.user.dashboard');
+        }
+
+        return redirect()->route('user.login')->withSuccess('You are not allowed to access');
     }
 
     public function signOut()
