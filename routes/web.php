@@ -254,27 +254,33 @@ Route::middleware('demo')->group(function(){
             });
         });
         
+        Route::get('verify/email',[AuthLoginController::class,'emailVerifyConfirm'])->name('email.verify');
         
         Route::name('user.')->prefix('user')->group(function () {
         
             Route::middleware('guest')->group(function () {
                 Route::get('register', [RegisterController::class, 'index'])->name('register')->middleware('reg_off');
-                Route::post('register', [RegisterController::class, 'register'])->middleware('reg_off');
+
+                Route::get('register/create', [RegisterController::class, 'create']);
+                Route::get('register/checkMobile', [RegisterController::class, 'checkIfNumberExists']);
+
+                Route::post('register/{user_type}', [RegisterController::class, 'register'])->middleware('reg_off');
         
                 Route::get('login', [AuthLoginController::class, 'index'])->name('login');
                 Route::post('login', [AuthLoginController::class, 'login'])->withoutMiddleware('demo');
         
                 Route::get('forgot/password', [AuthForgotPasswordController::class, 'index'])->name('forgot.password');
-                Route::post('forgot/password', [AuthForgotPasswordController::class, 'sendVerification']);
+                Route::get('forgot/password/checkUser', [AuthForgotPasswordController::class, 'checkUser']);
+                
+                Route::post('forgot/password/store', [AuthForgotPasswordController::class, 'store']);
+                
                 Route::get('verify/code', [AuthForgotPasswordController::class, 'verify'])->name('auth.verify');
                 Route::post('verify/code', [AuthForgotPasswordController::class, 'verifyCode']);
                 Route::get('reset/password', [AuthForgotPasswordController::class, 'reset'])->name('reset.password');
                 Route::post('reset/password', [AuthForgotPasswordController::class, 'resetPassword']);
         
                 Route::get('verify/email',[AuthLoginController::class,'emailVerify'])->name('email.verify');
-                Route::post('verify/email',[AuthLoginController::class,'emailVerifyConfirm'])->name('email.verify');
             });
-            
 
             Route::middleware(['auth','inactive', 'update_subscription_validation'])->group(function () {
                 Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');

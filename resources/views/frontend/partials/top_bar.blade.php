@@ -12,7 +12,7 @@
 
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <div class="d-inline-block">{{ auth()->user()->email }}</div>
+                <div class="d-inline-block">{{ auth()->user()->fname . ' ' . auth()->user()->lname}}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="{{ route('user.profile') }}" class="dropdown-item has-icon">

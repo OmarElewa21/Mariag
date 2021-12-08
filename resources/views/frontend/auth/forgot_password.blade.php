@@ -40,51 +40,36 @@
                     <div class="card-body">
 
 
-                        <form action="{{route('user.forgot.password')}}" method="POST">
+                        {!! Form::open( array('url' => 'user/forgot/password/store') )!!}
+                            <div class="row"> 
+                                <div id="recaptcha-container"></div>
 
-                            @csrf
-                            <div class="row justify-content-center">
-
-
-
-                                <div class="form-group col-md-12">
-
-                                    <label for="">@changeLang('Email Address') <span class="text-danger">*</span></label>
-                                    <input type="email" name="email" class="form-control"
-                                        >
-
-                                </div>
-
-                                  @if (@$general->allow_recaptcha)
-
-                                    <div class="col-md-12 my-3">
-                                    
-                                    <script src="https://www.google.com/recaptcha/api.js"></script>
-                                    <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
-                                        data-callback="verifyCaptcha"></div>
-                                    <div id="g-recaptcha-error"></div>
+                                <div class="form-group col-sm-12">
+                                    <label class="font-weight-bold">@changeLang('Phone Number')</label>
+                                    <input type="text" class="form-control" name="mobile" id="number" placeholder="01*********">
+                                    <div id="sendOtpDiv" class="mt-3">
+                                        <a class="btn btn-danger btn-sm btn-block" id="verifPhNum" onclick="resetPass.sendOTP()">@changeLang('Send OTP')</a>
+                                        <span id="verifPhNumdisabled" class="btn btn-secondary" style="display:none; cursor:default">@changeLang('Send OTP')</span>
                                     </div>
-
-                                @endif
-
-                                <div class="col-md-12">
-
-                                    <button type="submit" id="recaptcha" class="btn  btn-base ">@changeLang('Send Verification Code')</button>
                                 </div>
 
-                                <div class="col-md-12 mt-4">
-
-                                    <p>@changeLang('Login Again')? <a href="{{ route('user.login') }}"
-                                            class="text-primary">@changeLang('Login')</a></p>
-
+                                <div class="form-group col-sm-12 d-none" id="verify-otp">
+                                    <input type="text" id="codeToVerify" name="getcode" class="form-control text-center" placeholder= @changeLang("Enter code sent")>
+                                    <a class="btn btn-primary btn-sm btn-block mb-2" id="verifPhNum" onclick="resetPass.verifyOTP(this)">@changeLang('Verify OTP')</a>
                                 </div>
 
+                                <div class="form-group col-sm-12 d-none" id="passwordDiv">
+                                    <label class="font-weight-bold"> @changeLang('New Password') </label>
+                                    <input name="password" type="password" class="form-control" required>
+                                </div>
 
-
+                                <div class="text-right col-12 d-none" id="submitDiv">
+                                    <button type='submit' class='btn btn-primary' id='btnSave' data-loading-text="<span class='spinner-border spinner-border-sm'></span> Processing..."> @changeLang('Save') </button>
+                                    <button type="button" id="btnCancel" class="btn btn-light ml-1"
+                                            data-dismiss="modal">@changeLang('Cancel')</button>
+                                </div>
                             </div>
-
-
-                        </form>
+                        {!! Form::close() !!}
 
 
                     </div>
@@ -102,24 +87,21 @@
 
 
     </div>
-   
+
 
 @endsection
 
 
 @push('script')
+    <script src="{{asset('assets/js/notify.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.0.1/firebase.js"></script>
+    <script src="{{asset('assets/js/auth.js')}}"></script>
     <script>
-        "use strict";
-        function submitUserForm() {
-            var response = grecaptcha.getResponse();
-            if (response.length == 0) {
-                document.getElementById('g-recaptcha-error').innerHTML =  "<span class='text-danger'>@changeLang('Captcha field is required.')</span>";
-                return false;
-            }
-            return true;
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+        'callback': function (response) {
+            console.log(response);
         }
-        function verifyCaptcha() {
-            document.getElementById('g-recaptcha-error').innerHTML = '';
-        }
+    });
     </script>
 @endpush

@@ -21,6 +21,39 @@ class ForgotPasswordController extends Controller
         return view('frontend.auth.forgot_password', compact('pageTitle'));
     }
 
+
+    public function checkUser(Request $request)
+    {
+        $request->validate([
+            'mobile' => 'required',
+        ]);
+        if(!User::where('mobile', $request->mobile)->exists()){
+            return response("Number doesn't exist", 500);
+        }
+        return response(200);
+    }
+
+
+    public function store(Request $request){
+        $general = GeneralSetting::first();
+
+        $request->validate([
+            'mobile' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
+        ],[
+            'g-recaptcha-response.required' => 'You Have To fill recaptcha'
+        ]);
+
+        $user = User::where('mobile', $request->mobile)->first();
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+        $notify[] = ['success', 'Password Changed Successfully'];
+        return redirect()->route('user.login')->withNotify($notify);
+    }
+
+
     public function sendVerification(Request $request)
     {
         $general = GeneralSetting::first();
