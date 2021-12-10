@@ -29,16 +29,16 @@
                     <label class="font-weight-bold">@changeLang('Phone Number')</label> <span class="text-danger">*</span>
                     <input type="text" class="form-control" name="mobile" id="number" placeholder="01*********">
                     <div id="sendOtpDiv">
-                        <a class="btn btn-danger btn-sm btn-block" id="verifPhNum" onclick="register.sendOTP()">@changeLang('Send OTP')</a>
-                        <span id="verifPhNumdisabled" class="btn btn-secondary" style="display:none; cursor:default">@changeLang('Send OTP')</span>
+                        <a class="btn btn-danger btn-sm btn-block text-center" id="verifPhNum" onclick="register.sendOTP()">@changeLang('Send OTP')</a>
+                        <span id="verifPhNumdisabled" class="btn btn-secondary text-center" style="display:none; cursor:default">@changeLang('Send OTP')</span>
                     </div>
                 </div>
 
                 <div class="form-group col-sm-12 d-none" id="verify-otp">
                     <input type="text" id="codeToVerify" name="getcode" class="form-control text-center" placeholder= @changeLang("Enter code sent")>
-                    <a class="btn btn-primary btn-sm btn-block mb-2" id="verifPhNum" onclick="register.verifyOTP(this)">@changeLang('Verify OTP')</a>
+                    <a class="btn btn-primary btn-sm btn-block mb-2 text-center" id="verifPhNum" onclick="register.verifyOTP(this)">@changeLang('Verify OTP')</a>
                     <div class="text-center">
-                        <span id="getcodedisabled" class="text-secondary" style="display:none">@changeLang('Resend Code')</span>
+                        <span id="getcodedisabled" class="text-secondary text-center" style="display:none">@changeLang('Resend Code')</span>
                     </div>
                 </div>
 

@@ -34,7 +34,7 @@ class RegisterController extends Controller
         ]);
 
         if(User::where('mobile', $request->mobile)->exists()){
-            return response("Number already exists", 500);
+            return response("رقم الموبايل مسجل بالفعل !", 500);
         }
         return response(200);
     }

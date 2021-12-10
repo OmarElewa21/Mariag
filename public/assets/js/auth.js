@@ -53,7 +53,7 @@ let register = {
                     }).catch(function (error) {
                         $('#verifPhNum').css('display', 'inline-block');
                         $('#verifPhNumdisabled').css('display', 'none');
-                        $.notify("You have entered wrong number");
+                        $.notify("لقد قمت بادخال رقم خاطيء");
                 })
             }
         }).catch((result) => {
@@ -79,10 +79,10 @@ let register = {
             // User couldn't sign in (bad verification code?)
             // ...
             $(elem).removeAttr('disabled');
-            $(elem).text('Invalid Code');
+            $(elem).text('رمز خاطيء');
             $.notify('Invalid Code Entered', "error");
             setTimeout(() => {
-                $(elem).text('Verify OTP');
+                $(elem).text('تحقق من رمز الOTP');
             }, 2000);
         }.bind($(elem)));
     }
@@ -128,7 +128,7 @@ let resetPass = {
                     }).catch(function (error) {
                         $('#verifPhNum').css('display', 'inline-block');
                         $('#verifPhNumdisabled').css('display', 'none');
-                        $.notify("You have entered wrong number");
+                        $.notify("لقد قمت بادخال رقم غير صحيح");
                 })
             }
         }).catch((result) => {
@@ -155,10 +155,10 @@ let resetPass = {
             // User couldn't sign in (bad verification code?)
             // ...
             $(elem).removeAttr('disabled');
-            $(elem).text('Invalid Code');
+            $(elem).text('رمز خاطيء');
             $.notify('Invalid Code Entered', "error");
             setTimeout(() => {
-                $(elem).text('Verify OTP');
+                $(elem).text('تحقق من رمز الOTP');
             }, 2000);
         }.bind($(elem)));
     }
