@@ -29,15 +29,27 @@
 
     <div class="d-flex flex-row justify-content-around flex-wrap mt-5 mb-5 pt-4 pb-4 pr-lg-5 pl-lg-5">
         <div class="d-flex flex-column col-10 col-md-5 div-card" onclick="register.renderform(1)">
-            <img src="{{asset('assets/img/user.jpg')}}" alt="Service Provider" class="service-provider-img">
-            <p class="h4 mt-4"> @changeLang('Register as') <span class="text-danger">@changeLang('User/Client')</span> <p>
+            <div class="shadow p-4 div-sub-card">
+                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center">
+                    @changeLang('Register as User')
+                    <img src="{{asset('assets/img/user.jpg')}}" class="w-25">
+                </p>
+                <p class="mt-5">
+                    @changeLang('Register Now as a user and get all wedding services that you need')
+                </p>
+            </div>
         </div>
 
-        <div class="d-flex flex-column col-10 col-md-5 div-card mt-md-0 mt-5">
-            <button class="btn btn-outline-primary mt-2" onclick="register.renderform(2)">
-                <img src="{{asset('assets/img/service_provider.jpg')}}" alt="Service Provider" class="service-provider-img">
-                <p class="h4 mt-4"> @changeLang('Register as') <span class="text-danger">@changeLang('Service Provider')</span> <p>
-            </button>
+        <div class="d-flex flex-column col-10 col-md-5 div-card mt-md-0 mt-5" onclick="register.renderform(2)">
+            <div class="shadow p-4 div-sub-card">
+                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center">
+                    @changeLang('Register as Service Provider')
+                    <img src="{{asset('assets/img/dress.jpg')}}" class="w-25">
+                </p>
+                <p class="mt-5">
+                    @changeLang('Register Now as a service provider and show your services to thousands of users')
+                </p>
+            </div>
         </div>
     </div>
 
@@ -54,10 +66,17 @@
 
 <style>
     .div-card {
-        max-width: 400px !important;
+        max-width: 450px !important;
         cursor: pointer;
+    }
+    .div-sub-card {
+        background-color: #f7f7f7
     }
     .service-provider-img {
         border-radius: 50%;
+    }
+    .fa-user-circle{
+        font-size: 60px !important;
+        background-color: white;
     }
 </style>
