@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="main-headline">
                     <h1>{{__(@$content->data->title)}}</h1>
-                    <h5 class="text-center text-success">{{__(@$content->data->sub_title)}}</h5>
+                    <h5 class="text-center text-success">{{__(@$content->data->sub_heading)}}</h5>
                 </div>
             </div>
         </div>
