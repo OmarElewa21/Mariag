@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="main-headline">
                     <h1>{{__(@$content->data->title)}}</h1>
-                    <p>{{__(@$content->data->sub_title)}}</p>
+                    <h5 class="text-center text-info">{{__(@$content->data->sub_title)}}</h5>
                 </div>
             </div>
         </div>
