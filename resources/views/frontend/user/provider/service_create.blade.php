@@ -129,7 +129,7 @@
                                             @endphp
                                             <select class="js-example-basic-multiple" name="location[]" multiple="multiple">
                                                 @foreach($locations as $location)
-                                                    <option value='{{$location}}'>{{$location}}</option>
+                                                    <option value='{{$location}}'>{{ __($location)}} </option>
                                                 @endforeach
                                             </select>
                                     </div>

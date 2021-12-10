@@ -138,7 +138,7 @@
                                             @endphp
                                             <select class="js-example-basic-multiple" name="location[]" multiple="multiple">
                                                 @foreach($locations as $location)
-                                                    <option value='{{$location}}' {{strpos($service->location, $location) !== false ? "selected='selected'" : ''}}>{{$location}}</option>
+                                                    <option value='{{$location}}' {{strpos($service->location, $location) !== false ? "selected='selected'" : ''}}>{{ __($location)}}</option>
                                                 @endforeach
                                             </select>
                                     </div>
