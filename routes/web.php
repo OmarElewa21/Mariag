@@ -231,13 +231,13 @@ Route::middleware('demo')->group(function(){
         
                 Route::get('email/templates/{template}', [EmailTemplateController::class, 'emailTemplatesEdit'])->name('email.templates.edit');
                 Route::post('email/templates/{template}', [EmailTemplateController::class, 'emailTemplatesUpdate']);
-        
+
                 // transaction 
-        
+
                 Route::get('transaction',[AdminController::class, 'transaction'])->name('transaction');
                 
                 // Subscription
-        
+
                 Route::get('subscription',[ManageSubscriptionController::class,'index'])->name('subscription');
                 Route::post('subscription/email/all',[ManageSubscriptionController::class,'sendEmailToAll'])->name('subscription.all');
                 Route::post('subscription/email/single/{id}',[ManageSubscriptionController::class,'sendEmailSubscriber'])->name('subscription.single');

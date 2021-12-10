@@ -93,7 +93,7 @@
                         <ul class="nav-menu">
                             @foreach ($pages as $page)
                                 @if ($page->name == 'home')
-                                    <li><a href="{{ route('home') }}">{{ ucwords($page->name)}}</a>
+                                    <li><a href="{{ route('home') }}"> @changeLang('Home')</a>
                                     </li>
                                     @continue
                                 @endif
