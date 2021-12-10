@@ -21,8 +21,8 @@
         @changeLang("Please be aware that your profile and your services will not be shown to clients untill you subscribe to a plan")
     </div>
     @endif
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="d-flex flex-row justify-content-around">
+            {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
                         <i class="fas fa-money-bill"></i>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
                        <i class="far fa-check-circle"></i>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
@@ -91,7 +91,7 @@
 
             <div class="col-md-12">
 
-                <div class="card">
+                {{-- <div class="card">
 
                     <div class="card-header">
                         @changeLang('Booking Table')
@@ -214,7 +214,7 @@
                         </div>
                     @endif
 
-                </div>
+                </div> --}}
 
                 <div class="col-md-12">
 
