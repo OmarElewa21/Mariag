@@ -285,7 +285,7 @@
 
     /* Position the "next button" to the right */
     .next {
-        right: 0;
+        left: 0;
         border-radius: 3px 0 0 3px;
     }
 
