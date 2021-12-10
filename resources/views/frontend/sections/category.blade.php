@@ -16,7 +16,7 @@
             <div class="col-md-12 wow fadeInDown" data-wow-delay="0.1s">
                 <div class="main-headline">
                     <h1>{{__(@$content->data->title)}}</h1>
-                    <p>{{__(@$content->data->sub_title)}}</p>
+                    <h5 class="text-center text-info">{{__(@$content->data->sub_title)}}</h5>
                 </div>
             </div>
         </div>
