@@ -187,12 +187,9 @@
     .has-icon:active {
         background-color: aliceblue;
     }
-    @media screen and (max-width: 980px) {
-        .div1 {
-            order: 2
-        }
-        .div2 {
-            order: 1
+    @media screen and (max-width: 600px) {
+        .header-info {
+            float: right !important;
         }
     }
 </style>
