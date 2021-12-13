@@ -85,27 +85,36 @@ class UserController extends Controller
 
     public function profileUpdate(Request $request)
     {
-
-        $request->validate([
-            'fname' => 'required',
-            'lname' => 'required',
-            'mobile' => 'required',
-            'country' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'zip' => 'required',
-            'address' => 'required',
-            'image' => 'sometimes|image|mimes:jpg,png,jpeg',
-            'designation' => 'sometimes|required',
-            'details' => 'sometimes|required|',
-            'experience' => 'sometimes|required',
-            'qualification' => 'sometimes|required',
-            'social' => 'sometimes|array'
-        ], [
-            'fname.required' => 'First Name is required',
-            'lname.required' => 'Last Name is required',
-
-        ]);
+        if(auth()->user()->user_type == 2){
+            $request->validate([
+                'fname' => 'required',
+                'lname' => 'required',
+                'mobile' => 'required',
+                'country' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'image' => 'sometimes|image|mimes:jpg,png,jpeg',
+            ], [
+                'fname.required' => 'First Name is required',
+                'lname.required' => 'Last Name is required',
+    
+            ]);
+        }
+        else{
+            $request->validate([
+                'fname' => 'required',
+                'lname' => 'required',
+                'mobile' => 'required',
+                'country' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+            ], [
+                'fname.required' => 'First Name is required',
+                'lname.required' => 'Last Name is required',
+    
+            ]);
+        }
+        
 
         $user = auth()->user();
 
@@ -118,17 +127,15 @@ class UserController extends Controller
             'country' => $request->country,
             'city' => $request->city,
             'state' => $request->state,
-            'zip' => $request->zip,
-            'address' => $request->address
         ];
 
-        if ($user->user_type == 2) {
-            $user->designation = $request->designation;
-            $user->details =  Purifier::clean($request->details);
-            $user->experience =  Purifier::clean($request->experience);
-            $user->qualification =  Purifier::clean($request->qualification);
-            $user->social = $request->social;
-        }
+        // if ($user->user_type == 2) {
+        //     $user->designation = $request->designation;
+        //     $user->details =  Purifier::clean($request->details);
+        //     $user->experience =  Purifier::clean($request->experience);
+        //     $user->qualification =  Purifier::clean($request->qualification);
+        //     $user->social = $request->social;
+        // }
 
         $user->fname = $request->fname;
         $user->lname = $request->lname;
