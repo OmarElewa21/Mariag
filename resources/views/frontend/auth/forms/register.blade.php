@@ -8,26 +8,26 @@
         <div class="modal-body">
             <div class="row">
                 <div class="form-group col-sm-6">
-                        <label class="font-weight-bold"> @changeLang('First Name') </label> <span class="text-danger">*</span>
+                        <label class="text-font-wieght"> @changeLang('First Name') </label> <span class="text-danger">*</span>
                         {!! Form::text('fname', null, ['class' => 'form-control col-12', 'required']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label class="font-weight-bold"> @changeLang('Last Name') </label> <span class="text-danger">*</span>
+                    <label class="text-font-wieght"> @changeLang('Last Name') </label> <span class="text-danger">*</span>
                     {!! Form::text('lname', null, ['class' => 'form-control', 'required']) !!}
                 </div>
 
                 @if ($user_type == 2)
                     <div class="form-group col-sm-12">
-                        <label class="font-weight-bold"> @changeLang('Email') </label> <span class="text-danger">*</span>
+                        <label class="text-font-wieght"> @changeLang('Email') </label> <span class="text-danger">*</span>
                         <input type="email" name="email" class="form-control" required>
                     </div>
                 @endif
 
                 <div id="recaptcha-container"></div>
                 <div class="form-group col-sm-12">
-                    <label class="font-weight-bold">@changeLang('Phone Number')</label> <span class="text-danger">*</span>
-                    <input type="text" class="form-control" name="mobile" id="number" placeholder="**********01">
+                    <label class="text-font-wieght">@changeLang('Phone Number')</label> <span class="text-danger">*</span>
+                    <input type="text" class="form-control" name="mobile" id="number" placeholder="01*********">
                     <div id="sendOtpDiv">
                         <a class="btn btn-danger btn-sm btn-block text-center" id="verifPhNum" onclick="register.sendOTP()">@changeLang('Send OTP')</a>
                         <span id="verifPhNumdisabled" class="btn btn-secondary text-center" style="display:none; cursor:default">@changeLang('Send OTP')</span>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group col-sm-12 d-none" id="passwordDiv">
-                    <label class="font-weight-bold"> @changeLang('Password') </label> <span class="text-danger">*</span>
+                    <label class="text-font-wieght"> @changeLang('Password') </label> <span class="text-danger">*</span>
                     <input name="password" type="password" class="form-control" required>
                 </div>
 
@@ -59,7 +59,7 @@
 
 
 <style>
-    .font-weight-bold {
+    .text-font-wieght {
         font-weight: 450 !important;
     }
 </style>
