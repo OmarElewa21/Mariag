@@ -27,7 +27,7 @@
                 <div id="recaptcha-container"></div>
                 <div class="form-group col-sm-12">
                     <label class="text-font-wieght">@changeLang('Phone Number')</label> <span class="text-danger">*</span>
-                    <input type="text" class="form-control" name="mobile" id="number" placeholder="01*********">
+                    <input type="text" class="form-control" name="mobile" id="number" placeholder="*********01">
                     <div id="sendOtpDiv">
                         <a class="btn btn-danger btn-sm btn-block text-center" id="verifPhNum" onclick="register.sendOTP()">@changeLang('Send OTP')</a>
                         <span id="verifPhNumdisabled" class="btn btn-secondary text-center" style="display:none; cursor:default">@changeLang('Send OTP')</span>
