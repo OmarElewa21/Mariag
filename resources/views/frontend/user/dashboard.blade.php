@@ -21,7 +21,7 @@
         @changeLang("Please be aware that your profile and your services will not be shown to clients untill you subscribe to a plan")
     </div>
     @endif
-        <div class="d-flex flex-row justify-content-around">
+        <div class="d-flex flex-row flex-wrap justify-content-around">
             {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
