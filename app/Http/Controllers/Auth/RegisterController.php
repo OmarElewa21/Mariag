@@ -61,6 +61,11 @@ class RegisterController extends Controller
             $notify[] = ['error', 'Mobile number already exists'];
             return redirect()->back()->withNotify($notify);
         }
+        
+        if(!is_null($request->email) && User::where('email', $request->email)->exists()){
+            $notify[] = ['error', 'email already exists'];
+            return redirect()->back()->withNotify($notify);
+        }
 
 
         $slug = Str::slug($request->fname . '-' .$request->lname);
