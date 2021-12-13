@@ -167,10 +167,10 @@ class HomeController extends Controller
             $location = $request->location;
             $pageTitle = 'Your Searched Experts';
 
+            $__services = Service::where('status',1)->where('admin_approval',1);
+
             if(!is_null($location)){
-                $__services = Service::where('status',1)
-                ->where('admin_approval',1)
-                ->where('location','LIKE',"%$location%");
+                $__services = $__services->where('location','LIKE',"%$location%");
             }
             if(!is_null($search)){
                 $__services = $__services->whereHas('user', function($q) use($search){
