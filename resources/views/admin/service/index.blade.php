@@ -43,7 +43,7 @@
                                 <tr>
 
                                     <td>{{ $key + $services->firstItem() }}</td>
-                                    <td>{{ __($service->name) }}</td>
+                                    <td>{{ __($service->category->name) }}</td>
                                     <td>
 
                                         @if($service->admin_approval == 0)
