@@ -82,7 +82,7 @@
     <div id="strickymenu" class="menu-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6 div1">
                     <div class="logo flex">
                         <a href="{{ route('home') }}"><img src="{{ getFile('logo', @$general->logo) }}"
                                 alt="Logo"></a>
@@ -123,7 +123,7 @@
                     </div>
 
                     <!--Mobile Menu Icon Start-->
-                    <div class="mobile-menuicon">
+                    <div class="mobile-menuicon div2">
                         <span class="menu-bar" onclick="openNav()"><i class="fa fa-bars"
                                 aria-hidden="true"></i></span>
                     </div>
@@ -142,7 +142,7 @@
             <ul>
                 @foreach ($pages as $page)
                     @if ($page->name == 'home')
-                        <li><a href="{{ route('home') }}">{{ ucwords($page->name) }}</a>
+                        <li><a href="{{ route('home') }}">@changeLang('Home')</a>
                         </li>
                         @continue
                     @endif
@@ -186,5 +186,13 @@
 <style>
     .has-icon:active {
         background-color: aliceblue;
+    }
+    @media screen and (max-width: 980px) {
+        .div1 {
+            order: 2
+        }
+        .div2 {
+            order: 1
+        }
     }
 </style>

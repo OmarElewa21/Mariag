@@ -30,7 +30,7 @@
     <div class="d-flex flex-row justify-content-around flex-wrap mt-5 mb-5 pt-4 pb-4 pr-lg-5 pl-lg-5">
         <div class="d-flex flex-column col-10 col-md-5 div-card" onclick="register.renderform(1)">
             <div class="shadow p-4 div-sub-card">
-                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center">
+                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center font-weight-bold">
                     @changeLang('Register as User')
                     <img src="{{asset('assets/img/user.jpg')}}" class="w-25">
                 </p>
@@ -42,7 +42,7 @@
 
         <div class="d-flex flex-column col-10 col-md-5 div-card mt-md-0 mt-5" onclick="register.renderform(2)">
             <div class="shadow p-4 div-sub-card">
-                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center">
+                <p class="h4 mt-4 d-flex flex-row justify-content-between align-items-center font-weight-bold">
                     @changeLang('Register as Service Provider')
                     <img src="{{asset('assets/img/dress.jpg')}}" class="w-25">
                 </p>
@@ -68,6 +68,9 @@
     .div-card {
         max-width: 450px !important;
         cursor: pointer;
+    }
+    .div-sub-card:hover{
+        border: 1px solid #caa6c2
     }
     .div-sub-card {
         background-color: #f7f7f7
