@@ -331,11 +331,11 @@
                         </div> --}}
 
                         <div class="provider-widget">
-                            <h2>@changeLang('Service Provider')</h2>
-                            <div class="photo">
+                            <h2 class="text-center">@changeLang('Service Provider')</h2>
+                            <div class="photo text-center">
                                 <img src="@if($service->user->image) {{getFile('user',$service->user->image)}} @else {{getFile('logo',$general->default_image)}} @endif" alt="">
                             </div>
-                            <div class="name">
+                            <div class="name text-center">
                                 <a href="{{ route('service.provider.details', $service->user->slug) }}">{{ $service->user->fullname }}</a>
                             </div>
                         </div>
