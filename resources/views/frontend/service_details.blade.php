@@ -35,7 +35,7 @@
     <div class="service-detail-area pt_40">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 order-2">
                     <div class="service-detail-text pt_30">
 
                         @if ($service->gallery)
@@ -216,7 +216,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 order-1">
                     <div class="service-sidebar pt-md-3">
 
                         {{-- <div class="booking-widget">
@@ -487,6 +487,14 @@
             top: 183px !important;
         }
 
+        @media screen and (max-width: 980px) {
+            .div1 {
+                order: 2
+            }
+            .div2 {
+                order: 1
+            }
+        }
     </style>
 
 
