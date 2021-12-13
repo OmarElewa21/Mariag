@@ -44,7 +44,7 @@ $locations = array_unique($locations);
                                         <select class="form-control select2" name="location">
                                             <option value="">@changeLang('Search By Location')</option>
                                             @foreach ($locations as $loc)
-                                                <option>{{ __($loc) }}</option>
+                                                <option value="{{$loc}}">{{ __($loc) }}</option>
                                             @endforeach
 
                                         </select>
