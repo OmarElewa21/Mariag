@@ -165,18 +165,24 @@ class HomeController extends Controller
             $search =$request->search;
             $categorySearch = $request->category;
             $location = $request->location;
-
             $pageTitle = 'Your Searched Experts';
 
-            $services = Service::where('status',1)
+            if(!is_null($location)){
+                $__services = Service::where('status',1)
                 ->where('admin_approval',1)
-                ->where('location','LIKE',"%$location%")
-                ->whereHas('user', function($q) use($search){
-                    $q->where('status',1)->serviceProvider()->where(DB::raw('concat(fname," ",lname)'), 'LIKE', "%$search%");
-                })
-                ->whereHas('category', function($q) use($categorySearch){
+                ->where('location','LIKE',"%$location%");
+            }
+            if(!is_null($search)){
+                $__services = $__services->whereHas('user', function($q) use($search){
+                    $q->where('status',1)->where('user_type', 2)->where(DB::raw('concat(fname," ",lname)'), 'LIKE', "%$search%");
+                });
+            }
+            if(!is_null($categorySearch)){
+                $__services = $__services->whereHas('category', function($q) use($categorySearch){
                     $q->where('name', 'LIKE',  "%".$categorySearch."%");
-                })->get();
+                });
+            }
+            $services = $__services->get();
             return view('frontend.category_details_updated',compact('pageTitle', 'services'));
         }
     }
