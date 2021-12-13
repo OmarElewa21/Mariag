@@ -321,6 +321,8 @@ Route::middleware('demo')->group(function(){
                     Route::get('service/all', [ServiceProviderController::class, 'index'])->name('service');
                     Route::get('service/create', [ServiceProviderController::class, 'createService'])->name('service.create');
                     Route::post('service/create', [ServiceProviderController::class, 'storeService']);
+
+                    Route::get('contacts', [ServiceProviderController::class, 'contacts'])->name('contacts');
         
                     Route::get('service/edit/{service}', [ServiceProviderController::class, 'serviceEdit'])->name('service.edit');
                     Route::post('service/edit/{service}', [ServiceProviderController::class, 'serviceUpdate']);

@@ -20,6 +20,10 @@ class Contact extends Model
         'message'
     ];
 
+    public function provider(){
+        return $this->belongsTo(User::class, 'provider_id');
+    }
+
     public function user(){
         return $this->belongsTo(User::class, 'client_id');
     }

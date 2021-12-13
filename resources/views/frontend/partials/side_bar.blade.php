@@ -25,7 +25,14 @@
               </li> --}}
 
               <li class="nav-item dropdown {{activeMenu('user.plans')}}">
-                <a href="{{route('user.plans')}}" class="nav-link"><i class="fas fa-id-card-alt"></i></i><span>{{$navbar['Plans']}}</span></a>
+                <a href="{{route('user.plans')}}" class="nav-link"><i class="fas fa-id-card-alt"></i><span>{{$navbar['Plans']}}</span></a>
+              </li>
+
+              <li class="nav-item dropdown {{activeMenu('user.contacts')}}">
+                <a href="{{route('user.contacts')}}" class="nav-link">
+                  <i class="fas fa-address-book"></i>
+                  <span>{{$navbar['Contacts']}}</span>
+                </a>
               </li>
               
               {{-- <li class="nav-item dropdown {{activeMenu('user.withdraw*')}}">

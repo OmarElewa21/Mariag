@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Schedule;
 use App\Models\Service;
+use App\Models\Contact;
 use App\Models\Subscriptions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -324,8 +325,6 @@ class ServiceProviderController extends Controller
             }
         }
 
-
-
         $schedule->update([
             'user_id' => auth()->id(),
             'week_name' => $request->weekname,
@@ -338,5 +337,12 @@ class ServiceProviderController extends Controller
         $notify[] = ['success', 'Successfully updated Schedule'];
 
         return back()->withNotify($notify);
+    }
+
+
+    public function contacts(){
+        $pageTitle = "Contacts";
+        $contacts = Contact::where('provider_id', auth()->id())->with('user')->orderBy('created_at','DESC')->get();
+        return view('frontend.user.provider.contacts', compact('contacts', 'pageTitle'));
     }
 }
