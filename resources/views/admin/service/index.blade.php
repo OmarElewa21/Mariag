@@ -36,6 +36,7 @@
                             <tr>
                                 <th>@changeLang('Sl')</th>
                                 <th>@changeLang('Name')</th>
+                                <th>@changeLang('Category')</th>
                                 <th>@changeLang('Status')</th>
                                 <th>@changeLang('Action')</th>
                             </tr>
@@ -44,6 +45,7 @@
 
                                     <td>{{ $key + $services->firstItem() }}</td>
                                     <td>{{ __($service->user->fname . ' ' . $service->user->lname) }}</td>
+                                    <td>{{ __($service->category->name) }}</td>
                                     <td>
 
                                         @if($service->admin_approval == 0)
