@@ -345,4 +345,16 @@ class ServiceProviderController extends Controller
         $contacts = Contact::where('provider_id', auth()->id())->with('user')->orderBy('created_at','DESC')->get();
         return view('frontend.user.provider.contacts', compact('contacts', 'pageTitle'));
     }
+
+    public function changeReadStatus($contact_id){
+        $contact = Contact::find($contact_id);
+        if($contact->is_read){
+            $contact->is_read = false;
+            $contact->save();
+        }
+        else{
+            $contact->is_read = true;
+            $contact->save();
+        }
+    }
 }

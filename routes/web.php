@@ -323,7 +323,9 @@ Route::middleware('demo')->group(function(){
                     Route::post('service/create', [ServiceProviderController::class, 'storeService']);
 
                     Route::get('contacts', [ServiceProviderController::class, 'contacts'])->name('contacts');
-        
+                    
+                    Route::get('change-read-status/{contact_id}', [ServiceProviderController::class, 'changeReadStatus']);
+
                     Route::get('service/edit/{service}', [ServiceProviderController::class, 'serviceEdit'])->name('service.edit');
                     Route::post('service/edit/{service}', [ServiceProviderController::class, 'serviceUpdate']);
                     Route::post('service/delete/{service}', [ServiceProviderController::class, 'serviceDelete'])->name('service.delete');

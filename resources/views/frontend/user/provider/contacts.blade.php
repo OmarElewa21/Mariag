@@ -9,27 +9,28 @@
 @endsection
 
 @push('custom-style')
-    <link rel="stylesheet" href="{{ asset('frontend/css/datatable.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 @endpush
 
 @section('content')
 
     <div class="card-body text-right">
         <div class="table-responsive">
-            <table class="table table-striped" id="contactsTbl">
+            <table class="table table-striped cell-border" id="contactsTbl">
                 <thead>
                     <tr>
                         <th class="col-1">@changeLang('Sl')</th>
                         <th class="col-2">@changeLang('Client Name')</th>
                         <th class="col-2">@changeLang('Client Number')</th>
-                        <th class="col-5">@changeLang('Message')</th>
+                        <th class="col-4">@changeLang('Message')</th>
                         <th class="col-2">@changeLang('Date')</th>
+                        <th class="col-1">@changeLang('Contacted')</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @forelse ($contacts as $key=>$contact)
-                        <tr style="{{ $key %2 == 0 ? "background: white" : "background: #f2f2f2"}}">
+                        <tr style="{{ $key %2 == 0 ? "background: white" : "background: #f2f2f2"}}; {{$contact->is_read ? 'text-decoration: line-through' : ''}}">
                             <td class="col-1">
                                 {{ $key + 1 }}
                             </td>
@@ -42,12 +43,15 @@
                                 {{ $contact->phone}}
                             </td>
 
-                            <td class="col-5">
+                            <td class="col-4">
                                 {{ $contact->message}}
                             </td>
 
                             <td class="col-2">
                                 {{ $contact->created_at}}
+                            </td>
+                            <td class="col-1">
+                                <input type="checkbox" name="" id="" onchange="read(this.parentElement.parentElement, {{$contact->id}})" {{$contact->is_read ? 'checked' : ''}}>
                             </td>
                         </tr>
                     @empty
@@ -66,6 +70,10 @@
     <script src="{{ asset('frontend/js/jquery.dataTables.min.js') }}"></script>
     <script>
         $('#contactsTbl').DataTable({
+            "columnDefs": [{
+                "targets": [2, 3, 5],
+                "orderable": false
+                }],
             "oLanguage": {
                     "sSearch":         "بحث:",
                     "sEmptyTable":     "لا يوجد بيانات",
@@ -80,5 +88,21 @@
                     }
             }
         })
+    </script>
+    <script>
+        function read(elem, contact_id){
+            if(elem.style.textDecoration == "line-through"){
+                elem.style.textDecoration = "none";
+            }
+            else{
+                elem.style.textDecoration = "line-through";
+            }
+            $.get({
+                url: "/user/change-read-status/" + contact_id,
+                error: function(result){
+                    console.log(result.statusText);
+                }
+            })
+        }
     </script>
 @endpush
