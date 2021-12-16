@@ -495,6 +495,9 @@
                 order: 1
             }
         }
+        .catagory-text-cell *{
+            text-align: center !important;
+        }
     </style>
 
 

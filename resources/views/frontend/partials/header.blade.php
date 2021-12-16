@@ -1,8 +1,8 @@
     <!--Header-Area Start-->
     <div class="header-area">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-12">
+            <div class="d-flex flex-row flex-wrap justify-content-between">
+                <div class="">
                     <div class="header-social">
                         <ul>
                             <li>
@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-12">
+                <div class="">
                     <div class="header-info">
                         <ul>
                             <li>
