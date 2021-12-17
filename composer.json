@@ -7,15 +7,18 @@
     "require": {
         "php": "^7.3|^8.0",
         "anandsiddharth/laravel-paytm-wallet": "^2.0",
+        "doctrine/dbal": "^3.2",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.6",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "laravelcollective/html": "^6.2",
         "mews/purifier": "^3.3",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpmailer/phpmailer": "^6.5",
+        "pragmarx/google2fa-laravel": "^2.0",
         "spatie/laravel-cookie-consent": "^2.12",
         "stripe/stripe-php": "^7.93"
     },

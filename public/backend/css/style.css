@@ -1699,8 +1699,7 @@ h6 .badge {
     width: 100%; }
   .navbar .form-inline .search-backdrop {
     display: none; }
-  .navbar .nav-link.nav-link-lg div {
-    display: none; } }
+  }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .navbar .form-inline .search-element {

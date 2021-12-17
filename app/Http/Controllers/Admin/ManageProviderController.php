@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendUserMail;
 
 class ManageProviderController extends Controller
 {
@@ -23,13 +25,13 @@ class ManageProviderController extends Controller
               ->orWhere('email','LIKE','%'.$search.'%')
               ->orWhere('mobile','LIKE','%'.$search.'%');
 
-        })->latest()->with('reviews','services')->serviceProvider()->paginate();
+        })->latest()->with('reviews','services')->where('user_type', 2)->paginate();
 
         return view('admin.providers.index', compact('pageTitle', 'providers'));
     }
     public function providerDetails(Request $request)
     {
-        $provider = User::where('id', $request->provider)->with('services')->withCount('services')->serviceProvider()->firstOrFail();
+        $provider = User::where('id', $request->provider)->with('services')->withCount('services')->where('user_type', 2)->firstOrFail();
 
         $serviceId = $provider->services()->pluck('id')->toArray();
 
@@ -53,7 +55,8 @@ class ManageProviderController extends Controller
         $data['name'] = $provider->fullname;
         $data['email'] = $provider->email;
 
-        sendGeneralMail($data);
+        // sendGeneralMail($data);
+        Mail::to($provider)->send(new SendUserMail($data));
 
         $notify[] = ['success', 'Send Email To Provider Successfully'];
 
@@ -109,7 +112,7 @@ class ManageProviderController extends Controller
               ->orWhere('email','LIKE','%'.$search.'%')
               ->orWhere('mobile','LIKE','%'.$search.'%');
 
-        })->where('featured',1)->latest()->serviceProvider()->paginate();
+        })->where('featured',1)->latest()->where('user_type', 2)->paginate();
 
         return view('admin.providers.index', compact('pageTitle', 'providers'));
     }

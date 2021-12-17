@@ -2,12 +2,17 @@
 
 $content = content('banner.content');
 
-$categories = App\Models\Category::where('status', 1)
-    ->orderBy('name','ASC')
-    ->take(6)
-    ->get();
-$locations = [];
+$services = App\Models\Service::where('status',1)
+->where('admin_approval',1)
+->groupBy('category_id')
+->get();
+// $categories = App\Models\Category::where('status', 1)
+//     ->orderBy('name','ASC')
+//     ->take(6)
+//     ->get();
 
+
+$locations = [];
 $all_location = App\Models\Service::pluck('location')->toArray();
 
 foreach($all_location as $location){
@@ -44,7 +49,7 @@ $locations = array_unique($locations);
                                         <select class="form-control select2" name="location">
                                             <option value="">@changeLang('Search By Location')</option>
                                             @foreach ($locations as $loc)
-                                                <option>{{ __($loc) }}</option>
+                                                <option value="{{$loc}}">{{ __($loc) }}</option>
                                             @endforeach
 
                                         </select>
@@ -53,8 +58,8 @@ $locations = array_unique($locations);
                                     <div class="box mt-2">
                                         <select class="form-control select2" name="category">
                                             <option value="">@changeLang('Search By Category')</option>
-                                            @foreach ($categories as $category)
-                                                <option>{{ __($category->name) }}</option>
+                                            @foreach ($services as $service)
+                                                <option>{{ __($service->category->name) }}</option>
                                             @endforeach
 
                                         </select>

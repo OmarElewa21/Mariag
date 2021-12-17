@@ -59,25 +59,25 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr>
-                                <th>@changeLang('Service Image')</th>
-                                <th>@changeLang('Name')</th>
+                                {{-- <th>@changeLang('Service Image')</th>
+                                <th>@changeLang('Name')</th> --}}
                                 <th>@changeLang('Category')</th>
-                                <th>@changeLang('Rate')</th>
-                                <th>@changeLang('Duration')</th>
+                                {{-- <th>@changeLang('Rate')</th>
+                                <th>@changeLang('Duration')</th> --}}
                                 <th>@changeLang('Status')</th>
                                 <th>@changeLang('Action')</th>
                             </tr>
                             @forelse ($services as $service)
                                 <tr>
 
-                                    <td>
+                                    {{-- <td>
                                     <img src="@if($service->service_image) {{getFile('service',$service->service_image)}} @else {{getFile('logo',$general->service_default_image)}} @endif" class="image-rounded">
                                     
-                                    </td>
-                                    <td>{{ __($service->name) }}</td>
+                                    </td> --}}
+                                    {{-- <td>{{ __($service->name) }}</td> --}}
                                     <td>{{ __($service->category->name) }}</td>
-                                    <td>{{ __($general->currency_icon . '  ' . $service->rate) }}</td>
-                                    <td>
+                                    {{-- <td>{{ __($general->currency_icon . '  ' . $service->rate) }}</td> --}}
+                                    {{-- <td>
                                         @switch($service->duration)
                                             @case(0)
                                                 @changeLang('Hourly')
@@ -98,10 +98,10 @@
                                             @break
 
                                             @default
-                                             @changeLang('Fixed')
+                                                @changeLang('Fixed')
 
                                         @endswitch
-                                    </td>
+                                    </td> --}}
 
                                     <td>
 
@@ -113,7 +113,9 @@
 
 
                                             <span class="badge badge-danger">@changeLang('Rejected')</span>
-
+                                            <div class="shadow-sm p-1 bg-white mb-1 mt-1 rounded">
+                                                <span class="text-danger"> {{$service->reason_of_reject}} <span>
+                                            </div>
                                         @elseif($service->status)
                                             
                                             <span class="badge badge-success">@changeLang('Active')</span>

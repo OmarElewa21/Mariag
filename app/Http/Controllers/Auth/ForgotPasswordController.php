@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendPasswordVerification;
+use App\Mail\ForgetPasswordCode;
 
 class ForgotPasswordController extends Controller
 {
@@ -20,6 +20,39 @@ class ForgotPasswordController extends Controller
 
         return view('frontend.auth.forgot_password', compact('pageTitle'));
     }
+
+
+    public function checkUser(Request $request)
+    {
+        $request->validate([
+            'mobile' => 'required',
+        ]);
+        if(!User::where('mobile', $request->mobile)->exists()){
+            return response("Number doesn't exist", 500);
+        }
+        return response(200);
+    }
+
+
+    public function store(Request $request){
+        $general = GeneralSetting::first();
+
+        $request->validate([
+            'mobile' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha== 1)
+        ],[
+            'g-recaptcha-response.required' => 'You Have To fill recaptcha'
+        ]);
+
+        $user = User::where('mobile', $request->mobile)->first();
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+        $notify[] = ['success', 'Password Changed Successfully'];
+        return redirect()->route('user.login')->withNotify($notify);
+    }
+
 
     public function sendVerification(Request $request)
     {
@@ -46,7 +79,7 @@ class ForgotPasswordController extends Controller
         $user->save();
 
         // sendMail('PASSWORD_RESET', ['code' => $code],  $user);
-        Mail::to($user)->send(new SendPasswordVerification($code));
+        Mail::to($user)->send(new ForgetPasswordCode($code));
 
         session()->put('email',$user->email);
 

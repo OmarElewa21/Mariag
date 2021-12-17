@@ -120,15 +120,6 @@
               </li>
               
               
-              <li class="nav-item dropdown {{activeMenu('admin.email*')}}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-envelope"></i> <span>@changeLang('Email Manager')</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="{{route('admin.email.config')}}">@changeLang('Email Configure')</a></li>
-                  <li><a class="nav-link" href="{{route('admin.email.templates')}}">@changeLang('Email Templates')</a></li>
-                </ul>
-              </li>
-              
-              
               <li class="nav-item dropdown {{activeMenu('admin.language*')}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-envelope"></i> <span>@changeLang('Manage Language')</span></a>
                 <ul class="dropdown-menu">

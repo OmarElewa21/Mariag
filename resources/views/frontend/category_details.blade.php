@@ -33,10 +33,8 @@
 
 <div class="team-page pt_30 pb_60">
     <div class="container">
-   
         <div class="row">
-        @foreach ($users as $user)
-            
+        @foreach ($users as $user)            
             <div class="col-lg-3 col-md-4 col-6 mt_30">
                 <div class="team-item">
                     <div class="team-photo">
@@ -53,60 +51,55 @@
 
                                     @switch($rating)
                                         @case(1)
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
-                                            
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
                                         @break
+                                        
                                         @case(2)
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
                                             
                                         @break 
                                         
                                         @case(3)
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="far fa-star"></i>
-                                              <i class="far fa-star"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
                                             
                                         @break
+
                                         @case(4)
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="far fa-star"></i>
-                                            
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star"></i>
                                         @break 
                                         
                                         @case(5)
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                              <i class="fas fa-star text-warning"></i>
-                                            
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
                                         @break
-                                        
-                                    
+
                                         @default
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
                                             
                                     @endswitch
-
-
-
                                 
                                 </p>
                     </div>
@@ -132,7 +125,5 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection

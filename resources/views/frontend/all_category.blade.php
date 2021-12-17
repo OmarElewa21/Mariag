@@ -35,21 +35,21 @@
         <div class="container">
             <div class="row">
 
-                @forelse ($categories as $category)
+                @forelse ($services as $service)
 
                     <div class="col-lg-4 col-md-6 mt_15">
                         <div class="case-item">
                             <div class="case-box">
                                 <div class="case-image">
-                                    <img src="{{ getFile('category' , $category->image) }}" alt="">
+                                    <img src="{{ getFile('category' , $service->category->image) }}" alt="">
                                     <div class="overlay"><a
-                                            href="{{ route('category.details', $category->slug) }}"
+                                            href="{{ route('service.details2', $service->category_id) }}"
                                             class="btn-case">@changeLang('View All Experts')</a>
                                     </div>
                                 </div>
                                 <div class="case-content">
                                     <h4><a
-                                            href="{{ route('category.details', $category->slug) }}">{{ __($category->name) }}</a>
+                                            href="{{ route('service.details2', $service->category_id) }}">{{ __($service->category->name) }}</a>
                                     </h4>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
 
                 <div class="col-md-12 my-5">
 
-                    {{ $categories->links('frontend.partials.paginate') }}
+                    {{ $services->links('frontend.partials.paginate') }}
 
                 </div>
 

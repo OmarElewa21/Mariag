@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Schedule;
 use App\Models\Service;
+use App\Models\Contact;
 use App\Models\Subscriptions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -78,17 +79,14 @@ class ServiceProviderController extends Controller
 
     public function storeService(Request $request)
     {
+        
 
         $request->validate([
             'category' => 'required|exists:categories,id',
-            'name' => 'required',
-            'duration' => 'required|between:0,5',
-            'rate' => 'required',
             'status' => 'sometimes|in:0,1',
             'details' => 'required',
             'faq' => 'array',
             'video' => 'required|array',
-            'service_image' => 'image|mimes:jpg,jpeg,png|max:2048',
             'location' => 'required',
             'gallery_image' => 'array',
             'gallery_image.*' => 'image|mimes:jpg,png,jpeg|max:2048'
@@ -102,7 +100,7 @@ class ServiceProviderController extends Controller
             array_push($faq, array_filter($value, 'strlen'));
         }
 
-        
+        $request->location =  implode(', ', $request->location);
 
         $images = [];
 
@@ -119,9 +117,9 @@ class ServiceProviderController extends Controller
 
         Service::create([
             'category_id' => $request->category,
-            'name' => $request->name,
-            'rate' => $request->rate,
-            'duration' => $request->duration,
+            'name' => $request->name ?? '',
+            'rate' => 0,
+            'duration' => 0,
             'user_id' => auth()->id(),
             'status' => 0,
             'details' => Purifier::clean($request->details),
@@ -148,18 +146,12 @@ class ServiceProviderController extends Controller
 
     public function serviceUpdate(Request $request, Service $service)
     {
-
-        
         $request->validate([
-            'category' => 'required|exists:categories,id',
-            'name' => 'required',
-            'duration' => 'required|between:0,5',
-            'rate' => 'required',
-            'status' => 'sometimes|in:0,1',
-            'details' => 'required',
+            'category'  => 'required|exists:categories,id',
+            'status'    => 'sometimes|in:0,1',
+            'details'   => 'required',
             'faq' => 'array',
             'video' => 'required|array',
-            'service_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
             'location' => 'required',
             'gallery_image' => 'sometimes|array',
             'gallery_image.*' => 'image|mimes:jpg,png,jpeg|max:2048'
@@ -172,6 +164,8 @@ class ServiceProviderController extends Controller
             }
             array_push($faq, array_filter($value, 'strlen'));
         }
+
+        $request->location =  implode(', ', $request->location);
 
         $images = json_decode($service->gallery, true);
 
@@ -189,24 +183,22 @@ class ServiceProviderController extends Controller
             foreach ($request->gallery_image as $key => $gallery) {
                 
                 if (array_key_exists($key, $images)) {
-                   
                     $images[$key] = uploadImage($gallery, filePath('service'), json_decode($service->gallery, true)[$key]);
                 } else {
-                   
+
                     $images[$key] = uploadImage($gallery, filePath('service'),);
                 }
             }
         }
 
-      
-
         $service->update([
             'category_id' => $request->category,
-            'name' => $request->name,
+            'name' => $request->name ?? '',
             'rate' => $request->rate,
             'duration' => $request->duration,
             'user_id' => auth()->id(),
             'status' => $request->status,
+            'admin_approval' => 0,
             'details' => Purifier::clean($request->details),
             'faq' => $faq,
             'video' => $request->video,
@@ -333,8 +325,6 @@ class ServiceProviderController extends Controller
             }
         }
 
-
-
         $schedule->update([
             'user_id' => auth()->id(),
             'week_name' => $request->weekname,
@@ -347,5 +337,24 @@ class ServiceProviderController extends Controller
         $notify[] = ['success', 'Successfully updated Schedule'];
 
         return back()->withNotify($notify);
+    }
+
+
+    public function contacts(){
+        $pageTitle = "Contacts";
+        $contacts = Contact::where('provider_id', auth()->id())->with('user')->orderBy('created_at','DESC')->get();
+        return view('frontend.user.provider.contacts', compact('contacts', 'pageTitle'));
+    }
+
+    public function changeReadStatus($contact_id){
+        $contact = Contact::find($contact_id);
+        if($contact->is_read){
+            $contact->is_read = false;
+            $contact->save();
+        }
+        else{
+            $contact->is_read = true;
+            $contact->save();
+        }
     }
 }

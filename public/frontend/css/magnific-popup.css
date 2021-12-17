@@ -30,6 +30,10 @@
   padding: 0 8px;
   box-sizing: border-box; }
 
+.mfp-container * {
+  direction: ltr !important;
+}
+
 .mfp-container:before {
   content: '';
   display: inline-block;

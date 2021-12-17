@@ -19,15 +19,13 @@
 
 
 @push('custom-css')
-   <style>
-   
+    <style>
     .modal-dialog {
-    position:fixed;
-    top:auto;
-    right:auto;
-    left:auto;
-    bottom:0;
- }  
-   
-   </style> 
+        position:fixed;
+        top:auto;
+        right:auto;
+        left:auto;
+        bottom:0;
+    }  
+    </style> 
 @endpush

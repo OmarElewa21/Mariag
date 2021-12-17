@@ -1,8 +1,8 @@
     <!--Header-Area Start-->
     <div class="header-area">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-12">
+            <div class="d-flex flex-row flex-wrap justify-content-between">
+                <div class="">
                     <div class="header-social">
                         <ul>
                             <li>
@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-12">
+                <div class="">
                     <div class="header-info">
                         <ul>
                             <li>
@@ -35,10 +35,34 @@
                                 </li>
                             @endif
                             @auth
-                                <li>
+                                {{-- <li>
                                     <i class="fas fa-lock"></i>
                                     <a href="{{ route('user.dashboard') }}">@changeLang('Dashboard')</a>
+                                </li> --}}
+                                @if (auth()->user()->user_type == 2)
+                                <li><a href="{{ route('user.dashboard') }}">@changeLang('Dashboard')</a></li>
+                                
+                                @else
+                                <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                    class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                    {{-- <img alt="image" src="@if (auth()->user()->image) {{ getFile('user', auth()->user()->image) }} @else {{ getFile('logo', $general->default_image) }} @endif" class="rounded-circle mr-1"> --}}
+                                    <div class="d-inline-block">{{ auth()->user()->fname . ' ' .auth()->user()->lname}}</div>
+                                    </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('user.profile') }}" class="dropdown-item has-icon text-dark">
+                                                <i class="fas fa-user text-dark"></i> @changeLang('Profile')
+                                            </a>
+                                            <a href="{{ route('user.change.password') }}" class="dropdown-item has-icon text-dark">
+                                                <i class="fas fa-key text-dark"></i> @changeLang('Change Password')
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('user.logout') }}" class="dropdown-item has-icon text-danger">
+                                                <i class="fas fa-sign-out-alt text-danger"></i> @changeLang('Logout')
+                                            </a>
+                                        </div>
                                 </li>
+                                @endif
+                                
                             @else
                                 <li>
                                     <i class="fas fa-lock"></i>
@@ -58,7 +82,7 @@
     <div id="strickymenu" class="menu-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6 div1">
                     <div class="logo flex">
                         <a href="{{ route('home') }}"><img src="{{ getFile('logo', @$general->logo) }}"
                                 alt="Logo"></a>
@@ -69,7 +93,7 @@
                         <ul class="nav-menu">
                             @foreach ($pages as $page)
                                 @if ($page->name == 'home')
-                                    <li><a href="{{ route('home') }}">{{ ucwords($page->name)}}</a>
+                                    <li><a href="{{ route('home') }}"> @changeLang('Home')</a>
                                     </li>
                                     @continue
                                 @endif
@@ -99,7 +123,7 @@
                     </div>
 
                     <!--Mobile Menu Icon Start-->
-                    <div class="mobile-menuicon">
+                    <div class="mobile-menuicon div2">
                         <span class="menu-bar" onclick="openNav()"><i class="fa fa-bars"
                                 aria-hidden="true"></i></span>
                     </div>
@@ -118,7 +142,7 @@
             <ul>
                 @foreach ($pages as $page)
                     @if ($page->name == 'home')
-                        <li><a href="{{ route('home') }}">{{ ucwords($page->name) }}</a>
+                        <li><a href="{{ route('home') }}">@changeLang('Home')</a>
                         </li>
                         @continue
                     @endif
@@ -158,3 +182,14 @@
     <!--Mobile Menu End-->
 
     <!--Menu End-->
+
+<style>
+    .has-icon:active {
+        background-color: aliceblue;
+    }
+    @media screen and (max-width: 600px) {
+        .header-info {
+            float: right !important;
+        }
+    }
+</style>

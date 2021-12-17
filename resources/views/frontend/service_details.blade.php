@@ -31,12 +31,11 @@
         <meta name='description' content="{{ $general->seo_description }}">
     @endpush
 
-
     <!--Service Detail Start-->
     <div class="service-detail-area pt_40">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 order-2">
                     <div class="service-detail-text pt_30">
 
                         @if ($service->gallery)
@@ -89,7 +88,7 @@
                             echo __($service->details);
                         @endphp</p>
                     </div>
-                    @if ($service->faq)
+                    {{-- @if ($service->faq)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="faq-service feature-section-text mt_50">
@@ -120,14 +119,14 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
 
                     @if ($service->video[0] != null)
                         <div class="row mt_50">
                             <div class="col-12">
                                 <div class="video-headline">
-                                    <h3>@changeLang('Releted Videos')</h3>
+                                    <h3>@changeLang('Service Videos')</h3>
                                 </div>
                             </div>
                             @foreach ($service->video as $video)
@@ -145,15 +144,14 @@
                                     </div>
                                 </div>
                             @endforeach
-
+                        
                         </div>
                     @endif
-                  
-                   
-                    <div class="row mt_50">
+                    
+                    <div class="row">
                         <div class="col-md-12" id="review">
                             <div class="comment-list mt_30">
-                             @if($service->reviews->count() > 0)
+                            @if($service->reviews->count() > 0)
                                 <h4>@changeLang('Reviews') <span class="c-number">({{ $service->reviews_count }})</span>
                                 </h4>
                             @endif
@@ -188,7 +186,7 @@
                                 </ul>
                             </div>
 
-                            @auth
+                            {{-- @auth
                                 <div class="comment-form mt_30">
                                     <h4>@changeLang('Write A Review')</h4>
                                     <form action="{{ route('review', $service->id) }}" method="post">
@@ -213,18 +211,15 @@
                                         </div>
                                     </form>
                                 </div>
-                            @endauth
+                            @endauth --}}
                         </div>
                     </div>
-                   
-
-
 
                 </div>
-                <div class="col-md-4">
-                    <div class="service-sidebar pt_30">
+                <div class="col-md-4 order-1">
+                    <div class="service-sidebar pt-md-3">
 
-                        <div class="booking-widget">
+                        {{-- <div class="booking-widget">
                             <div class="price">
                                 <div class="amount">
                                     {{ $general->currency_icon . '' . $service->rate }}
@@ -259,9 +254,9 @@
                                         <i class="fas fa-star"></i>
                                     @endfor
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="book">
+                            {{-- <div class="book">
 
                                 @auth
                                     @if (auth()->user()->user_type == 1)
@@ -332,20 +327,20 @@
                                 @endauth
 
 
-                            </div>
-                        </div>
+                            </div> 
+                        </div> --}}
 
                         <div class="provider-widget">
-                            <h2>@changeLang('Service Provider')</h2>
-                            <div class="photo">
+                            <h2 class="text-center">@changeLang('Service Provider')</h2>
+                            <div class="photo text-center">
                                 <img src="@if($service->user->image) {{getFile('user',$service->user->image)}} @else {{getFile('logo',$general->default_image)}} @endif" alt="">
                             </div>
-                            <div class="name">
+                            <div class="name text-center">
                                 <a href="{{ route('service.provider.details', $service->user->slug) }}">{{ $service->user->fullname }}</a>
                             </div>
                         </div>
 
-                        <div class="service-widget-contact mt_30">
+                        {{-- <div class="service-widget-contact mt_30">
                             <h2>@changeLang('Contact Info')</h2>
                             <ul>
                                 <li><i class="fas fa-phone"></i> {{ $service->user->mobile }}</li>
@@ -354,49 +349,86 @@
                                     {{ @$service->user->address->address . ' ' . @$service->user->address->city . ' ' . @$service->user->address->country }}
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
+
                         <div class="service-qucikcontact event-form mt_30">
-                            <h3>@changeLang('Contact Provider')</h3>
-                            <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
-                                @csrf
-                                <div class="form-row row">
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Name')</label>
-                                        <input type="text" name="name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Email')</label>
-                                        <input type="text" name="email" class="form-control">
-                                    </div>
+                            @auth
+                            <!-- User is User  -->
+                            @if (auth()->user()->user_type == 1)
+                                @php
+                                    $user = auth()->user();
+                                @endphp
+                                <div class="text-center">
+                                    <h3 class="text-center">@changeLang('Contact Provider')</h3>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Subject')</label>
-                                        <input type="text" name="subject" class="form-control">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="">@changeLang('Message')</label>
-                                        <textarea class="form-control" name="message"></textarea>
-                                    </div>
-
-                                    @if (@$general->allow_recaptcha)
-
-                                    <div class="col-md-12 my-3">
-                                    
-                                    <script src="https://www.google.com/recaptcha/api.js"></script>
-                                    <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
-                                        data-callback="verifyCaptcha"></div>
-                                    <div id="g-recaptcha-error"></div>
-                                    </div>
-
-                                @endif
-
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" id="recaptcha" class="btn">@changeLang('Send Message')</button>
-                                    </div>
-
+                                    <a href="" data-toggle="modal" data-target="#modal_book">
+                                        <button type="button" class="btn btn-danger">@changeLang('Contact Now')</button>
+                                    </a>
                                 </div>
-                            </form>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal_book" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">@changeLang('Contact Now')</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="modal-body">
+                                                <form method="post" action="{{ route('send.provider.email', $service->user->id) }}">
+                                                    @csrf
+                                                    <div class="form-row row">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('Name')</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $user->fname . ' ' . $user->lname }}">
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('phone')</label>
+                                                            <input type="tel" name="phone" class="form-control" value="{{ $user->mobile }}">
+                                                        </div>
+                    
+                                                        <div class="form-group col-md-12">
+                                                            <label for="">@changeLang('Message')</label>
+                                                            <textarea class="form-control" name="message"></textarea>
+                                                        </div>
+                    
+                                                        @if (@$general->allow_recaptcha)
+                    
+                                                            <div class="col-md-12 my-3">
+                                                            
+                                                            <script src="https://www.google.com/recaptcha/api.js"></script>
+                                                            <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
+                                                                data-callback="verifyCaptcha"></div>
+                                                            <div id="g-recaptcha-error"></div>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="form-group col-md-12">
+                                                            <button type="submit" id="recaptcha" class="btn">@changeLang('Send Message')</button>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- User is not logged in  -->
+                            @else
+                            <div class="text-center">
+                                <h3 class="text-center">@changeLang('Contact Provider')</h3>
+                                <a href="{{route('user.login', ['page_url' => url()->current()])}}">
+                                    <button type="button" class="btn btn-danger">@changeLang('Login to Contact')</button>
+                                </a>
+                            </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -455,6 +487,17 @@
             top: 183px !important;
         }
 
+        @media screen and (max-width: 980px) {
+            .div1 {
+                order: 2
+            }
+            .div2 {
+                order: 1
+            }
+        }
+        .catagory-text-cell *{
+            text-align: center !important;
+        }
     </style>
 
 

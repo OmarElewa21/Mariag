@@ -80,6 +80,8 @@ Route::middleware('demo')->group(function(){
                 Route::get('providers/search', [ManageProviderController::class, 'index'])->name('provider.search');
                 Route::get('providers/featured', [ManageProviderController::class, 'featuredProvider'])->name('provider.featured');
                 
+                Route::get('provider/user/service/{service_id}', [ManageServiceController::class, 'showService'])->name('showSerivce');
+                
                 // Subscription Plans
                 Route::resource('plans', SubscriptionPlansController::class)->except([
                     'show',
@@ -229,13 +231,13 @@ Route::middleware('demo')->group(function(){
         
                 Route::get('email/templates/{template}', [EmailTemplateController::class, 'emailTemplatesEdit'])->name('email.templates.edit');
                 Route::post('email/templates/{template}', [EmailTemplateController::class, 'emailTemplatesUpdate']);
-        
+
                 // transaction 
-        
+
                 Route::get('transaction',[AdminController::class, 'transaction'])->name('transaction');
                 
                 // Subscription
-        
+
                 Route::get('subscription',[ManageSubscriptionController::class,'index'])->name('subscription');
                 Route::post('subscription/email/all',[ManageSubscriptionController::class,'sendEmailToAll'])->name('subscription.all');
                 Route::post('subscription/email/single/{id}',[ManageSubscriptionController::class,'sendEmailSubscriber'])->name('subscription.single');
@@ -252,29 +254,35 @@ Route::middleware('demo')->group(function(){
             });
         });
         
+        Route::get('verify/email',[AuthLoginController::class,'emailVerifyConfirm'])->name('email.verify');
         
         Route::name('user.')->prefix('user')->group(function () {
         
             Route::middleware('guest')->group(function () {
                 Route::get('register', [RegisterController::class, 'index'])->name('register')->middleware('reg_off');
-                Route::post('register', [RegisterController::class, 'register'])->middleware('reg_off');
+
+                Route::get('register/create', [RegisterController::class, 'create']);
+                Route::get('register/checkMobile', [RegisterController::class, 'checkIfNumberExists']);
+
+                Route::post('register/{user_type}', [RegisterController::class, 'register'])->middleware('reg_off');
         
                 Route::get('login', [AuthLoginController::class, 'index'])->name('login');
                 Route::post('login', [AuthLoginController::class, 'login'])->withoutMiddleware('demo');
         
                 Route::get('forgot/password', [AuthForgotPasswordController::class, 'index'])->name('forgot.password');
-                Route::post('forgot/password', [AuthForgotPasswordController::class, 'sendVerification']);
+                Route::get('forgot/password/checkUser', [AuthForgotPasswordController::class, 'checkUser']);
+                
+                Route::post('forgot/password/store', [AuthForgotPasswordController::class, 'store']);
+                
                 Route::get('verify/code', [AuthForgotPasswordController::class, 'verify'])->name('auth.verify');
                 Route::post('verify/code', [AuthForgotPasswordController::class, 'verifyCode']);
                 Route::get('reset/password', [AuthForgotPasswordController::class, 'reset'])->name('reset.password');
                 Route::post('reset/password', [AuthForgotPasswordController::class, 'resetPassword']);
         
                 Route::get('verify/email',[AuthLoginController::class,'emailVerify'])->name('email.verify');
-                Route::post('verify/email',[AuthLoginController::class,'emailVerifyConfirm'])->name('email.verify');
             });
-        
-        
-            Route::middleware(['auth','profile_is_update','inactive', 'update_subscription_validation'])->group(function () {
+
+            Route::middleware(['auth', 'profile_is_update', 'inactive', 'update_subscription_validation'])->group(function () {
                 Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
                 Route::get('logout', [RegisterController::class, 'signOut'])->name('logout')->withoutMiddleware('profile_is_update');
         
@@ -313,7 +321,11 @@ Route::middleware('demo')->group(function(){
                     Route::get('service/all', [ServiceProviderController::class, 'index'])->name('service');
                     Route::get('service/create', [ServiceProviderController::class, 'createService'])->name('service.create');
                     Route::post('service/create', [ServiceProviderController::class, 'storeService']);
-        
+
+                    Route::get('contacts', [ServiceProviderController::class, 'contacts'])->name('contacts');
+                    
+                    Route::get('change-read-status/{contact_id}', [ServiceProviderController::class, 'changeReadStatus']);
+
                     Route::get('service/edit/{service}', [ServiceProviderController::class, 'serviceEdit'])->name('service.edit');
                     Route::post('service/edit/{service}', [ServiceProviderController::class, 'serviceUpdate']);
                     Route::post('service/delete/{service}', [ServiceProviderController::class, 'serviceDelete'])->name('service.delete');
@@ -371,6 +383,8 @@ Route::middleware('demo')->group(function(){
         
         
         Route::get('service/{id}/{slug}', [HomeController::class, 'serviceDetails'])->name('service.details');
+
+        Route::get('services/service/{category_id}', [HomeController::class, 'serviceDetails'])->name('service.details2');
         
         
         Route::get('search/experts', [HomeController::class, 'searchExperts'])->name('experts.search');

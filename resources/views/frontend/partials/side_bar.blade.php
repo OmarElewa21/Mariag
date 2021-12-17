@@ -17,39 +17,46 @@
                 </ul>
               </li>
 
-              <li class="nav-item dropdown {{activeMenu('user.provider.booking*')}}">
+              {{-- <li class="nav-item dropdown {{activeMenu('user.provider.booking*')}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-luggage-cart"></i> <span>{{$navbar['Bookings']}}</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{route('user.provider.booking')}}">{{$navbar['All Bookings']}}</a></li>
                 </ul>
-              </li>
+              </li> --}}
 
               <li class="nav-item dropdown {{activeMenu('user.plans')}}">
-                <a href="{{route('user.plans')}}" class="nav-link"><i class="fas fa-id-card-alt"></i></i><span>{{$navbar['Plans']}}</span></a>
+                <a href="{{route('user.plans')}}" class="nav-link"><i class="fas fa-id-card-alt"></i><span>{{$navbar['Plans']}}</span></a>
+              </li>
+
+              <li class="nav-item dropdown {{activeMenu('user.contacts')}}">
+                <a href="{{route('user.contacts')}}" class="nav-link">
+                  <i class="fas fa-address-book"></i>
+                  <span>{{$navbar['Contacts']}}</span>
+                </a>
               </li>
               
-              <li class="nav-item dropdown {{activeMenu('user.withdraw*')}}">
+              {{-- <li class="nav-item dropdown {{activeMenu('user.withdraw*')}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-credit-card"></i> <span>{{$navbar['Withdraw']}}</span></a>
                 <ul class="dropdown-menu">
                   <li><a href="{{route('user.withdraw')}}" class="nav-link">{{$navbar['Withdraw Money']}}</a></li>
                   <li><a href="{{route('user.withdraw.all')}}" class="nav-link">{{$navbar['All Withdraw Log']}}</a></li>
                   <li><a href="{{route('user.withdraw.pending')}}" class="nav-link">{{$navbar['Pending Withdraw']}}</a></li>
                 </ul>
-              </li>
+              </li> --}}
 
               @else
 
-              <li class="nav-item dropdown {{activeMenu('user.bookings*')}}">
+              {{-- <li class="nav-item dropdown {{activeMenu('user.bookings*')}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-luggage-cart"></i> <span>{{$navbar['Bookings']}}</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{route('user.bookings')}}">{{$navbar['All Bookings']}}</a></li>
                 </ul>
-              </li>
+              </li> --}}
               @endif
 
-              <li class="nav-item dropdown {{activeMenu('user.transaction')}}">
+              {{-- <li class="nav-item dropdown {{activeMenu('user.transaction')}}">
                 <a href="{{route('user.transaction')}}" class="nav-link"><i class="fas fa-credit-card"></i><span>{{$navbar['Transaction']}}</span></a>
-              </li>
+              </li> --}}
             
           </ul>
         </aside>
