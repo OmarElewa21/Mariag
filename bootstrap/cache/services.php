@@ -64,14 +64,6 @@
     16 => 'Mews\\Purifier\\PurifierServiceProvider',
     17 => 'Carbon\\Laravel\\ServiceProvider',
     18 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-<<<<<<< HEAD
-    19 => 'Spatie\\CookieConsent\\CookieConsentServiceProvider',
-    20 => 'App\\Providers\\AppServiceProvider',
-    21 => 'App\\Providers\\AuthServiceProvider',
-    22 => 'App\\Providers\\EventServiceProvider',
-    23 => 'App\\Providers\\RouteServiceProvider',
-    24 => 'Intervention\\Image\\ImageServiceProvider',
-=======
     19 => 'PragmaRX\\Google2FALaravel\\ServiceProvider',
     20 => 'Spatie\\CookieConsent\\CookieConsentServiceProvider',
     21 => 'App\\Providers\\AppServiceProvider',
@@ -79,7 +71,6 @@
     23 => 'App\\Providers\\EventServiceProvider',
     24 => 'App\\Providers\\RouteServiceProvider',
     25 => 'Intervention\\Image\\ImageServiceProvider',
->>>>>>> testing
   ),
   'deferred' => 
   array (
