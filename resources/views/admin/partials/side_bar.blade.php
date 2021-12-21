@@ -22,7 +22,7 @@
                   <li><a class="nav-link" href="{{route('admin.subscriptions.index')}}">@changeLang('All Subscriptions')</a></li>
                 
                 </ul>
-              </li>  
+              </li>
               
               
               <li class="nav-item dropdown {{activeMenu('admin.provider*')}}">
